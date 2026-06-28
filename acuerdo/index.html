@@ -476,7 +476,7 @@
 
     <!-- 03 Cronograma -->
     <section class="mb-[120px] reveal">
-      <div class="text-center mb-16">
+      <div class="text-center mb-28">
         <span class="section-label">03. Cronograma Operativo</span>
         <h2>Planificación de <br><em>Entregas y Reuniones</em></h2>
         <p class="text-on-surface-variant max-w-2xl mx-auto mt-4">Visualización de las actividades clave, responsables y días de entrega para garantizar el cumplimiento oportuno del proyecto.</p>
@@ -783,7 +783,7 @@
 
     <!-- 06 Pretest -->
     <section class="mb-[120px] reveal">
-      <div class="text-center mb-16">
+      <div class="text-center mb-28">
         <span class="section-label">06. Diagnóstico Inicial</span>
         <h2>Análisis de <br><em>Pretest del Equipo</em></h2>
         <p class="text-on-surface-variant max-w-2xl mx-auto mt-4">Resultados de la evaluación diagnóstica sobre comercio internacional, marketing e internacionalización de empresas, identificando nuestras fortalezas y oportunidades de mejora.</p>
@@ -792,93 +792,165 @@
       <style>
         .pretest-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+          grid-template-columns: 1fr;
           gap: 2rem;
+          max-width: 1000px;
+          margin: 0 auto;
         }
+        @media (min-width: 768px) {
+          .pretest-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+        }
+        
         .pretest-card {
           background: white;
           border-radius: 1.5rem;
-          padding: 2rem;
-          box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-          border-top: 4px solid var(--primary);
+          padding: 2.5rem;
+          box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+          border: 1px solid rgba(0,0,0,0.05);
           transition: transform 0.3s ease, box-shadow 0.3s ease;
           position: relative;
           overflow: hidden;
+          display: flex;
+          flex-direction: column;
         }
         .pretest-card:hover {
           transform: translateY(-5px);
-          box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+          box-shadow: 0 20px 40px rgba(0,0,0,0.08);
         }
+        
+        /* Decorative corner blobs */
         .pretest-card::before {
           content: '';
           position: absolute;
-          top: -20px; right: -20px;
-          width: 100px; height: 100px;
+          top: -30px; right: -30px;
+          width: 120px; height: 120px;
           border-radius: 50%;
-          background: rgba(168, 213, 186, 0.1); /* primary tint */
           z-index: 0;
+          opacity: 0.15;
         }
-        .pretest-card--juanita { border-top-color: var(--secondary); }
-        .pretest-card--juanita::before { background: rgba(254, 216, 233, 0.2); }
-        .pretest-card--lucas { border-top-color: var(--tertiary); }
-        .pretest-card--lucas::before { background: rgba(230, 213, 184, 0.2); }
+        
+        /* Member theme colors */
+        .card-mateo::before { background: var(--primary); }
+        .card-mateo .pretest-score { color: var(--primary); }
+        
+        .card-juanita::before { background: var(--secondary); }
+        .card-juanita .pretest-score { color: var(--secondary); }
+        
+        .card-lucas::before { background: var(--tertiary); }
+        .card-lucas .pretest-score { color: var(--tertiary); }
+        
+        .card-julian::before { background: #f59e0b; }
+        .card-julian .pretest-score { color: #f59e0b; }
 
-        .pretest-score {
-          font-family: var(--font-display);
-          font-size: 3.5rem;
-          font-weight: 600;
-          color: var(--primary);
-          line-height: 1;
-          margin-bottom: 0.5rem;
-          position: relative;
-          z-index: 1;
-        }
-        .pretest-card--juanita .pretest-score { color: var(--secondary); }
-        .pretest-card--lucas .pretest-score { color: var(--tertiary); }
-
-        .pretest-name {
-          font-size: 1.25rem;
-          font-weight: 700;
-          color: var(--on-surface);
+        .pretest-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-start;
           margin-bottom: 1.5rem;
           position: relative;
           z-index: 1;
         }
+        .pretest-info {
+          flex: 1;
+        }
+        .pretest-name {
+          font-size: 1.25rem;
+          font-weight: 700;
+          color: var(--on-surface);
+          margin-bottom: 0.25rem;
+        }
+        .pretest-role {
+          font-size: 0.875rem;
+          color: var(--on-surface-variant);
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          font-weight: 600;
+        }
+        .pretest-score {
+          font-family: var(--font-display);
+          font-size: 3rem;
+          font-weight: 700;
+          line-height: 1;
+          letter-spacing: -0.02em;
+        }
+        
         .pretest-text {
           font-size: 0.95rem;
           color: var(--on-surface-variant);
-          line-height: 1.6;
+          line-height: 1.7;
           position: relative;
           z-index: 1;
+          background: #f8fafc;
+          padding: 1.5rem;
+          border-radius: 1rem;
+          border-left: 3px solid #e2e8f0;
+          flex-grow: 1;
         }
+        
+        /* Theme border-left matching the character */
+        .card-mateo .pretest-text { border-left-color: var(--primary); background: rgba(168, 213, 186, 0.05); }
+        .card-juanita .pretest-text { border-left-color: var(--secondary); background: rgba(254, 216, 233, 0.05); }
+        .card-lucas .pretest-text { border-left-color: var(--tertiary); background: rgba(230, 213, 184, 0.1); }
+        .card-julian .pretest-text { border-left-color: #f59e0b; background: rgba(245, 158, 11, 0.03); }
       </style>
 
       <div class="pretest-grid">
         
         <!-- Mateo -->
-        <div class="pretest-card reveal delay-100">
-          <div class="pretest-score">79.8<span style="font-size: 1.5rem;">%</span></div>
-          <div class="pretest-name">Mateo Restrepo</div>
+        <div class="pretest-card card-mateo reveal delay-100">
+          <div class="pretest-header">
+            <div class="pretest-info">
+              <div class="pretest-name">Mateo Restrepo</div>
+              <div class="pretest-role">Análisis Individual</div>
+            </div>
+            <div class="pretest-score">79.8<span style="font-size: 1.5rem; font-weight: 500;">%</span></div>
+          </div>
           <div class="pretest-text">
             "Muestra que tengo un buen nivel de conocimiento sobre lo que se preguntó en el test como el comercio internacional, marketing e internacionalización de empresas. Este resultado demuestra que comprendo la mayoría de los conceptos que se preguntaron, sin embargo, aún existen oportunidades de mejora en algunos temas específicos. Espero que en el transcurso del núcleo pueda aumentar mis conocimientos sobre las cosas que tengo por mejorar."
           </div>
         </div>
 
         <!-- Juanita -->
-        <div class="pretest-card pretest-card--juanita reveal delay-200">
-          <div class="pretest-score">83.2<span style="font-size: 1.5rem;">%</span></div>
-          <div class="pretest-name">Juanita Zuleta</div>
+        <div class="pretest-card card-juanita reveal delay-200">
+          <div class="pretest-header">
+            <div class="pretest-info">
+              <div class="pretest-name">Juanita Zuleta</div>
+              <div class="pretest-role">Análisis Individual</div>
+            </div>
+            <div class="pretest-score">83.2<span style="font-size: 1.5rem; font-weight: 500;">%</span></div>
+          </div>
           <div class="pretest-text">
             "Me demuestra que cuento con ciertos conocimientos sobre los temas del núcleo, por ejemplo sobre el comercio exterior y conocimientos sobre negocios, dándome más confianza a mí misma para seguir investigando y nutriendo mis conocimientos. Sin embargo, hay oportunidades para seguir mejorando y desarrollar un mejor desempeño en el núcleo."
           </div>
         </div>
 
         <!-- Lucas -->
-        <div class="pretest-card pretest-card--lucas reveal delay-300">
-          <div class="pretest-score">69.9<span style="font-size: 1.5rem;">%</span></div>
-          <div class="pretest-name">Lucas Tejada</div>
+        <div class="pretest-card card-lucas reveal delay-300">
+          <div class="pretest-header">
+            <div class="pretest-info">
+              <div class="pretest-name">Lucas Tejada</div>
+              <div class="pretest-role">Análisis Individual</div>
+            </div>
+            <div class="pretest-score">69.9<span style="font-size: 1.5rem; font-weight: 500;">%</span></div>
+          </div>
           <div class="pretest-text">
             "Indica que tengo un nivel de conocimiento aceptable sobre los temas evaluados en el test, relacionados con comercio internacional, marketing e internacionalización de empresas. Este resultado muestra que comprendo una buena base teórica inicial, pero reconozco que debo aprovechar el núcleo para fortalecer mis competencias y profundizar en estos temas clave."
+          </div>
+        </div>
+
+        <!-- Julian -->
+        <div class="pretest-card card-julian reveal delay-400">
+          <div class="pretest-header">
+            <div class="pretest-info">
+              <div class="pretest-name">Julian David Orozco</div>
+              <div class="pretest-role">Análisis Individual</div>
+            </div>
+            <div class="pretest-score">43.1<span style="font-size: 1.5rem; font-weight: 500;">%</span></div>
+          </div>
+          <div class="pretest-text">
+            "Representa un resultado que, si bien no alcanza el nivel de desempeño que me propuse, me sirve como un punto de partida claro. Entiendo que este porcentaje refleja que aún me falta profundizar más en el análisis macroeconómico, comercial y de gestión, así como relacionar la teoría con la realidad. No lo veo como un límite, sino como una oportunidad: me comprometo a repasar con detenimiento, estudiar variables del entorno y practicar casos prácticos. Con constancia y organización, elevaré notablemente mi desempeño."
           </div>
         </div>
 
