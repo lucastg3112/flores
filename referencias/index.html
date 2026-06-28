@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Referencias - Aldea Global 2</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&family=Hanken+Grotesk:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../assets/css/botanical.css">
+  <style>
+    body {
+      background: var(--surface);
+      background-image: 
+        radial-gradient(circle at 100% 0%, rgba(168, 213, 186, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 0% 100%, rgba(254, 216, 233, 0.15) 0%, transparent 40%);
+      background-attachment: fixed;
+    }
+    
+    .hero-referencias {
+      text-align: center;
+      padding: 120px 24px 60px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .hero-referencias h1 {
+      font-size: 56px;
+      line-height: 1.1;
+      margin-bottom: 24px;
+      color: var(--on-surface);
+    }
+    
+    .hero-referencias h1 em {
+      font-style: italic;
+      color: var(--primary);
+    }
+    
+    .hero-referencias p {
+      font-size: 16px;
+      color: var(--on-surface-variant);
+      max-width: 600px;
+      margin: 0 auto 40px;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 24px 100px;
+    }
+
+    .reference-section {
+      background: #ffffff;
+      border-radius: var(--radius-xl);
+      padding: 48px;
+      box-shadow: var(--shadow-botanical);
+      margin-bottom: 40px;
+      position: relative;
+    }
+
+    .reference-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 48px;
+      right: 48px;
+      height: 4px;
+      background: var(--primary);
+      border-radius: 4px 4px 0 0;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 32px;
+      color: var(--on-surface);
+      margin-bottom: 32px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .reference-list {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .reference-item {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      padding: 24px;
+      background: var(--surface-container-lowest);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--radius-lg);
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+
+    .reference-item:hover {
+      transform: translateY(-4px);
+      border-color: var(--primary);
+    }
+
+    .reference-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .reference-content h3 {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--on-surface);
+      margin-bottom: 8px;
+    }
+
+    .reference-content p {
+      font-size: 14px;
+      color: var(--on-surface-variant);
+      margin-bottom: 12px;
+      line-height: 1.5;
+    }
+
+    .reference-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    .reference-link:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      .hero-referencias h1 { font-size: 40px; }
+      .reference-section { padding: 32px 24px; }
+      .reference-section::before { left: 24px; right: 24px; }
+      .reference-item { flex-direction: column; gap: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="global-nav">
+    <div class="nav-brand">
+      Aldea Global 2
+    </div>
+    <div class="nav-links">
+      <a href="../" class="nav-link">Inicio</a>
+      <a href="../acuerdo/" class="nav-link">Acuerdo</a>
+      <a href="../referencias/" class="nav-link active">Referencias</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header class="hero-referencias reveal">
+    <h1>Fuentes &amp; <em>Referencias</em></h1>
+    <p>Documentación, datos de mercado y fuentes oficiales que respaldan el análisis y la viabilidad de los entregables del proyecto Aldea Global 2.</p>
+  </header>
+
+  <main class="container">
+    
+    <!-- Referencias Entrega 1 -->
+    <section class="reference-section reveal">
+      <h2 class="section-title">
+        <span class="material-symbols-outlined text-primary" style="font-size: 36px;">library_books</span>
+        Referencias de la Entrega 1
+      </h2>
+      
+      <div class="reference-list">
+        
+        <!-- Ref 1 -->
+        <article class="reference-item reveal delay-100">
+          <div class="reference-icon">
+            <span class="material-symbols-outlined">monitoring</span>
+          </div>
+          <div class="reference-content">
+            <h3>Fortune Business Insights</h3>
+            <p>Datos e investigación sobre el mercado global de floricultura, proyecciones de crecimiento, tendencias del mercado y análisis de factores impulsores a nivel mundial.</p>
+            <a href="https://www.fortunebusinessinsights.com/es/floriculture-market-109122" target="_blank" rel="noopener noreferrer" class="reference-link">
+              Visitar fuente <span class="material-symbols-outlined" style="font-size: 16px;">open_in_new</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- Ref 2 -->
+        <article class="reference-item reveal delay-200">
+          <div class="reference-icon">
+            <span class="material-symbols-outlined">insights</span>
+          </div>
+          <div class="reference-content">
+            <h3>Future Market Insights</h3>
+            <p>Reporte detallado sobre el tamaño del mercado de la floricultura, segmentación por tipo de flor y proyecciones de la tasa de crecimiento anual compuesta (TCAC) para regiones clave.</p>
+            <a href="https://www-futuremarketinsights-com.translate.goog/reports/floriculture-market?_x_tr_sl=en&_x_tr_tl=es&_x_tr_hl=es&_x_tr_pto=tc" target="_blank" rel="noopener noreferrer" class="reference-link">
+              Visitar fuente <span class="material-symbols-outlined" style="font-size: 16px;">open_in_new</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- Ref 3 -->
+        <article class="reference-item reveal delay-300">
+          <div class="reference-icon">
+            <span class="material-symbols-outlined">public</span>
+          </div>
+          <div class="reference-content">
+            <h3>International Trade Centre (ITC) – Trade Map</h3>
+            <p>Estadísticas comerciales oficiales utilizadas para identificar el panorama competitivo mundial, exportaciones e importaciones de flores, justificando la selección de países candidatos.</p>
+            <a href="https://www.trademap.org/" target="_blank" rel="noopener noreferrer" class="reference-link">
+              Visitar Trade Map <span class="material-symbols-outlined" style="font-size: 16px;">open_in_new</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- Ref 4: Metodología SMART -->
+        <article class="reference-item reveal delay-400">
+          <div class="reference-icon">
+            <span class="material-symbols-outlined">library_books</span>
+          </div>
+          <div class="reference-content">
+            <h3>Metodología SMART (Doran, G. T. & Locke, E. A.)</h3>
+            <p>
+              Doran, G. T. (1981). <em>There's a S.M.A.R.T. way to write management's goals and objectives.</em> Management Review, 70(11), 35–36. <br><br>
+              Locke, E. A., & Latham, G. P. (2002). <em>Building a practically useful theory of goal setting and task motivation: A 35‑year odyssey.</em> American Psychologist, 57(9), 705–717.
+            </p>
+          </div>
+        </article>
+
+        <!-- Ref 5: ProColombia -->
+        <article class="reference-item reveal delay-500">
+          <div class="reference-icon">
+            <span class="material-symbols-outlined">import_export</span>
+          </div>
+          <div class="reference-content">
+            <h3>ProColombia (2024)</h3>
+            <p><strong>Guía para la internacionalización de empresas.</strong> Bogotá: Ministerio de Comercio, Industria y Turismo. Aplicación directa en las estrategias de comercio exterior y exportación colombiana.</p>
+          </div>
+        </article>
+
+        <!-- Ref 6: Asocolflores -->
+        <article class="reference-item reveal delay-100">
+          <div class="reference-icon">
+            <span class="material-symbols-outlined">local_florist</span>
+          </div>
+          <div class="reference-content">
+            <h3>Asocolflores (2023)</h3>
+            <p><strong>Manual de buenas prácticas y estrategias de comercialización para la floricultura colombiana.</strong> Bogotá: Asociación Colombiana de Exportadores de Flores.</p>
+          </div>
+        </article>
+
+        <!-- Ref 7: ICA -->
+        <article class="reference-item reveal delay-200">
+          <div class="reference-icon">
+            <span class="material-symbols-outlined">gavel</span>
+          </div>
+          <div class="reference-content">
+            <h3>ICA – Instituto Colombiano Agropecuario (2022)</h3>
+            <p><strong>Normativa fitosanitaria para la exportación de productos vegetales.</strong> Bogotá: Ministerio de Agricultura y Desarrollo Rural. Referencia clave para la viabilidad legal y sanitaria del proyecto.</p>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="global-footer">
+    <div class="footer-info">
+      <div class="nav-brand">
+        Aldea Global 2
+      </div>
+      <span class="footer-copy">International Excellence • © 2024</span>
+    </div>
+    <div class="footer-links">
+      <a href="#" class="footer-link">Privacidad</a>
+      <a href="#" class="footer-link">Términos</a>
+      <a href="#" class="footer-link">Soporte</a>
+    </div>
+  </footer>
+
+  <script src="../assets/js/reveal.js"></script>
+</body>
+</html>

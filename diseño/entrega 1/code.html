@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Realidad Empresarial - Aldea Global 2</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts: Hanken Grotesk & Playfair Display -->
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;family=Playfair+Display:wght@500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Design System Theme Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary": "#6c5777",
+                    "secondary-container": "#fed8e9",
+                    "on-primary-fixed-variant": "#254f3a",
+                    "primary-fixed": "#bfedd1",
+                    "primary-container": "#a8d5ba",
+                    "secondary": "#735664",
+                    "surface-variant": "#e4e2de",
+                    "inverse-on-surface": "#f2f0ed",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-fixed": "#2a1520",
+                    "surface-bright": "#fbf9f5",
+                    "on-tertiary-fixed-variant": "#533f5e",
+                    "inverse-primary": "#a4d1b6",
+                    "on-tertiary": "#ffffff",
+                    "surface-container-low": "#f5f3ef",
+                    "outline-variant": "#c1c8c1",
+                    "primary-fixed-dim": "#a4d1b6",
+                    "on-error-container": "#93000a",
+                    "error-container": "#ffdad6",
+                    "surface-container": "#efeeea",
+                    "on-surface-variant": "#414943",
+                    "background": "#fbf9f5",
+                    "surface-container-highest": "#e4e2de",
+                    "on-tertiary-fixed": "#261430",
+                    "surface-dim": "#dbdad6",
+                    "on-secondary-fixed-variant": "#593f4c",
+                    "tertiary-container": "#dcc2e7",
+                    "on-primary": "#ffffff",
+                    "surface-tint": "#3d6751",
+                    "secondary-fixed-dim": "#e1bdcd",
+                    "on-surface": "#1b1c1a",
+                    "surface": "#fbf9f5",
+                    "inverse-surface": "#30312e",
+                    "on-secondary-container": "#795c6a",
+                    "on-error": "#ffffff",
+                    "secondary-fixed": "#fed8e9",
+                    "on-primary-container": "#345d48",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed-dim": "#d8bee3",
+                    "tertiary-fixed": "#f4d9ff",
+                    "surface-container-high": "#eae8e4",
+                    "on-primary-fixed": "#002113",
+                    "primary": "#3d6751",
+                    "on-background": "#1b1c1a",
+                    "error": "#ba1a1a",
+                    "on-tertiary-container": "#624e6d",
+                    "outline": "#717973"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "48px",
+                    "gutter": "24px",
+                    "margin-mobile": "16px",
+                    "base": "8px",
+                    "container-max": "1280px"
+            },
+            "fontFamily": {
+                    "body-md": ["Hanken Grotesk"],
+                    "label-sm": ["Hanken Grotesk"],
+                    "headline-xl": ["Playfair Display"],
+                    "headline-lg-mobile": ["Playfair Display"],
+                    "headline-lg": ["Playfair Display"],
+                    "headline-md": ["Playfair Display"],
+                    "body-lg": ["Hanken Grotesk"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-xl": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #fbf9f5;
+            color: #1b1c1a;
+            overflow-x: hidden;
+        }
+        .botanical-shadow {
+            box-shadow: 0 10px 30px rgba(168, 213, 186, 0.15);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(168, 213, 186, 0.2);
+        }
+        .organic-blob {
+            position: absolute;
+            z-index: -1;
+            filter: blur(40px);
+            opacity: 0.4;
+            border-radius: 50%;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .active-dot::after {
+            content: '';
+            display: block;
+            width: 4px;
+            height: 4px;
+            background: currentColor;
+            border-radius: 50%;
+            margin: 2px auto 0;
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md">
+<!-- TopNavBar (JSON Source) -->
+<nav class="fixed top-0 w-full z-50 bg-white/80 dark:bg-surface-container/80 backdrop-blur-md shadow-sm">
+<div class="flex justify-between items-center px-margin-desktop py-4 max-w-container-max mx-auto">
+<div class="font-headline-md text-headline-md font-semibold text-primary dark:text-primary-fixed-dim">
+                Aldea Global 2
+            </div>
+<div class="hidden md:flex items-center gap-8 font-body-md text-body-md">
+<a class="text-on-surface-variant dark:text-outline-variant hover:text-primary transition-colors duration-200 active:scale-95" href="#">Dashboard</a>
+<a class="text-on-surface-variant dark:text-outline-variant hover:text-primary transition-colors duration-200 active:scale-95" href="#">Acuerdo de Equipo</a>
+<a class="text-primary dark:text-primary-fixed border-b-2 border-primary dark:border-primary-fixed pb-1 hover:text-primary transition-colors duration-200 active:scale-95" href="#">Realidad Empresarial</a>
+<a class="text-on-surface-variant dark:text-outline-variant hover:text-primary transition-colors duration-200 active:scale-95" href="#">Fase 2</a>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative group hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="pl-10 pr-4 py-2 rounded-full bg-surface-container-low border-none focus:ring-2 focus:ring-primary/20 transition-all w-48 focus:w-64" placeholder="Buscar..." type="text"/>
+</div>
+<button class="text-on-surface-variant hover:text-primary transition-all active:scale-90">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-all active:scale-90">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-container">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a business executive in a light-filled office, smiling with confidence. The lighting is warm and natural, reflecting a sophisticated corporate yet welcoming environment. The style is clean and high-end, consistent with a premium international brand aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAANTA8ZvyEW8rkCsROUKOhFvoeKxLOIiXsRJs2yonSJ8OKVwP88bfH7sNZ85nzfIXob44vMqx0HJwngDAdjXJJ9xPsgdkHHq1-mzR2nAJI2uZTkzUAR5h_gtEXRHy2xrouxgyExCKgge-SgZ320bukX6PxJPd732LmHs6KujUMzWuPqp4FCcthFI54UkByQmOXCOYSCJhCOse0koWAXOs55ek7oO7uF0p5fMs9mIjFjycqFXlxEewRgNqXijGhpYyp_hCcO5mjGTA"/>
+</div>
+</div>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="pt-24 pb-16 px-4 md:px-margin-desktop max-w-container-max mx-auto relative">
+<!-- Background Organic Elements -->
+<div class="organic-blob bg-primary-container w-96 h-96 -top-20 -left-20"></div>
+<div class="organic-blob bg-secondary-container w-64 h-64 top-1/2 right-0"></div>
+<div class="organic-blob bg-tertiary-container w-80 h-80 bottom-0 -left-10"></div>
+<!-- Section 2: Hero/Intro -->
+<header class="mb-16 text-center md:text-left">
+<div class="inline-block px-4 py-1 rounded-full bg-primary-container/30 text-on-primary-container font-label-sm text-label-sm mb-4">
+                ENTREGABLE 1
+            </div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface mb-6">
+                Realidad Empresarial: <span class="text-primary">Dreams Flower SAS</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-3xl leading-relaxed">
+                Análisis integral de la estructura corporativa, propuesta de valor y posicionamiento estratégico de Dreams Flower SAS en el mercado internacional de flores de corte premium.
+            </p>
+</header>
+<!-- Section 3: B1. Descripción de la Empresa -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-gutter mb-20">
+<div class="md:col-span-7 bg-white p-10 rounded-xl botanical-shadow border-t-2 border-primary transition-transform hover:-translate-y-1">
+<h2 class="font-headline-md text-headline-md mb-6 flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">potted_plant</span>
+                    Descripción de la Empresa
+                </h2>
+<div class="space-y-4 text-on-surface-variant leading-relaxed">
+<p><strong class="text-on-surface">Nombre:</strong> Dreams Flower SAS</p>
+<p><strong class="text-on-surface">Sector:</strong> Floricultor - Agroindustrial Exportador</p>
+<p>Especialistas en la producción y comercialización de flores de corte de alta gama, con un enfoque en rosas de exportación y follajes exóticos. La compañía combina técnicas tradicionales de cultivo con tecnología de punta para garantizar una vida en florero superior.</p>
+<p>En el contexto del mercado nacional, Dreams Flower se posiciona como un referente de sostenibilidad y calidad técnica, contribuyendo significativamente a la balanza comercial del sector agrícola colombiano.</p>
+</div>
+</div>
+<div class="md:col-span-5 rounded-xl overflow-hidden botanical-shadow relative group">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A lush, vibrant flower plantation featuring rows of premium roses in soft pink and cream colors. The morning sun filters through the greenhouse glass, creating a dreamy, ethereal light. The composition is artistic and minimalist, emphasizing the organic beauty and meticulous organization of a high-end floral business." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmqUcnR0v0W3XDxmbHMUfup91hYEn_bvtpdiIRcivtdoA0AsqDPF4sq2_qNKuOFcRTZkmTXsQttkuIdhqJYsn7w-Ai87SeEkaVlsl-9yEw0VQZgkEMsvq-8092e3s0j-0KKha1UN9SNujKit0MKfDTTkQo9gVIkFz-guKct88bHkeCuMSw1tPUxF_uoQtYo0xNtSiGCc5CqRNNVNEV84gDEIiQzHM5LGp1W0OXlHrbpoHGcBah9TEQa7LnCKiQH7KSj1IeWVcW3CI"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent flex items-end p-8">
+<p class="text-white font-body-md italic">"Cultivando sueños, exportando emociones."</p>
+</div>
+</div>
+</section>
+<!-- Section 4: B2. Business Model Canvas (Bento Style) -->
+<section class="mb-20">
+<div class="flex justify-between items-end mb-8">
+<div>
+<h2 class="font-headline-md text-headline-md">Business Model Canvas</h2>
+<p class="text-on-surface-variant">Mapa visual de la estructura lógica del negocio.</p>
+</div>
+<a class="text-primary font-label-sm text-label-sm flex items-center gap-2 hover:underline" href="#">
+<span class="material-symbols-outlined text-base">description</span>
+                    Ver documentos AVA
+                </a>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+<!-- Socios Clave -->
+<div class="p-6 bg-surface-container-low rounded-xl border border-outline-variant hover:border-primary transition-colors flex flex-col gap-3">
+<span class="material-symbols-outlined text-primary">handshake</span>
+<h3 class="font-bold text-on-surface">Socios Clave</h3>
+<p class="text-xs text-on-surface-variant">Proveedores de insumos orgánicos, cooperativas de carga.</p>
+</div>
+<!-- Actividades Clave -->
+<div class="p-6 bg-surface-container-low rounded-xl border border-outline-variant hover:border-primary transition-colors flex flex-col gap-3">
+<span class="material-symbols-outlined text-primary">precision_manufacturing</span>
+<h3 class="font-bold text-on-surface">Actividades Clave</h3>
+<p class="text-xs text-on-surface-variant">Cultivo tecnificado, control de calidad post-cosecha.</p>
+</div>
+<!-- Propuesta de Valor -->
+<div class="row-span-2 p-6 bg-primary-container/20 rounded-xl border-2 border-primary/30 flex flex-col gap-4 text-center justify-center">
+<span class="material-symbols-outlined text-primary scale-150 mb-2">workspace_premium</span>
+<h3 class="font-headline-md text-primary">Propuesta de Valor</h3>
+<p class="text-sm text-on-primary-container">Flores de corte premium con certificación de huella hídrica neutra y entrega garantizada en 48h.</p>
+</div>
+<!-- Relaciones -->
+<div class="p-6 bg-surface-container-low rounded-xl border border-outline-variant hover:border-primary transition-colors flex flex-col gap-3">
+<span class="material-symbols-outlined text-primary">favorite</span>
+<h3 class="font-bold text-on-surface">Relaciones</h3>
+<p class="text-xs text-on-surface-variant">Atención personalizada, club de fidelidad floral.</p>
+</div>
+<!-- Segmentos -->
+<div class="p-6 bg-surface-container-low rounded-xl border border-outline-variant hover:border-primary transition-colors flex flex-col gap-3">
+<span class="material-symbols-outlined text-primary">person_search</span>
+<h3 class="font-bold text-on-surface">Segmentos</h3>
+<p class="text-xs text-on-surface-variant">Floristerías boutique, organizadores de eventos de lujo.</p>
+</div>
+<!-- Recursos Clave -->
+<div class="p-6 bg-surface-container-low rounded-xl border border-outline-variant hover:border-primary transition-colors flex flex-col gap-3">
+<span class="material-symbols-outlined text-primary">inventory_2</span>
+<h3 class="font-bold text-on-surface">Recursos Clave</h3>
+<p class="text-xs text-on-surface-variant">Invernaderos inteligentes, personal técnico experto.</p>
+</div>
+<!-- Canales -->
+<div class="p-6 bg-surface-container-low rounded-xl border border-outline-variant hover:border-primary transition-colors flex flex-col gap-3">
+<span class="material-symbols-outlined text-primary">local_shipping</span>
+<h3 class="font-bold text-on-surface">Canales</h3>
+<p class="text-xs text-on-surface-variant">E-commerce B2B, distribuidores internacionales.</p>
+</div>
+<!-- Estructura Costos -->
+<div class="col-span-2 p-6 bg-surface-container-low rounded-xl border border-outline-variant hover:border-primary transition-colors flex justify-between items-center">
+<div class="flex flex-col gap-2">
+<h3 class="font-bold text-on-surface">Estructura de Costos</h3>
+<p class="text-xs text-on-surface-variant">Mantenimiento, logística, nómina técnica.</p>
+</div>
+<span class="material-symbols-outlined text-primary">payments</span>
+</div>
+<!-- Fuentes de Ingreso -->
+<div class="col-span-2 p-6 bg-surface-container-low rounded-xl border border-outline-variant hover:border-primary transition-colors flex justify-between items-center">
+<div class="flex flex-col gap-2">
+<h3 class="font-bold text-on-surface">Fuentes de Ingresos</h3>
+<p class="text-xs text-on-surface-variant">Venta directa, suscripciones corporativas.</p>
+</div>
+<span class="material-symbols-outlined text-primary">account_balance_wallet</span>
+</div>
+</div>
+</section>
+<!-- Section 5: B3. Diagnóstico de Potencialidades -->
+<section class="mb-20">
+<h2 class="font-headline-md text-headline-md mb-8">Diagnóstico de Potencialidades</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Bar Chart Mockup -->
+<div class="bg-white p-6 rounded-xl botanical-shadow">
+<div class="flex justify-between items-center mb-6">
+<h4 class="font-bold">Capacidad Operativa</h4>
+<span class="text-xs bg-primary-container text-on-primary-container px-2 py-1 rounded">Excel 2024</span>
+</div>
+<div class="h-48 flex items-end gap-2 px-2">
+<div class="w-full bg-primary/20 rounded-t-lg h-[40%] hover:bg-primary transition-all cursor-pointer"></div>
+<div class="w-full bg-primary/20 rounded-t-lg h-[65%] hover:bg-primary transition-all cursor-pointer"></div>
+<div class="w-full bg-primary/20 rounded-t-lg h-[90%] hover:bg-primary transition-all cursor-pointer"></div>
+<div class="w-full bg-primary/20 rounded-t-lg h-[75%] hover:bg-primary transition-all cursor-pointer"></div>
+<div class="w-full bg-primary/20 rounded-t-lg h-[55%] hover:bg-primary transition-all cursor-pointer"></div>
+</div>
+<p class="mt-4 text-sm text-on-surface-variant italic text-center">Incremento de eficiencia del 24% vs Q1</p>
+</div>
+<!-- Line Chart Mockup -->
+<div class="bg-white p-6 rounded-xl botanical-shadow">
+<h4 class="font-bold mb-6">Proyección de Exportación</h4>
+<div class="h-48 relative overflow-hidden border-l border-b border-outline-variant flex items-center justify-center">
+<svg class="w-full h-full" viewbox="0 0 100 50">
+<path d="M0,45 Q20,40 40,30 T80,10 T100,5" fill="none" stroke="#3d6751" stroke-width="2"></path>
+<circle cx="40" cy="30" fill="#3d6751" r="2"></circle>
+<circle cx="80" cy="10" fill="#3d6751" r="2"></circle>
+</svg>
+</div>
+<div class="flex justify-between mt-4 text-[10px] text-outline">
+<span>ENE</span><span>MAR</span><span>MAY</span><span>JUL</span><span>SEP</span>
+</div>
+</div>
+<!-- Pie Chart Mockup -->
+<div class="bg-white p-6 rounded-xl botanical-shadow flex flex-col items-center">
+<h4 class="font-bold mb-6 self-start">Participación Mercado</h4>
+<div class="relative w-40 h-40">
+<div class="absolute inset-0 rounded-full border-[15px] border-primary-container"></div>
+<div class="absolute inset-0 rounded-full border-[15px] border-primary border-t-transparent border-l-transparent -rotate-45"></div>
+<div class="absolute inset-0 flex items-center justify-center flex-col">
+<span class="text-xl font-bold">65%</span>
+<span class="text-[10px] text-outline uppercase tracking-wider">Premium</span>
+</div>
+</div>
+<div class="mt-6 flex gap-4">
+<div class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-primary"></span> <span class="text-xs">Export</span></div>
+<div class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-primary-container"></span> <span class="text-xs">Local</span></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 6: B4. Análisis DOFA -->
+<section class="mb-20">
+<h2 class="font-headline-md text-headline-md mb-8">Análisis DOFA</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Fortalezas -->
+<div class="p-8 bg-primary-container/10 border-l-4 border-primary rounded-r-xl">
+<div class="flex items-center gap-4 mb-4">
+<div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<h3 class="font-headline-md text-primary">Fortalezas</h3>
+</div>
+<ul class="space-y-2 text-on-surface-variant">
+<li>• Certificaciones internacionales de calidad.</li>
+<li>• Know-how técnico de más de 15 años.</li>
+<li>• Alianzas estratégicas con operadores logísticos.</li>
+</ul>
+</div>
+<!-- Oportunidades -->
+<div class="p-8 bg-secondary-container/10 border-l-4 border-secondary rounded-r-xl">
+<div class="flex items-center gap-4 mb-4">
+<div class="w-10 h-10 rounded-full bg-secondary text-white flex items-center justify-center">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">trending_up</span>
+</div>
+<h3 class="font-headline-md text-secondary">Oportunidades</h3>
+</div>
+<ul class="space-y-2 text-on-surface-variant">
+<li>• Apertura de mercados en Medio Oriente.</li>
+<li>• Auge de productos con sello eco-friendly.</li>
+<li>• Digitalización del canal B2B.</li>
+</ul>
+</div>
+<!-- Debilidades -->
+<div class="p-8 bg-tertiary-container/10 border-l-4 border-tertiary rounded-r-xl">
+<div class="flex items-center gap-4 mb-4">
+<div class="w-10 h-10 rounded-full bg-tertiary text-white flex items-center justify-center">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">error</span>
+</div>
+<h3 class="font-headline-md text-tertiary">Debilidades</h3>
+</div>
+<ul class="space-y-2 text-on-surface-variant">
+<li>• Dependencia estacional de la demanda.</li>
+<li>• Alta rotación de personal operativo.</li>
+<li>• Brecha en automatización de empaque.</li>
+</ul>
+</div>
+<!-- Amenazas -->
+<div class="p-8 bg-error-container/10 border-l-4 border-error rounded-r-xl">
+<div class="flex items-center gap-4 mb-4">
+<div class="w-10 h-10 rounded-full bg-error text-white flex items-center justify-center">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">warning</span>
+</div>
+<h3 class="font-headline-md text-error">Amenazas</h3>
+</div>
+<ul class="space-y-2 text-on-surface-variant">
+<li>• Volatilidad en el precio de fertilizantes.</li>
+<li>• Cambio climático afectando ciclos de siembra.</li>
+<li>• Nuevos competidores regionales.</li>
+</ul>
+</div>
+</div>
+</section>
+<!-- Section 7: B5. Sostenibilidad -->
+<section class="mb-20">
+<div class="bg-white p-12 rounded-3xl botanical-shadow text-center relative overflow-hidden">
+<div class="absolute top-0 right-0 p-8 opacity-10">
+<span class="material-symbols-outlined text-[120px]">eco</span>
+</div>
+<h2 class="font-headline-md text-headline-md mb-12">Compromiso con la Sostenibilidad</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12 relative z-10">
+<div class="flex flex-col items-center group">
+<div class="w-20 h-20 rounded-full bg-primary/10 text-primary flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+<span class="material-symbols-outlined text-4xl">groups</span>
+</div>
+<h3 class="font-bold text-xl mb-4">Social</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed">Programas de bienestar para el 100% de los colaboradores y apoyo a la educación local.</p>
+</div>
+<div class="flex flex-col items-center group">
+<div class="w-20 h-20 rounded-full bg-primary/10 text-primary flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+<span class="material-symbols-outlined text-4xl">yard</span>
+</div>
+<h3 class="font-bold text-xl mb-4">Ambiental</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed">Gestión eficiente del agua y uso de bio-pesticidas para proteger la biodiversidad.</p>
+</div>
+<div class="flex flex-col items-center group">
+<div class="w-20 h-20 rounded-full bg-primary/10 text-primary flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+<span class="material-symbols-outlined text-4xl">insights</span>
+</div>
+<h3 class="font-bold text-xl mb-4">Económica</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed">Modelo de negocio rentable que reinvierte el 15% en innovación y desarrollo rural.</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer (JSON Source) -->
+<footer class="w-full py-8 mt-auto bg-surface-container-lowest dark:bg-surface-container-low border-t border-outline-variant/30">
+<div class="flex flex-col md:flex-row justify-between items-center px-margin-desktop max-w-container-max mx-auto gap-4">
+<div class="font-body-md text-body-md font-bold text-primary dark:text-primary-fixed">
+                Aldea Global 2
+            </div>
+<div class="font-label-sm text-label-sm text-on-surface-variant dark:text-outline-variant text-center">
+                © 2024 Aldea Global 2. Internationalization Excellence.
+            </div>
+<div class="flex gap-6 font-label-sm text-label-sm">
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Contact Support</a>
+</div>
+</div>
+</footer>
+<!-- Interactive Scripts -->
+<script>
+        // Simple scroll reveal for floating elements
+        window.addEventListener('scroll', () => {
+            const blobs = document.querySelectorAll('.organic-blob');
+            const scrolled = window.scrollY;
+            blobs.forEach((blob, index) => {
+                const speed = (index + 1) * 0.2;
+                blob.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+
+        // Dashboard Mock Interaction
+        document.querySelectorAll('.bg-primary\/20').forEach(bar => {
+            bar.addEventListener('mouseenter', function() {
+                this.classList.replace('bg-primary/20', 'bg-primary');
+            });
+            bar.addEventListener('mouseleave', function() {
+                this.classList.replace('bg-primary', 'bg-primary/20');
+            });
+        });
+    </script>
+</body></html>

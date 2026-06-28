@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html class="light" lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Realidad Empresarial - Aldea Global 2</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <!-- Google Fonts: Hanken Grotesk & Playfair Display -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <!-- Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <!-- Botanical Styles -->
+    <link rel="stylesheet" href="../../assets/css/botanical.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Design System Theme Configuration -->
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary": "#6c5777",
+                        "secondary-container": "#fed8e9",
+                        "on-primary-fixed-variant": "#254f3a",
+                        "primary-fixed": "#bfedd1",
+                        "primary-container": "#a8d5ba",
+                        "secondary": "#735664",
+                        "surface-variant": "#e4e2de",
+                        "inverse-on-surface": "#f2f0ed",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed": "#2a1520",
+                        "surface-bright": "#fbf9f5",
+                        "on-tertiary-fixed-variant": "#533f5e",
+                        "inverse-primary": "#a4d1b6",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-low": "#f5f3ef",
+                        "outline-variant": "#c1c8c1",
+                        "primary-fixed-dim": "#a4d1b6",
+                        "on-error-container": "#93000a",
+                        "error-container": "#ffdad6",
+                        "surface-container": "#efeeea",
+                        "on-surface-variant": "#414943",
+                        "background": "#fbf9f5",
+                        "surface-container-highest": "#e4e2de",
+                        "on-tertiary-fixed": "#261430",
+                        "surface-dim": "#dbdad6",
+                        "on-secondary-fixed-variant": "#593f4c",
+                        "tertiary-container": "#dcc2e7",
+                        "on-primary": "#ffffff",
+                        "surface-tint": "#3d6751",
+                        "secondary-fixed-dim": "#e1bdcd",
+                        "on-surface": "#1b1c1a",
+                        "surface": "#fbf9f5",
+                        "inverse-surface": "#30312e",
+                        "on-secondary-container": "#795c6a",
+                        "on-error": "#ffffff",
+                        "secondary-fixed": "#fed8e9",
+                        "on-primary-container": "#345d48",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed-dim": "#d8bee3",
+                        "tertiary-fixed": "#f4d9ff",
+                        "surface-container-high": "#eae8e4",
+                        "on-primary-fixed": "#002113",
+                        "primary": "#3d6751",
+                        "on-background": "#1b1c1a",
+                        "error": "#ba1a1a",
+                        "on-tertiary-container": "#624e6d",
+                        "outline": "#717973"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "48px",
+                        "gutter": "24px",
+                        "margin-mobile": "16px",
+                        "base": "8px",
+                        "container-max": "1280px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Hanken Grotesk"],
+                        "label-sm": ["Hanken Grotesk"],
+                        "headline-xl": ["Playfair Display"],
+                        "headline-lg-mobile": ["Playfair Display"],
+                        "headline-lg": ["Playfair Display"],
+                        "headline-md": ["Playfair Display"],
+                        "body-lg": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-xl": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "500" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            background-color: #fbf9f5;
+            color: #1b1c1a;
+            overflow-x: hidden;
+        }
+
+        .botanical-shadow {
+            box-shadow: 0 10px 30px rgba(168, 213, 186, 0.15);
+        }
+
+        .organic-blob {
+            position: absolute;
+            z-index: -1;
+            filter: blur(40px);
+            opacity: 0.4;
+            border-radius: 50%;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+
+<body class="font-body-md text-body-md">
+
+    <!-- Navbar -->
+    <nav class="global-nav">
+        <div class="nav-brand">
+            Aldea Global 2
+        </div>
+        <div class="nav-links">
+            <a href="../../" class="nav-link">Inicio</a>
+            <a href="../../acuerdo/" class="nav-link">Acuerdo</a>
+            <a href="../../referencias/" class="nav-link">Referencias</a>
+        </div>
+    </nav>
+
+    <!-- Background Organic Elements -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none -z-10">
+        <div class="organic-blob bg-primary-container w-[400px] h-[400px] -top-10 -left-20 opacity-40"></div>
+        <div class="organic-blob bg-secondary-container w-64 h-64 top-1/3 -right-10 opacity-40"></div>
+        <div class="organic-blob bg-tertiary-container w-80 h-80 bottom-10 -left-10 opacity-40"></div>
+    </div>
+
+    <!-- Main Content Canvas -->
+    <main class="pt-24 pb-16 px-4 md:px-margin-desktop max-w-container-max mx-auto relative">
+
+        <!-- Section 2: Hero/Intro -->
+        <header class="mb-16 text-center md:text-left hero-entrega reveal">
+            <div
+                class="inline-block px-4 py-1 rounded-full bg-primary-container/30 text-on-primary-container font-label-sm text-label-sm mb-4 eyebrow-pill">
+                ENTREGABLE 1
+            </div>
+            <h1 class="font-headline-xl text-headline-xl text-on-surface mb-6">
+                Acuerdo de equipo y Estudio de la realidad empresarial, <span class="text-primary">proyecto, o Reto Empresarial</span>
+            </h1>
+            <p class="font-body-lg text-body-lg text-on-surface-variant max-w-3xl leading-relaxed">
+                Análisis integral de la estructura corporativa, propuesta de valor y posicionamiento estratégico de
+                Dreams Flower SAS en el mercado internacional de flores de corte premium.
+            </p>
+        </header>
+
+        <!-- Section 3: B1. Descripción de la Empresa -->
+        <section class="grid grid-cols-1 md:grid-cols-12 gap-gutter mb-20 reveal">
+            <div
+                class="md:col-span-7 bg-white p-10 rounded-xl botanical-shadow border-t-2 border-primary transition-transform hover:-translate-y-1">
+                <h2 class="font-headline-md text-headline-md mb-6 flex items-center gap-3">
+                    <span class="material-symbols-outlined text-primary">potted_plant</span>
+                    Descripción de la Empresa
+                </h2>
+                <div class="space-y-4 text-on-surface-variant leading-relaxed">
+                    <p><strong class="text-on-surface">Nombre:</strong> Dreams Flower SAS</p>
+                    <p><strong class="text-on-surface">Sector:</strong> Comercialización y Exportación - Sector
+                        Floricultor</p>
+                    <p>Con una trayectoria de casi 15 años en el mercado, Dreams Flower SAS se especializa en la
+                        comercialización y exportación de flores de corte frescas de alta gama, principalmente
+                        hortensias.</p>
+                </div>
+            </div>
+            <div class="md:col-span-5 rounded-xl overflow-hidden botanical-shadow relative group">
+                <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmqUcnR0v0W3XDxmbHMUfup91hYEn_bvtpdiIRcivtdoA0AsqDPF4sq2_qNKuOFcRTZkmTXsQttkuIdhqJYsn7w-Ai87SeEkaVlsl-9yEw0VQZgkEMsvq-8092e3s0j-0KKha1UN9SNujKit0MKfDTTkQo9gVIkFz-guKct88bHkeCuMSw1tPUxF_uoQtYo0xNtSiGCc5CqRNNVNEV84gDEIiQzHM5LGp1W0OXlHrbpoHGcBah9TEQa7LnCKiQH7KSj1IeWVcW3CI"
+                    alt="Plantación de rosas" />
+                <div class="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent flex items-end p-8">
+                    <p class="text-white font-body-md italic">"Cultivando sueños, exportando emociones."</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: B2. Business Model Canvas -->
+        <section class="mb-20 reveal">
+            <div class="flex justify-between items-end mb-8">
+                <div>
+                    <h2 class="font-headline-md text-headline-md">Business Model Canvas</h2>
+                    <p class="text-on-surface-variant">Mapa visual de la estructura lógica del negocio.</p>
+                </div>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+
+                <!-- Socios Clave -->
+                <div
+                    class="p-6 bg-surface-container-low rounded-xl border border-outline-variant hover:border-primary transition-colors flex flex-col gap-3">
+                    <span class="material-symbols-outlined text-primary">handshake</span>
+                    <h3 class="font-bold text-on-surface">Socios Clave</h3>
+                    <p class="text-xs text-on-surface-variant">Productores locales del Oriente Antioqueño, agencias
+                        aduaneras, ICA/DIAN y asesores externos.</p>
+                </div>
+
+                <!-- Actividades Clave -->
+                <div
+                    class="p-6 bg-surface-container-low rounded-xl border border-outline-variant hover:border-primary transition-colors flex flex-col gap-3">
+                    <span class="material-symbols-outlined text-primary">precision_manufacturing</span>
+                    <h3 class="font-bold text-on-surface">Actividades Clave</h3>
+                    <p class="text-xs text-on-surface-variant">Comercialización y exportación. Revisión, hidratación,
+                        empaque en cuartos fríos y logística de envíos.</p>
+                </div>
+
+                <!-- Propuesta de Valor -->
+                <div
+                    class="row-span-2 p-6 bg-primary-container/20 rounded-xl border-2 border-primary/30 flex flex-col gap-4 text-center justify-center">
+                    <span class="material-symbols-outlined text-primary scale-150 mb-2">workspace_premium</span>
+                    <h3 class="font-headline-md text-primary">Propuesta de Valor</h3>
+                    <p class="text-sm text-on-primary-container">Producto natural de excelente calidad y alta
+                        resistencia (como la hortensia), sumado a un trato sumamente personalizado por ser empresa
+                        familiar y constante confiabilidad.</p>
+                </div>
+
+                <!-- Relaciones -->
+                <div
+                    class="p-6 bg-surface-container-low rounded-xl border border-outline-variant hover:border-primary transition-colors flex flex-col gap-3">
+                    <span class="material-symbols-outlined text-primary">favorite</span>
+                    <h3 class="font-bold text-on-surface">Relaciones</h3>
+                    <p class="text-xs text-on-surface-variant">Fidelización a largo plazo, asistencia muy personal
+                        atendiendo desde pequeños floristas hasta grandes empresas.</p>
+                </div>
+
+                <!-- Segmentos -->
+                <div
+                    class="p-6 bg-surface-container-low rounded-xl border border-outline-variant hover:border-primary transition-colors flex flex-col gap-3">
+                    <span class="material-symbols-outlined text-primary">person_search</span>
+                    <h3 class="font-bold text-on-surface">Segmentos</h3>
+                    <p class="text-xs text-on-surface-variant">Mercado internacional (fuerte en EE.UU.). Pequeños
+                        floristas (B2B de nicho) y Mayoristas/Wholesalers.</p>
+                </div>
+
+                <!-- Recursos Clave -->
+                <div
+                    class="p-6 bg-surface-container-low rounded-xl border border-outline-variant hover:border-primary transition-colors flex flex-col gap-3">
+                    <span class="material-symbols-outlined text-primary">inventory_2</span>
+                    <h3 class="font-bold text-on-surface">Recursos Clave</h3>
+                    <p class="text-xs text-on-surface-variant">Equipo humano de 7 personas, bodegas de almacenaje y
+                        experiencia empírica de 14 años.</p>
+                </div>
+
+                <!-- Canales -->
+                <div
+                    class="p-6 bg-surface-container-low rounded-xl border border-outline-variant hover:border-primary transition-colors flex flex-col gap-3">
+                    <span class="material-symbols-outlined text-primary">tv</span>
+                    <h3 class="font-bold text-on-surface">Canales</h3>
+                    <p class="text-xs text-on-surface-variant">Instagram (@DreamsFlowersAS), WhatsApp, correo
+                        electrónico, llamadas directas y ferias internacionales.</p>
+                </div>
+
+                <!-- Estructura Costos -->
+                <div
+                    class="col-span-2 p-6 bg-surface-container-low rounded-xl border border-outline-variant hover:border-primary transition-colors flex justify-between items-center">
+                    <div class="flex flex-col gap-2">
+                        <h3 class="font-bold text-on-surface">Estructura de Costos</h3>
+                        <p class="text-xs text-on-surface-variant">Compra a fincas, almacenaje, transporte refrigerado,
+                            aduanas, administrativos e impacto financiero por volatilidad de TRM.</p>
+                    </div>
+                    <span class="material-symbols-outlined text-primary">payments</span>
+                </div>
+
+                <!-- Fuentes de Ingreso -->
+                <div
+                    class="col-span-2 p-6 bg-surface-container-low rounded-xl border border-outline-variant hover:border-primary transition-colors flex justify-between items-center">
+                    <div class="flex flex-col gap-2">
+                        <h3 class="font-bold text-on-surface">Fuentes de Ingresos</h3>
+                        <p class="text-xs text-on-surface-variant">100% de la venta y exportación directa de flores
+                            frescas ($360.000 USD anuales proyectados).</p>
+                    </div>
+                    <span class="material-symbols-outlined text-primary">account_balance_wallet</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Diagnóstico de Potencialidades DPI+ -->
+        <section class="mb-20 reveal">
+            <h2 class="font-headline-md text-headline-md mb-8">Diagnóstico de Potencialidades (DPI+)</h2>
+            
+            <div class="bg-white p-6 md:p-10 rounded-xl botanical-shadow mb-10 overflow-x-auto border-t-4 border-primary">
+                <div class="mb-6">
+                    <h3 class="font-headline-md text-headline-md text-on-surface">Resultados del Diagnóstico</h3>
+                    <p class="text-sm text-on-surface-variant">Detalle de puntuaciones y nivel de madurez por dimensión de internacionalización (DPI+).</p>
+                </div>
+                <table class="w-full text-left border-collapse min-w-[800px]">
+                    <thead>
+                        <tr class="border-b-2 border-outline-variant text-label-sm text-on-surface-variant uppercase tracking-wider">
+                            <th class="py-4 px-4 font-semibold">Dimensión / Subdimensión</th>
+                            <th class="py-4 px-4 text-center font-semibold w-24">Peso</th>
+                            <th class="py-4 px-4 text-center font-semibold w-32">Puntaje</th>
+                            <th class="py-4 px-4 text-center font-semibold w-24">% Logro</th>
+                            <th class="py-4 px-4 text-center font-semibold w-40">Madurez</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-body-md text-on-surface divide-y divide-surface-container-highest">
+                        <tr class="hover:bg-surface-container-lowest transition-colors"><td class="py-3 px-4 font-medium">Talento Humano</td><td class="py-3 px-4 text-center text-outline">8%</td><td class="py-3 px-4 text-center">0,002</td><td class="py-3 px-4 text-center font-bold">2,9%</td><td class="py-3 px-4 text-center"><span class="bg-error-container text-on-error-container px-3 py-1 rounded-full text-xs font-bold">Inicial</span></td></tr>
+                        <tr class="hover:bg-surface-container-lowest transition-colors"><td class="py-3 px-4 font-medium">Direccionamiento Estratégico</td><td class="py-3 px-4 text-center text-outline">7%</td><td class="py-3 px-4 text-center">0,028</td><td class="py-3 px-4 text-center font-bold">40,0%</td><td class="py-3 px-4 text-center"><span class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full text-xs font-bold">En Desarrollo</span></td></tr>
+                        <tr class="hover:bg-surface-container-lowest transition-colors"><td class="py-3 px-4 font-medium">Tecnología e Innovación</td><td class="py-3 px-4 text-center text-outline">10%</td><td class="py-3 px-4 text-center">0,037</td><td class="py-3 px-4 text-center font-bold">36,7%</td><td class="py-3 px-4 text-center"><span class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full text-xs font-bold">En Desarrollo</span></td></tr>
+                        <tr class="hover:bg-surface-container-lowest transition-colors"><td class="py-3 px-4 font-medium">Sostenibilidad</td><td class="py-3 px-4 text-center text-outline">10%</td><td class="py-3 px-4 text-center">0,010</td><td class="py-3 px-4 text-center font-bold">9,5%</td><td class="py-3 px-4 text-center"><span class="bg-error-container text-on-error-container px-3 py-1 rounded-full text-xs font-bold">Inicial</span></td></tr>
+                        <tr class="hover:bg-surface-container-lowest transition-colors"><td class="py-3 px-4 font-medium">Capacidad Financiera para la Internac.</td><td class="py-3 px-4 text-center text-outline">10%</td><td class="py-3 px-4 text-center">0,067</td><td class="py-3 px-4 text-center font-bold">66,8%</td><td class="py-3 px-4 text-center"><span class="bg-primary-container text-on-primary-container px-3 py-1 rounded-full text-xs font-bold flex items-center justify-center gap-1"><span class="material-symbols-outlined text-[14px]">check_circle</span> Maduro</span></td></tr>
+                        <tr class="hover:bg-surface-container-lowest transition-colors"><td class="py-3 px-4 font-medium">Inteligencia Competitiva y de Mercados</td><td class="py-3 px-4 text-center text-outline">10%</td><td class="py-3 px-4 text-center">0,021</td><td class="py-3 px-4 text-center font-bold">21,1%</td><td class="py-3 px-4 text-center"><span class="bg-error-container text-on-error-container px-3 py-1 rounded-full text-xs font-bold">Inicial</span></td></tr>
+                        <tr class="hover:bg-surface-container-lowest transition-colors"><td class="py-3 px-4 font-medium">Madurez Digital</td><td class="py-3 px-4 text-center text-outline">8%</td><td class="py-3 px-4 text-center">0,018</td><td class="py-3 px-4 text-center font-bold">22,2%</td><td class="py-3 px-4 text-center"><span class="bg-error-container text-on-error-container px-3 py-1 rounded-full text-xs font-bold">Inicial</span></td></tr>
+                        <tr class="hover:bg-surface-container-lowest transition-colors"><td class="py-3 px-4 font-medium">Marco Legal y Propiedad Intelectual</td><td class="py-3 px-4 text-center text-outline">7%</td><td class="py-3 px-4 text-center">0,029</td><td class="py-3 px-4 text-center font-bold">42,1%</td><td class="py-3 px-4 text-center"><span class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full text-xs font-bold">En Desarrollo</span></td></tr>
+                        <tr class="hover:bg-surface-container-lowest transition-colors"><td class="py-3 px-4 font-medium">Potencial del Producto / Servicio</td><td class="py-3 px-4 text-center text-outline">15%</td><td class="py-3 px-4 text-center">0,080</td><td class="py-3 px-4 text-center font-bold">53,6%</td><td class="py-3 px-4 text-center"><span class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full text-xs font-bold">En Desarrollo</span></td></tr>
+                        
+                        <!-- Sub header for Modos de entrada -->
+                        <tr class="bg-surface-container-low border-y-2 border-outline-variant">
+                            <td class="py-3 px-4 font-bold text-on-surface uppercase text-xs tracking-wider" colspan="5">Modos de Entrada (15%)</td>
+                        </tr>
+                        <tr class="hover:bg-surface-container-lowest transition-colors"><td class="py-3 px-4 pl-8 text-sm text-on-surface-variant">· Exportación e Importación (Bienes)</td><td class="py-3 px-4 text-center text-outline text-sm">3%</td><td class="py-3 px-4 text-center text-sm">0,016</td><td class="py-3 px-4 text-center font-bold text-sm">54,7%</td><td class="py-3 px-4 text-center"><span class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full text-[10px] font-bold">En Desarrollo</span></td></tr>
+                        <tr class="hover:bg-surface-container-lowest transition-colors"><td class="py-3 px-4 pl-8 text-sm text-on-surface-variant">· Exportación de Servicios</td><td class="py-3 px-4 text-center text-outline text-sm">3%</td><td class="py-3 px-4 text-center text-sm">0,000</td><td class="py-3 px-4 text-center font-bold text-sm text-outline">0,0%</td><td class="py-3 px-4 text-center"><span class="bg-error-container text-on-error-container px-3 py-1 rounded-full text-[10px] font-bold">Inicial</span></td></tr>
+                        <tr class="hover:bg-surface-container-lowest transition-colors"><td class="py-3 px-4 pl-8 text-sm text-on-surface-variant">· Inversión Extranjera Directa</td><td class="py-3 px-4 text-center text-outline text-sm">3%</td><td class="py-3 px-4 text-center text-sm">0,000</td><td class="py-3 px-4 text-center font-bold text-sm text-outline">0,0%</td><td class="py-3 px-4 text-center"><span class="bg-error-container text-on-error-container px-3 py-1 rounded-full text-[10px] font-bold">Inicial</span></td></tr>
+                        <tr class="hover:bg-surface-container-lowest transition-colors"><td class="py-3 px-4 pl-8 text-sm text-on-surface-variant">· Licencias y Franquicias</td><td class="py-3 px-4 text-center text-outline text-sm">3%</td><td class="py-3 px-4 text-center text-sm">0,000</td><td class="py-3 px-4 text-center font-bold text-sm text-outline">0,0%</td><td class="py-3 px-4 text-center"><span class="bg-error-container text-on-error-container px-3 py-1 rounded-full text-[10px] font-bold">Inicial</span></td></tr>
+                        <tr class="hover:bg-surface-container-lowest transition-colors"><td class="py-3 px-4 pl-8 text-sm text-on-surface-variant">· Alianzas Estratégicas y JV</td><td class="py-3 px-4 text-center text-outline text-sm">3%</td><td class="py-3 px-4 text-center text-sm">0,015</td><td class="py-3 px-4 text-center font-bold text-sm">50,0%</td><td class="py-3 px-4 text-center"><span class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full text-[10px] font-bold">En Desarrollo</span></td></tr>
+                        
+                        <tr class="bg-primary-container/10 border-t-2 border-primary"><td class="py-4 px-4 font-bold text-primary text-lg">PUNTAJE TOTAL (DPI+)</td><td class="py-4 px-4 text-center font-bold text-primary text-lg">100%</td><td class="py-4 px-4 text-center font-bold text-primary text-lg">0,323</td><td class="py-4 px-4 text-center font-bold text-primary text-lg">32,3%</td><td class="py-4 px-4 text-center"><span class="bg-error-container text-on-error-container px-4 py-2 rounded-full text-sm font-bold">Inicial</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="mb-12">
+                <h3 class="font-headline-md text-headline-md text-on-surface mb-6">Escala de Madurez</h3>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <div class="p-6 bg-error-container/20 border border-error-container rounded-xl botanical-shadow hover:-translate-y-1 transition-transform">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="font-bold text-on-error-container">Inicial</span>
+                            <span class="text-xs font-bold bg-error-container text-on-error-container px-2 py-1 rounded">&lt; 35%</span>
+                        </div>
+                        <p class="text-sm text-on-surface-variant">La empresa está en etapas muy tempranas. Se requieren acciones urgentes y estructurales.</p>
+                    </div>
+                    <div class="p-6 bg-secondary-container/20 border border-secondary-container rounded-xl botanical-shadow hover:-translate-y-1 transition-transform">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="font-bold text-on-secondary-container flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">warning</span> En Desarrollo</span>
+                            <span class="text-xs font-bold bg-secondary-container text-on-secondary-container px-2 py-1 rounded">35–59%</span>
+                        </div>
+                        <p class="text-sm text-on-surface-variant">Hay bases, pero faltan capacidades clave. Es necesario un plan de mejora concreto.</p>
+                    </div>
+                    <div class="p-6 bg-primary-container/20 border border-primary-container rounded-xl botanical-shadow hover:-translate-y-1 transition-transform">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="font-bold text-on-primary-container flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">check_circle</span> Maduro</span>
+                            <span class="text-xs font-bold bg-primary-container text-on-primary-container px-2 py-1 rounded">60–79%</span>
+                        </div>
+                        <p class="text-sm text-on-surface-variant">La empresa tiene capacidades consolidadas. Puede internacionalizarse con soporte focalizado.</p>
+                    </div>
+                    <div class="p-6 bg-tertiary-container/20 border border-tertiary-container rounded-xl botanical-shadow hover:-translate-y-1 transition-transform">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="font-bold text-on-tertiary-container">Avanzado</span>
+                            <span class="text-xs font-bold bg-tertiary-container text-on-tertiary-container px-2 py-1 rounded">≥ 80%</span>
+                        </div>
+                        <p class="text-sm text-on-surface-variant">La empresa está lista para una expansión internacional sostenida y competitiva.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <div class="bg-white p-6 md:p-10 rounded-xl botanical-shadow flex flex-col items-center">
+                    <h4 class="font-bold text-lg mb-8 text-center text-gray-700">Dimensiones Principales</h4>
+                    <div class="relative w-full aspect-square max-h-[400px]">
+                        <canvas id="chartDimensiones"></canvas>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-6 md:p-10 rounded-xl botanical-shadow flex flex-col items-center">
+                    <h4 class="font-bold text-lg mb-8 text-center text-gray-700">Modos de Entrada</h4>
+                    <div class="relative w-full aspect-square max-h-[400px]">
+                        <canvas id="chartModos"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: B4. Análisis DOFA -->
+        <section class="mb-20 reveal">
+            <h2 class="font-headline-md text-headline-md mb-8">Análisis DOFA</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Fortalezas -->
+                <div class="p-8 bg-primary-container/10 border-l-4 border-primary rounded-r-xl">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center">
+                            <span class="material-symbols-outlined"
+                                style="font-variation-settings: 'FILL' 1;">star</span>
+                        </div>
+                        <h3 class="font-headline-md text-primary">Fortalezas</h3>
+                    </div>
+                    <ul class="space-y-2 text-on-surface-variant text-sm">
+                        <li>• Buena capacidad financiera para afrontar procesos de expansión e inversión internacional.</li>
+                        <li>• El producto o servicio tiene un potencial competitivo y posibilidades de adaptación a otros mercados con un 53,57% de rentabilidad.</li>
+                        <li>• Dream Flowers S.A.S cuenta con un direccionamiento estratégico y un marco legal en desarrollo, que sirven como base para fortalecer la internacionalización.</li>
+                        <li>• Tienen un avance existente en la exportación de bienes y disposición para generar alianzas estratégicas.</li>
+                    </ul>
+                </div>
+                <!-- Oportunidades -->
+                <div class="p-8 bg-secondary-container/10 border-l-4 border-secondary rounded-r-xl">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-10 h-10 rounded-full bg-secondary text-white flex items-center justify-center">
+                            <span class="material-symbols-outlined"
+                                style="font-variation-settings: 'FILL' 1;">trending_up</span>
+                        </div>
+                        <h3 class="font-headline-md text-secondary">Oportunidades</h3>
+                    </div>
+                    <ul class="space-y-2 text-on-surface-variant text-sm">
+                        <li>• La empresa tiene un crecimiento de los mercados internacionales y mayor demanda de productos innovadores.</li>
+                        <li>• Posibilidad de establecer alianzas estratégicas con empresas extranjeras para facilitar el ingreso a nuevos mercados.</li>
+                        <li>• Acceso a programas gubernamentales y entidades que apoyan las exportaciones y la internacionalización empresarial.</li>
+                        <li>• Uso de nuevas tecnologías y herramientas digitales para ampliar la presencia internacional.</li>
+                    </ul>
+                </div>
+                <!-- Debilidades -->
+                <div class="p-8 bg-tertiary-container/10 border-l-4 border-tertiary rounded-r-xl">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-10 h-10 rounded-full bg-tertiary text-white flex items-center justify-center">
+                            <span class="material-symbols-outlined"
+                                style="font-variation-settings: 'FILL' 1;">error</span>
+                        </div>
+                        <h3 class="font-headline-md text-tertiary">Debilidades</h3>
+                    </div>
+                    <ul class="space-y-2 text-on-surface-variant text-sm">
+                        <li>• Bajo desarrollo del talento humano para afrontar procesos de internacionalización con un 2,94%.</li>
+                        <li>• Escasa sostenibilidad y responsabilidad ambiental, aspecto cada vez más exigido por los mercados internacionales.</li>
+                        <li>• Débil inteligencia competitiva y poco conocimiento de mercados internacionales.</li>
+                        <li>• Baja madurez digital, lo que limita la promoción y comercialización internacional.</li>
+                        <li>• No existen capacidades desarrolladas para exportación de servicios, inversión extranjera o licencias y franquicias.</li>
+                    </ul>
+                </div>
+                <!-- Amenazas -->
+                <div class="p-8 bg-error-container/10 border-l-4 border-error rounded-r-xl">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-10 h-10 rounded-full bg-error text-white flex items-center justify-center">
+                            <span class="material-symbols-outlined"
+                                style="font-variation-settings: 'FILL' 1;">warning</span>
+                        </div>
+                        <h3 class="font-headline-md text-error">Amenazas</h3>
+                    </div>
+                    <ul class="space-y-2 text-on-surface-variant text-sm">
+                        <li>• Alta competencia de empresas internacionales con mayor experiencia y posicionamiento.</li>
+                        <li>• Cambios en las regulaciones comerciales, aranceles y requisitos legales de otros países.</li>
+                        <li>• Inestabilidad económica y variaciones en las tasas de cambio que pueden afectar la rentabilidad.</li>
+                        <li>• Cambios en las preferencias de los consumidores y mayores exigencias en calidad y sostenibilidad.</li>
+                        <li>• Barreras de entrada y requisitos técnicos que dificultan el acceso a nuevos mercados.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 7: Sostenibilidad -->
+        <section class="mb-20 reveal">
+            <div class="bg-white p-12 rounded-3xl botanical-shadow relative overflow-hidden">
+                <div class="absolute top-0 right-0 p-8 opacity-10">
+                    <span class="material-symbols-outlined text-[120px]">eco</span>
+                </div>
+                <h2 class="font-headline-md text-headline-md mb-12 relative z-10 text-center">Relación con las tres dimensiones de la sostenibilidad</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-12 relative z-10 text-left">
+                    <!-- Dimensión Social -->
+                    <div class="flex flex-col group">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="w-14 h-14 shrink-0 rounded-full bg-primary/10 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                                <span class="material-symbols-outlined text-2xl">groups</span>
+                            </div>
+                            <h3 class="font-bold text-xl text-on-surface">Dimensión Social</h3>
+                        </div>
+                        <p class="font-bold text-primary mb-4 text-sm italic">¿Cómo impacta a las comunidades o trabajadores?</p>
+                        <div class="space-y-4 text-on-surface-variant text-sm leading-relaxed">
+                            <p><strong>Equipo de trabajo:</strong> Son 4 personas contratadas directamente y 3 por prestación de servicios (contador, agrónomo, seguridad). Al ser una empresa familiar, mantienen un trato cercano y directo con todo el personal.</p>
+                            <p><strong>Vínculo con la región:</strong> Compran el 100% de las flores a fincas y productores del Oriente antioqueño, generando empleo y sosteniendo la economía de las familias de la zona.</p>
+                            <p><strong>Relación con clientes:</strong> Su punto fuerte es la atención personalizada y cercana, construyendo relaciones de confianza de largo plazo con floristas y distribuidores en el exterior durante sus 14 años de trayectoria.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Dimensión Ambiental -->
+                    <div class="flex flex-col group">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="w-14 h-14 shrink-0 rounded-full bg-primary/10 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                                <span class="material-symbols-outlined text-2xl">yard</span>
+                            </div>
+                            <h3 class="font-bold text-xl text-on-surface">Dimensión Ambiental</h3>
+                        </div>
+                        <p class="font-bold text-primary mb-4 text-sm italic">¿Cuál es su huella ecológica o compromiso medioambiental?</p>
+                        <div class="space-y-4 text-on-surface-variant text-sm leading-relaxed">
+                            <p>Aunque ya no tienen cultivo propio, trabajan con fincas que cumplen todos los requisitos del ICA, lo que garantiza prácticas de manejo fitosanitario controladas y responsables.</p>
+                            <p>Realizan tratamiento de hidratación y conservación con productos autorizados, usan empaques adecuados y mantienen la cadena de frío para reducir mermas y evitar desperdicio de producto.</p>
+                            <p>Cumplen con toda la normativa exigida para exportación, lo que asegura que su actividad no genere impactos negativos en el transporte ni en el destino.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Dimensión Económica -->
+                    <div class="flex flex-col group">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="w-14 h-14 shrink-0 rounded-full bg-primary/10 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                                <span class="material-symbols-outlined text-2xl">trending_up</span>
+                            </div>
+                            <h3 class="font-bold text-xl text-on-surface">Dimensión Económica</h3>
+                        </div>
+                        <p class="font-bold text-primary mb-4 text-sm italic">¿Es rentable y generadora de valor a largo plazo?</p>
+                        <div class="space-y-4 text-on-surface-variant text-sm leading-relaxed">
+                            <p><strong>Rentabilidad:</strong> Cuenta con 14 años de trayectoria estable, con un volumen de ventas aproximado de USD 30.000 mensuales, lo que representa unos USD 360.000 anuales, demostrando que su modelo de negocio es sostenible y rentable.</p>
+                            <p><strong>Generación de valor:</strong> Conecta a los productores locales del Oriente antioqueño con mercados internacionales (Estados Unidos, Europa y Asia), dando salida comercial y valor agregado a la producción regional.</p>
+                            <p><strong>Autonomía financiera:</strong> Opera con capital 100% nacional, sin inversión extranjera ni socios externos, lo que le da independencia para tomar decisiones y mantener su estabilidad.</p>
+                            <p><strong>Potencial de crecimiento:</strong> Cuenta con mayor disponibilidad de producto por parte de sus fincas aliadas, por lo que tiene capacidad para aumentar sus ventas sin necesidad de inversiones grandes, asegurando generación de valor a futuro.</p>
+                            <p><strong>Estabilidad:</strong> Aunque se ve afectada por la variación de la TRM, su cartera de clientes fidelizados y su cumplimiento constante le permiten mantener la operación y proyectarse a largo plazo.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Section 8: Análisis de Viabilidad -->
+        <section class="mb-20 reveal">
+            <h2 class="font-headline-md text-headline-md mb-8 flex items-center gap-3">
+                <span class="material-symbols-outlined text-primary">analytics</span>
+                Análisis de Viabilidad
+            </h2>
+            
+            <div class="bg-white p-8 md:p-12 rounded-3xl botanical-shadow mb-10 overflow-hidden relative">
+                <!-- Decorative background elements for Section 8 -->
+                <div class="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -z-10 translate-x-1/2 -translate-y-1/2"></div>
+                <div class="absolute bottom-0 left-0 w-80 h-80 bg-secondary/5 rounded-full blur-3xl -z-10 -translate-x-1/2 translate-y-1/2"></div>
+
+                <div class="mb-16">
+                    <div class="bg-primary/5 rounded-[2rem] p-8 md:p-12 border border-primary/10 relative overflow-hidden text-center max-w-4xl mx-auto mb-16 hover:shadow-sm transition-shadow">
+                        <span class="material-symbols-outlined text-primary/10 text-9xl absolute -top-4 -left-4 -rotate-12 pointer-events-none">local_florist</span>
+                        <h3 class="font-headline-md text-primary mb-6 relative z-10 text-2xl md:text-3xl">Sector Floricultura</h3>
+                        <p class="text-on-surface-variant leading-relaxed text-base md:text-lg relative z-10">
+                            En una era pos globalización, la floricultura se ha convertido en una actividad comercial importante dentro del sector agrícola. Se segmenta por tipo de producto (flores cortadas, follaje cortado, plantas) y tipo de flor. Las actividades de floricultura han demostrado ser un área de negocios viable y lucrativa con potencial para el autoempleo, lo que se espera que genere importantes intercambios externos. Hoy en día, <strong class="text-primary font-bold">la industria de las flores es una de las de más rápido crecimiento en el mundo.</strong>
+                        </p>
+                    </div>
+
+                    <h3 class="font-headline-md text-primary mb-8 text-center flex items-center justify-center gap-2">
+                        <span class="material-symbols-outlined">trending_up</span>
+                        Tendencias del Mercado
+                    </h3>
+                    
+                    <div class="flex flex-wrap justify-center gap-4">
+                        <div class="px-6 py-4 bg-secondary-container/40 text-on-secondary-container rounded-full border border-secondary/20 flex items-center gap-3 hover:-translate-y-1 transition-transform shadow-sm hover:shadow-md cursor-default">
+                            <span class="material-symbols-outlined text-secondary">home_pin</span>
+                            <span class="text-sm font-medium">Mayor uso en hogares urbanos</span>
+                        </div>
+                        <div class="px-6 py-4 bg-tertiary-container/40 text-on-tertiary-container rounded-full border border-tertiary/20 flex items-center gap-3 hover:-translate-y-1 transition-transform shadow-sm hover:shadow-md cursor-default">
+                            <span class="material-symbols-outlined text-tertiary">celebration</span>
+                            <span class="text-sm font-medium">Alta demanda en hostelería y eventos</span>
+                        </div>
+                        <div class="px-6 py-4 bg-primary-container/40 text-on-primary-container rounded-full border border-primary/20 flex items-center gap-3 hover:-translate-y-1 transition-transform shadow-sm hover:shadow-md cursor-default">
+                            <span class="material-symbols-outlined text-primary">shopping_cart</span>
+                            <span class="text-sm font-medium">Expansión de plataformas de entrega online</span>
+                        </div>
+                        <div class="px-6 py-4 bg-error-container/40 text-on-error-container rounded-full border border-error/20 flex items-center gap-3 hover:-translate-y-1 transition-transform shadow-sm hover:shadow-md cursor-default">
+                            <span class="material-symbols-outlined text-error">favorite</span>
+                            <span class="text-sm font-medium">Flores cortadas lideran ventas (bodas/social)</span>
+                        </div>
+                        <div class="px-6 py-4 bg-surface-variant/50 text-on-surface-variant rounded-full border border-outline-variant/50 flex items-center gap-3 hover:-translate-y-1 transition-transform shadow-sm hover:shadow-md cursor-default">
+                            <span class="material-symbols-outlined text-on-surface">local_florist</span>
+                            <span class="text-sm font-medium">Las rosas son el tipo de flor más vendido</span>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="border-outline-variant/20 mb-12">
+
+                <h3 class="font-headline-md text-primary mb-8 text-center">Competidores Visibles y Crecimiento (TCAC)</h3>
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center mb-16">
+                    <div class="lg:col-span-5 space-y-4">
+                        <div class="p-5 bg-primary/5 border border-primary/20 rounded-2xl relative overflow-hidden group hover:bg-primary/10 transition-colors">
+                            <div class="absolute right-[-20px] top-[-20px] text-primary/10 font-bold text-8xl group-hover:scale-110 transition-transform">1</div>
+                            <strong class="text-primary text-lg block mb-1">Países Bajos (5.8%)</strong>
+                            <p class="text-sm text-on-surface-variant relative z-10">Domina el mercado mundial. Su columna vertebral son los avanzados sistemas de invernadero y cultivo automatizado.</p>
+                        </div>
+                        <div class="p-5 bg-surface-container-lowest border border-outline-variant/30 rounded-2xl relative overflow-hidden group hover:border-outline-variant transition-colors">
+                            <div class="absolute right-[-20px] top-[-20px] text-outline-variant/20 font-bold text-8xl group-hover:scale-110 transition-transform">2</div>
+                            <strong class="text-on-surface text-lg block mb-1">Estados Unidos (4.6%)</strong>
+                            <p class="text-sm text-on-surface-variant relative z-10">Impulsado por la demanda interna y la preferencia por flores cultivadas localmente. Gran diversidad climática.</p>
+                        </div>
+                        <div class="p-5 bg-secondary/5 border border-secondary/20 rounded-2xl relative overflow-hidden group hover:bg-secondary/10 transition-colors">
+                            <div class="absolute right-[-20px] top-[-20px] text-secondary/10 font-bold text-8xl group-hover:scale-110 transition-transform">3</div>
+                            <strong class="text-secondary text-lg block mb-1">India (8.7%)</strong>
+                            <p class="text-sm text-on-surface-variant relative z-10">Registra la mayor tasa de crecimiento gracias al consumo urbano y exportaciones emergentes a Europa y Medio Oriente.</p>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-7 h-[350px] w-full bg-surface-container-low rounded-3xl p-6 shadow-inner border border-outline-variant/20">
+                        <canvas id="chartCrecimiento"></canvas>
+                    </div>
+                </div>
+
+                <div class="bg-primary text-white p-10 rounded-3xl relative overflow-hidden botanical-shadow">
+                    <div class="absolute top-0 right-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10 pointer-events-none"></div>
+                    <h3 class="font-headline-md text-primary-fixed mb-8 text-center relative z-10">Países Candidatos para Internacionalización</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10">
+                        <!-- India -->
+                        <div class="bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/20 hover:-translate-y-2 transition-all hover:bg-white/20">
+                            <span class="material-symbols-outlined text-4xl text-primary-fixed mb-4">public</span>
+                            <h4 class="font-bold text-xl mb-2 text-white">India</h4>
+                            <p class="text-sm text-white/80">Alta tasa de crecimiento (8.7%), demanda gigante para eventos religiosos y sirve como puente estratégico hacia Oriente Medio.</p>
+                        </div>
+                        <!-- Emiratos Arabes -->
+                        <div class="bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/20 hover:-translate-y-2 transition-all hover:bg-white/20">
+                            <span class="material-symbols-outlined text-4xl text-primary-fixed mb-4">account_balance</span>
+                            <h4 class="font-bold text-xl mb-2 text-white">Emiratos Árabes</h4>
+                            <p class="text-sm text-white/80">Mercado súper atractivo por su alto poder adquisitivo. Su nula producción local los obliga a importar para sus hoteles de lujo.</p>
+                        </div>
+                        <!-- Japon -->
+                        <div class="bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/20 hover:-translate-y-2 transition-all hover:bg-white/20">
+                            <span class="material-symbols-outlined text-4xl text-primary-fixed mb-4">water_drop</span>
+                            <h4 class="font-bold text-xl mb-2 text-white">Japón</h4>
+                            <p class="text-sm text-white/80">De los mayores importadores mundiales. Los consumidores valoran la máxima calidad y frescura, atributo estrella de Colombia.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 9: Objetivo SMART -->
+        <section class="mb-20 reveal">
+            <h2 class="font-headline-md text-headline-md mb-8 flex items-center gap-3">
+                <span class="material-symbols-outlined text-primary">track_changes</span>
+                Objetivo SMART
+            </h2>
+            
+            <div class="bg-surface-container-low p-8 md:p-12 rounded-3xl botanical-shadow mb-10 overflow-hidden relative border-t-4 border-primary">
+                
+                <!-- Quote Block -->
+                <div class="relative bg-white p-8 rounded-2xl shadow-sm mb-12 border border-outline-variant/20">
+                    <span class="material-symbols-outlined absolute -top-5 -left-4 text-6xl text-primary/20 rotate-180">format_quote</span>
+                    <p class="font-headline-md text-on-surface text-xl md:text-2xl leading-relaxed italic relative z-10 text-center">
+                        <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">"Ingresar y consolidar ventas</span> en nuevos mercados de Europa Central y África, exportando flores frescas por un valor de <strong>USD 45.000 mensuales</strong>, logrando un aumento del <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">50% en el volumen</span> en un plazo de 18 meses."
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- S -->
+                    <div class="bg-white p-6 pt-12 rounded-2xl shadow-sm border border-outline-variant/30 relative hover:-translate-y-2 transition-transform duration-300">
+                        <div class="absolute -top-6 left-1/2 -translate-x-1/2 w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center shadow-lg">
+                            <span class="font-bold text-2xl">S</span>
+                        </div>
+                        <h4 class="font-bold text-primary text-center mb-3 uppercase tracking-widest text-xs">Específico</h4>
+                        <p class="text-sm text-on-surface-variant text-center">Aumentar exportaciones a nuevos mercados (Europa Central y África) comercializando variedades actuales.</p>
+                    </div>
+                    
+                    <!-- M -->
+                    <div class="bg-white p-6 pt-12 rounded-2xl shadow-sm border border-outline-variant/30 relative hover:-translate-y-2 transition-transform duration-300">
+                        <div class="absolute -top-6 left-1/2 -translate-x-1/2 w-12 h-12 rounded-full bg-secondary text-white flex items-center justify-center shadow-lg">
+                            <span class="font-bold text-2xl">M</span>
+                        </div>
+                        <h4 class="font-bold text-secondary text-center mb-3 uppercase tracking-widest text-xs">Medible</h4>
+                        <p class="text-sm text-on-surface-variant text-center">Pasar de USD 30.000 a USD 45.000 mensuales, un incremento del 50% respecto al volumen actual.</p>
+                    </div>
+
+                    <!-- A -->
+                    <div class="bg-white p-6 pt-12 rounded-2xl shadow-sm border border-outline-variant/30 relative hover:-translate-y-2 transition-transform duration-300">
+                        <div class="absolute -top-6 left-1/2 -translate-x-1/2 w-12 h-12 rounded-full bg-tertiary text-white flex items-center justify-center shadow-lg">
+                            <span class="font-bold text-2xl">A</span>
+                        </div>
+                        <h4 class="font-bold text-tertiary text-center mb-3 uppercase tracking-widest text-xs">Alcanzable</h4>
+                        <p class="text-sm text-on-surface-variant text-center">Suficiente producto disponible, cumplimiento normativo y apoyo aduanero. Sin inversión nueva.</p>
+                    </div>
+
+                    <!-- R -->
+                    <div class="bg-white p-6 pt-12 rounded-2xl shadow-sm border border-outline-variant/30 relative hover:-translate-y-2 transition-transform duration-300">
+                        <div class="absolute -top-6 left-1/2 -translate-x-1/2 w-12 h-12 rounded-full bg-error text-white flex items-center justify-center shadow-lg">
+                            <span class="font-bold text-2xl">R</span>
+                        </div>
+                        <h4 class="font-bold text-error text-center mb-3 uppercase tracking-widest text-xs">Retador</h4>
+                        <p class="text-sm text-on-surface-variant text-center">Exige buscar nuevos clientes y fortalecer la comercialización para lograr un crecimiento expansivo.</p>
+                    </div>
+
+                    <!-- T -->
+                    <div class="bg-primary-container p-6 pt-12 rounded-2xl shadow-sm border border-primary/20 relative md:col-span-2 lg:col-span-4 lg:w-1/2 lg:mx-auto hover:scale-105 transition-transform duration-300">
+                        <div class="absolute -top-6 left-1/2 -translate-x-1/2 w-12 h-12 rounded-full bg-primary-fixed-dim text-on-primary-fixed flex items-center justify-center shadow-lg border-2 border-white">
+                            <span class="font-bold text-2xl">T</span>
+                        </div>
+                        <h4 class="font-bold text-on-primary-container text-center mb-3 uppercase tracking-widest text-xs">Realista en el tiempo</h4>
+                        <p class="text-sm text-on-primary-container text-center max-w-md mx-auto">Se proyecta cumplir en <strong>18 meses</strong>, un plazo idóneo para la búsqueda de contactos, negociación y consolidación final de envíos.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer
+        class="w-full py-8 mt-auto bg-surface-container-lowest dark:bg-surface-container-low border-t border-outline-variant/30">
+        <div
+            class="flex flex-col md:flex-row justify-between items-center px-margin-desktop max-w-container-max mx-auto gap-4">
+            <div class="font-body-md text-body-md font-bold text-primary dark:text-primary-fixed">
+                Aldea Global 2
+            </div>
+            <div class="font-label-sm text-label-sm text-on-surface-variant dark:text-outline-variant text-center">
+                © 2024 Aldea Global 2. Internationalization Excellence.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Scripts -->
+    <script>
+        // Simple scroll reveal for floating elements
+        window.addEventListener('scroll', () => {
+            const blobs = document.querySelectorAll('.organic-blob');
+            const scrolled = window.scrollY;
+            blobs.forEach((blob, index) => {
+                const speed = (index + 1) * 0.2;
+                blob.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+
+        // Initialize Chart.js Radars
+        document.addEventListener('DOMContentLoaded', function() {
+            const commonOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false }
+                },
+                scales: {
+                    r: {
+                        grid: { circular: true, color: '#D1D5DB' },
+                        angleLines: { color: '#D1D5DB' },
+                        pointLabels: {
+                            font: { family: 'Hanken Grotesk', size: 12 },
+                            color: '#1b1c1a'
+                        },
+                        ticks: {
+                            display: true,
+                            stepSize: 20,
+                            max: 100,
+                            min: 0,
+                            backdropColor: 'transparent',
+                            color: '#6B7280',
+                            font: { size: 10 },
+                            callback: function(value) { return value + '%'; }
+                        }
+                    }
+                },
+                elements: {
+                    line: {
+                        borderColor: '#4A86E8',
+                        borderWidth: 1.5,
+                        fill: false,
+                        tension: 0.1
+                    },
+                    point: { radius: 0 }
+                }
+            };
+
+            const ctxDim = document.getElementById('chartDimensiones').getContext('2d');
+            new Chart(ctxDim, {
+                type: 'radar',
+                data: {
+                    labels: ['Talento Humano', 'Dir. Estratégico', 'Tecn. e Innovación', 'Sostenibilidad', 'Cap. Financiera', 'Intel. Mercados', 'Madurez Digital', 'Marco Legal/PI', 'Prod./Servicio', 'Modos de Entrada'],
+                    datasets: [{
+                        data: [2.9, 40.0, 36.7, 9.5, 66.8, 21.1, 22.2, 42.1, 53.6, 20.9]
+                    }]
+                },
+                options: commonOptions
+            });
+
+            const ctxModos = document.getElementById('chartModos').getContext('2d');
+            new Chart(ctxModos, {
+                type: 'radar',
+                data: {
+                    labels: ['Exp. Bienes', 'Exp. Servicios', 'IED', 'Licencias/Franquicias', 'Alianzas/JV'],
+                    datasets: [{
+                        data: [54.7, 0.0, 0.0, 0.0, 50.0]
+                    }]
+                },
+                options: commonOptions
+            });
+
+            const ctxCrecimiento = document.getElementById('chartCrecimiento').getContext('2d');
+            new Chart(ctxCrecimiento, {
+                type: 'bar',
+                data: {
+                    labels: ['Países Bajos', 'Estados Unidos', 'India'],
+                    datasets: [{
+                        label: 'TCAC (%)',
+                        data: [5.8, 4.6, 8.7],
+                        backgroundColor: ['#a8d5ba', '#e4e2de', '#fed8e9'],
+                        borderColor: ['#3d6751', '#717973', '#735664'],
+                        borderWidth: 1,
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) { return context.parsed.y + '%'; }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) { return value + '%'; }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+    <script src="../../assets/js/reveal.js"></script>
+</body>
+
+</html>
