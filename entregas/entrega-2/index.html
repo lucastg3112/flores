@@ -1,41 +1,815 @@
 <!DOCTYPE html>
-<html lang="es">
+<html class="light" lang="es">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Entrega 2 - Aldea Global 2</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&family=Hanken+Grotesk:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../../assets/css/botanical.css">
-  <style>
-    .page-header {
-      padding: 100px 48px;
-      text-align: center;
-    }
-  </style>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Análisis Macroeconómico - Entrega 2</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <!-- Google Fonts: Hanken Grotesk & Playfair Display -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <!-- Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <!-- Botanical Styles -->
+    <link rel="stylesheet" href="../../assets/css/botanical.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Design System Theme Configuration -->
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary": "#6c5777",
+                        "secondary-container": "#fed8e9",
+                        "on-primary-fixed-variant": "#254f3a",
+                        "primary-fixed": "#bfedd1",
+                        "primary-container": "#a8d5ba",
+                        "secondary": "#735664",
+                        "surface-variant": "#e4e2de",
+                        "inverse-on-surface": "#f2f0ed",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed": "#2a1520",
+                        "surface-bright": "#fbf9f5",
+                        "on-tertiary-fixed-variant": "#533f5e",
+                        "inverse-primary": "#a4d1b6",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-low": "#f5f3ef",
+                        "outline-variant": "#c1c8c1",
+                        "primary-fixed-dim": "#a4d1b6",
+                        "on-error-container": "#93000a",
+                        "error-container": "#ffdad6",
+                        "surface-container": "#efeeea",
+                        "on-surface-variant": "#414943",
+                        "background": "#fbf9f5",
+                        "surface-container-highest": "#e4e2de",
+                        "on-tertiary-fixed": "#261430",
+                        "surface-dim": "#dbdad6",
+                        "on-secondary-fixed-variant": "#593f4c",
+                        "tertiary-container": "#dcc2e7",
+                        "on-primary": "#ffffff",
+                        "surface-tint": "#3d6751",
+                        "secondary-fixed-dim": "#e1bdcd",
+                        "on-surface": "#1b1c1a",
+                        "surface": "#fbf9f5",
+                        "inverse-surface": "#30312e",
+                        "on-secondary-container": "#795c6a",
+                        "on-error": "#ffffff",
+                        "secondary-fixed": "#fed8e9",
+                        "on-primary-container": "#345d48",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed-dim": "#d8bee3",
+                        "tertiary-fixed": "#f4d9ff",
+                        "surface-container-high": "#eae8e4",
+                        "on-primary-fixed": "#002113",
+                        "primary": "#3d6751",
+                        "on-background": "#1b1c1a",
+                        "error": "#ba1a1a",
+                        "on-tertiary-container": "#624e6d",
+                        "outline": "#717973"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Hanken Grotesk"],
+                        "headline-xl": ["Playfair Display"],
+                        "headline-md": ["Playfair Display"]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            background-color: #fbf9f5;
+            color: #1b1c1a;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 100% 0%, rgba(168, 213, 186, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 0% 100%, rgba(254, 216, 233, 0.1) 0%, transparent 40%);
+            background-attachment: fixed;
+        }
+
+        .botanical-shadow {
+            box-shadow: 0 20px 40px rgba(61, 103, 81, 0.08), 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .organic-blob {
+            position: absolute;
+            z-index: -1;
+            filter: blur(60px);
+            opacity: 0.5;
+            border-radius: 50%;
+            animation: float 20s infinite alternate ease-in-out;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(30px, 50px) scale(1.1); }
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+            transition: all 0.3s ease;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .indicator-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 1.5rem;
+            padding: 3rem;
+            margin-bottom: 4rem;
+            border-top: 4px solid var(--primary);
+            transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.4s ease;
+        }
+        
+        .indicator-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 25px 50px rgba(61, 103, 81, 0.12), 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .icon-circle {
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.3s ease;
+        }
+        .indicator-card:hover .icon-circle {
+            transform: scale(1.1) rotate(5deg);
+        }
+        
+        .glass-panel {
+            background: rgba(245, 243, 239, 0.7);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.4);
+        }
+
+        /* Tabs styling */
+        .country-tab.active {
+            background-color: var(--primary) !important;
+            color: white !important;
+            border-color: var(--primary) !important;
+            box-shadow: 0 10px 20px rgba(61, 103, 81, 0.2);
+        }
+        .country-tab:not(.active):hover {
+            border-color: var(--primary-container);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #fbf9f5;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #a8d5ba;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3d6751;
+        }
+    </style>
 </head>
-<body>
 
-  <!-- Navbar -->
-  <nav class="global-nav">
-    <div class="nav-brand">
+<body class="font-body-md text-body-md">
 
-      Aldea Global 2
+    <!-- Navbar -->
+    <nav class="global-nav">
+        <div class="nav-brand">
+            Aldea Global 2
+        </div>
+        <div class="nav-links">
+            <a href="../../" class="nav-link">Inicio</a>
+            <a href="../../acuerdo/" class="nav-link">Acuerdo</a>
+            <a href="../../referencias/" class="nav-link">Referencias</a>
+        </div>
+    </nav>
+
+    <!-- Background Organic Elements -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none -z-10">
+        <div class="organic-blob bg-primary-container w-[500px] h-[500px] -top-20 -left-20 opacity-30"></div>
+        <div class="organic-blob bg-secondary-container w-[400px] h-[400px] top-1/2 -right-20 opacity-30" style="animation-delay: -5s;"></div>
+        <div class="organic-blob bg-tertiary-container w-[600px] h-[600px] -bottom-40 -left-40 opacity-20" style="animation-delay: -10s;"></div>
     </div>
-    <div class="nav-links">
-      <a href="../../" class="nav-link">Dashboard</a>
-      <a href="../../acuerdo/" class="nav-link">Acuerdo</a>
-      <a href="../../realidad/" class="nav-link">Realidad</a>
-      <a href="../../fase2/" class="nav-link">Fase 2</a>
-    </div>
-  </nav>
 
-  <main class="page-header">
-    <span class="eyebrow">Documento Interno</span>
-    <h1>Entrega 2: Realidad del Equipo</h1>
-    <p>Próximamente: Contenido de la Entrega 2.</p>
-  </main>
+    <!-- Main Content Canvas -->
+    <main class="pt-32 pb-24 px-6 md:px-12 max-w-[1280px] mx-auto relative">
 
+        <!-- Hero/Intro -->
+        <header class="mb-20 text-center hero-entrega reveal active">
+            <div class="inline-block px-5 py-1.5 rounded-full bg-primary/10 text-primary font-bold text-xs tracking-widest uppercase mb-8 eyebrow-pill border border-primary/20 backdrop-blur-sm shadow-sm cursor-default">
+                ENTREGABLE 2
+            </div>
+            <h1 class="font-headline-xl text-5xl md:text-7xl text-on-surface mb-8 leading-tight">
+                Análisis de la Realidad Económica<br>
+                <span class="bg-gradient-to-r from-primary via-tertiary to-secondary bg-clip-text text-transparent italic pr-2 pb-2">Mercados Internacionales</span>
+            </h1>
+            <p class="font-body-lg text-lg text-on-surface-variant max-w-3xl mx-auto leading-relaxed mb-10">
+                Evaluación profunda de indicadores clave en India, Japón y Arabia Saudita para determinar la viabilidad, retos logísticos y competitividad cambiaria en la exportación de flores premium.
+            </p>
+            <div class="flex justify-center items-center gap-4 text-on-surface-variant font-medium text-lg">
+                <div class="glass-panel px-6 py-3 rounded-full flex items-center gap-2 shadow-sm">
+                    <span class="material-symbols-outlined text-primary">local_florist</span>
+                    Sector: <strong class="text-on-surface">Agrícola y Floricultor</strong>
+                </div>
+            </div>
+        </header>
+
+        <!-- Country Selector -->
+        <div class="flex flex-wrap justify-center gap-4 mb-16 reveal active z-20 relative">
+            <button class="country-tab active px-6 md:px-8 py-3 md:py-4 rounded-full font-bold text-base md:text-lg flex items-center gap-3 transition-all duration-300 border bg-primary text-white border-primary" onclick="selectCountry('india', this)">
+                <img src="https://flagcdn.com/w40/in.png" alt="India" class="w-6 h-4 md:w-8 md:h-5 rounded-sm object-cover shadow-sm">
+                India
+            </button>
+            <button class="country-tab px-6 md:px-8 py-3 md:py-4 rounded-full font-bold text-base md:text-lg flex items-center gap-3 transition-all duration-300 border bg-white text-on-surface border-outline-variant/30 hover:bg-surface-container-low" onclick="selectCountry('japon', this)">
+                <img src="https://flagcdn.com/w40/jp.png" alt="Japón" class="w-6 h-4 md:w-8 md:h-5 rounded-sm object-cover shadow-sm opacity-90">
+                Japón 
+                <span class="hidden md:inline-block text-xs font-normal bg-surface-container-highest px-2 py-1 rounded text-on-surface-variant ml-2">Próximamente</span>
+            </button>
+            <button class="country-tab px-6 md:px-8 py-3 md:py-4 rounded-full font-bold text-base md:text-lg flex items-center gap-3 transition-all duration-300 border bg-white text-on-surface border-outline-variant/30 hover:bg-surface-container-low" onclick="selectCountry('arabia', this)">
+                <img src="https://flagcdn.com/w40/sa.png" alt="Arabia Saudita" class="w-6 h-4 md:w-8 md:h-5 rounded-sm object-cover shadow-sm opacity-90">
+                Arabia Saudita 
+                <span class="hidden md:inline-block text-xs font-normal bg-surface-container-highest px-2 py-1 rounded text-on-surface-variant ml-2">Próximamente</span>
+            </button>
+        </div>
+
+        <!-- ============================== -->
+        <!--        CONTENIDO INDIA         -->
+        <!-- ============================== -->
+        <div id="country-india" class="country-content animate-fade-in block">
+            
+            <!-- Indicador 1: PIB -->
+            <section class="indicator-card botanical-shadow reveal" style="border-top-color: #3d6751;">
+                <div class="flex flex-col lg:flex-row gap-16">
+                    <div class="lg:w-1/2 flex flex-col">
+                        <h2 class="font-headline-md text-3xl text-primary mb-3 flex items-center gap-4">
+                            <div class="icon-circle w-14 h-14 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                                <span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">trending_up</span>
+                            </div>
+                            Indicador 1. PIB total y del sector
+                        </h2>
+                        <p class="text-sm text-outline font-medium tracking-wide mb-8 ml-18 pl-18">PIB Total y del Sector Agrícola (2019-2024). Billones USD (escala corta).</p>
+                        
+                        <div class="glass-panel p-8 rounded-2xl mb-8 flex-grow">
+                            <h4 class="font-bold text-on-surface mb-4 flex items-center gap-2 text-lg">
+                                <span class="material-symbols-outlined text-primary">analytics</span> Análisis
+                            </h4>
+                            <p class="text-on-surface-variant text-base leading-relaxed">
+                                Aunque los servicios dominan el PIB general indio, el sector agrícola (donde se inscribe la floricultura) representa aproximadamente el 15-18% del PIB total. La floricultura comercial es una subdisciplina de rápido crecimiento, impulsada por el Ministerio de Comercio e Industria (APEDA, 2024), pasando de cultivos tradicionales a flores de corte premium (rosas, claveles, orquídeas) para satisfacer la creciente demanda de la clase media urbana en eventos, bodas y hotelería, además del mercado de exportación (Banco Mundial, 2024).
+                            </p>
+                        </div>
+
+                        <div class="bg-primary/5 p-8 rounded-2xl border border-primary/20 relative overflow-hidden group">
+                            <div class="absolute right-0 top-0 w-32 h-32 bg-primary/10 rounded-full blur-2xl -mr-10 -mt-10 transition-transform group-hover:scale-150"></div>
+                            <h4 class="font-bold text-primary mb-3 flex items-center gap-2 text-lg relative z-10">
+                                <span class="material-symbols-outlined">public</span> Impacto para la internacionalización
+                            </h4>
+                            <p class="text-on-surface-variant text-base leading-relaxed mb-6 relative z-10">
+                                Muy positivo. Una empresa floricultora que ingrese a India encontrará un mercado interno masivo con una cultura profundamente arraigada en el uso de flores (festividades religiosas y bodas colosales). El crecimiento económico eleva el ingreso disponible, aumentando el gasto en arreglos florales premium de alta calidad que la producción local tradicional a veces no logra abastecer.
+                            </p>
+                            <div class="inline-flex items-center gap-2 bg-primary text-white px-5 py-2 rounded-full text-sm font-bold shadow-lg shadow-primary/30 relative z-10">
+                                <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">thumb_up</span>
+                                Calificación del impacto: 5 (Muy Favorable)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2 flex flex-col justify-center bg-white/50 rounded-3xl p-6 border border-outline-variant/20 shadow-inner">
+                        <div class="relative w-full h-[400px]">
+                            <canvas id="chartPib"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Indicador 2: Tipo de Cambio -->
+            <section class="indicator-card botanical-shadow reveal" style="border-top-color: #6c5777;">
+                <div class="flex flex-col lg:flex-row gap-16">
+                    <div class="lg:w-1/2 flex flex-col">
+                        <h2 class="font-headline-md text-3xl text-tertiary mb-3 flex items-center gap-4">
+                            <div class="icon-circle w-14 h-14 rounded-full bg-tertiary/10 text-tertiary flex items-center justify-center shrink-0">
+                                <span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">currency_exchange</span>
+                            </div>
+                            Indicador 2. Tipo y tasa de cambio
+                        </h2>
+                        <p class="text-sm text-outline font-medium tracking-wide mb-8 ml-18 pl-18">Evolución del Tipo de Cambio INR/USD (2019-2024).</p>
+                        
+                        <div class="glass-panel p-8 rounded-2xl mb-8 flex-grow">
+                            <h4 class="font-bold text-on-surface mb-4 flex items-center gap-2 text-lg">
+                                <span class="material-symbols-outlined text-tertiary">analytics</span> Análisis
+                            </h4>
+                            <p class="text-on-surface-variant text-base leading-relaxed">
+                                La rupia india (INR) se ha depreciado de manera estructural frente al dólar (de 70,42 a 83,50). El RBI intervino fuertemente en 2024 para reducir la volatilidad (Reserve Bank of India, 2024). En el comercio agrícola internacional, esta depreciación hace que los productos importados sean más caros en moneda local, pero vuelve sumamente competitivas las exportaciones originadas desde India hacia el resto del mundo.
+                            </p>
+                        </div>
+
+                        <div class="bg-tertiary/5 p-8 rounded-2xl border border-tertiary/20 relative overflow-hidden group">
+                            <div class="absolute right-0 top-0 w-32 h-32 bg-tertiary/10 rounded-full blur-2xl -mr-10 -mt-10 transition-transform group-hover:scale-150"></div>
+                            <h4 class="font-bold text-tertiary mb-3 flex items-center gap-2 text-lg relative z-10">
+                                <span class="material-symbols-outlined">public</span> Impacto para la internacionalización
+                            </h4>
+                            <p class="text-on-surface-variant text-base leading-relaxed mb-6 relative z-10">
+                                El impacto es mixto. Si la empresa internacional (por ejemplo, desde Colombia) busca exportar sus flores directamente hacia India, la rupia débil encarece el producto final para el consumidor indio, reduciendo competitividad. En contraste, si la empresa busca invertir e instalar cultivos de alta tecnología dentro de India para luego exportar a Medio Oriente o Europa, la tasa de cambio jugará fuertemente a su favor al mantener bajos los costos operativos.
+                            </p>
+                            <div class="inline-flex items-center gap-2 bg-tertiary text-white px-5 py-2 rounded-full text-sm font-bold shadow-lg shadow-tertiary/30 relative z-10">
+                                <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">compare_arrows</span>
+                                Calificación del impacto: 3 (Neutral / Depende)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2 flex flex-col justify-center bg-white/50 rounded-3xl p-6 border border-outline-variant/20 shadow-inner">
+                        <div class="relative w-full h-[400px]">
+                            <canvas id="chartCambio"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Indicador 3: Inflación -->
+            <section class="indicator-card botanical-shadow reveal" style="border-top-color: #ba1a1a;">
+                <div class="flex flex-col lg:flex-row gap-16">
+                    <div class="lg:w-1/2 flex flex-col">
+                        <h2 class="font-headline-md text-3xl text-error mb-3 flex items-center gap-4">
+                            <div class="icon-circle w-14 h-14 rounded-full bg-error/10 text-error flex items-center justify-center shrink-0">
+                                <span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">price_change</span>
+                            </div>
+                            Indicador 3. Inflación y poder adquisitivo
+                        </h2>
+                        <p class="text-sm text-outline font-medium tracking-wide mb-8 ml-18 pl-18">Tasa de Inflación e Índice de Precios al Consumidor (2019-2024).</p>
+                        
+                        <div class="glass-panel p-8 rounded-2xl mb-8 flex-grow">
+                            <h4 class="font-bold text-on-surface mb-4 flex items-center gap-2 text-lg">
+                                <span class="material-symbols-outlined text-error">analytics</span> Análisis
+                            </h4>
+                            <p class="text-on-surface-variant text-base leading-relaxed">
+                                Tras los picos inflacionarios de 2020 y 2022 causados por crisis energéticas y logísticas, la inflación se moderó al 4,5% en 2024 (Banco Mundial, 2024). Para el sector agrícola y floricultor, los componentes más sensibles de la inflación son los precios de los combustibles y los fertilizantes, los cuales afectan directamente la cadena de frío (cold chain) y el transporte logístico esencial para bienes perecederos (RBI, 2024).
+                            </p>
+                        </div>
+
+                        <div class="bg-error/5 p-8 rounded-2xl border border-error/20 relative overflow-hidden group">
+                            <div class="absolute right-0 top-0 w-32 h-32 bg-error/10 rounded-full blur-2xl -mr-10 -mt-10 transition-transform group-hover:scale-150"></div>
+                            <h4 class="font-bold text-error mb-3 flex items-center gap-2 text-lg relative z-10">
+                                <span class="material-symbols-outlined">public</span> Impacto para la internacionalización
+                            </h4>
+                            <p class="text-on-surface-variant text-base leading-relaxed mb-6 relative z-10">
+                                Desafiante pero manejable. Las flores son productos altamente perecederos. Cualquier incremento en la inflación energética impacta severamente los costos de los camiones refrigerados y las instalaciones climatizadas. La empresa deberá invertir fuertemente en eficiencia logística y tecnología para proteger sus márgenes operativos frente a las fluctuaciones en el costo de los insumos agrícolas y de transporte.
+                            </p>
+                            <div class="inline-flex items-center gap-2 bg-error text-white px-5 py-2 rounded-full text-sm font-bold shadow-lg shadow-error/30 relative z-10">
+                                <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">warning</span>
+                                Calificación del impacto: 3 (Moderado)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2 flex flex-col justify-center bg-white/50 rounded-3xl p-6 border border-outline-variant/20 shadow-inner">
+                        <div class="relative w-full h-[400px]">
+                            <canvas id="chartInflacion"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Indicador 4: Empleo y desempleo -->
+            <section class="indicator-card botanical-shadow reveal" style="border-top-color: #735664;">
+                <div class="flex flex-col lg:flex-row gap-16">
+                    <div class="lg:w-1/2 flex flex-col">
+                        <h2 class="font-headline-md text-3xl text-secondary mb-3 flex items-center gap-4">
+                            <div class="icon-circle w-14 h-14 rounded-full bg-secondary/10 text-secondary flex items-center justify-center shrink-0">
+                                <span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">group</span>
+                            </div>
+                            Indicador 4. Empleo y desempleo
+                        </h2>
+                        <p class="text-sm text-outline font-medium tracking-wide mb-8 ml-18 pl-18">Indicadores de Empleo y Desempleo (2019-2024).</p>
+                        
+                        <div class="glass-panel p-8 rounded-2xl mb-8 flex-grow">
+                            <h4 class="font-bold text-on-surface mb-4 flex items-center gap-2 text-lg">
+                                <span class="material-symbols-outlined text-secondary">analytics</span> Análisis
+                            </h4>
+                            <p class="text-on-surface-variant text-base leading-relaxed">
+                                India tiene una vasta población rural, y la agricultura emplea aproximadamente a más del 40% de la fuerza laboral nacional (Banco Mundial, 2024). Aunque el desempleo general ronda el 7,0%, en las zonas rurales existe una enorme disponibilidad de mano de obra (MOSPI, 2024). Sin embargo, gran parte de este empleo agrícola es no calificado e informal, acostumbrado a cultivos de subsistencia.
+                            </p>
+                        </div>
+
+                        <div class="bg-secondary/5 p-8 rounded-2xl border border-secondary/20 relative overflow-hidden group">
+                            <div class="absolute right-0 top-0 w-32 h-32 bg-secondary/10 rounded-full blur-2xl -mr-10 -mt-10 transition-transform group-hover:scale-150"></div>
+                            <h4 class="font-bold text-secondary mb-3 flex items-center gap-2 text-lg relative z-10">
+                                <span class="material-symbols-outlined">public</span> Impacto para la internacionalización
+                            </h4>
+                            <p class="text-on-surface-variant text-base leading-relaxed mb-6 relative z-10">
+                                Favorable, pero con necesidad de capacitación. Una empresa internacional tendrá acceso a mano de obra rural masiva a costos extremadamente competitivos para tareas de siembra y recolección. El principal reto será invertir en la formación del personal local en prácticas de invernadero, control de plagas, cosecha cuidadosa y manejo poscosecha de flores delicadas para cumplir con estándares de exportación.
+                            </p>
+                            <div class="inline-flex items-center gap-2 bg-secondary text-white px-5 py-2 rounded-full text-sm font-bold shadow-lg shadow-secondary/30 relative z-10">
+                                <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">engineering</span>
+                                Calificación del impacto: 4 (Favorable)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2 flex flex-col justify-center bg-white/50 rounded-3xl p-6 border border-outline-variant/20 shadow-inner">
+                        <div class="relative w-full h-[400px]">
+                            <canvas id="chartEmpleo"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Indicador 5: Tasas de interés -->
+            <section class="indicator-card botanical-shadow reveal" style="border-top-color: #3d6751;">
+                <div class="flex flex-col lg:flex-row gap-16">
+                    <div class="lg:w-1/2 flex flex-col">
+                        <h2 class="font-headline-md text-3xl text-primary mb-3 flex items-center gap-4">
+                            <div class="icon-circle w-14 h-14 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                                <span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">account_balance</span>
+                            </div>
+                            Indicador 5. Tasas de interés
+                        </h2>
+                        <p class="text-sm text-outline font-medium tracking-wide mb-8 ml-18 pl-18">Tasas de Interés de Referencia (Repo) (2019-2024).</p>
+                        
+                        <div class="glass-panel p-8 rounded-2xl mb-8 flex-grow">
+                            <h4 class="font-bold text-on-surface mb-4 flex items-center gap-2 text-lg">
+                                <span class="material-symbols-outlined text-primary">analytics</span> Análisis
+                            </h4>
+                            <p class="text-on-surface-variant text-base leading-relaxed">
+                                El Reserve Bank of India ha mantenido la tasa Repo en 6,50% durante 2024 para contener la inflación (RBI, 2024). Desarrollar proyectos floricultores requiere una alta inversión de capital (CAPEX) para la construcción de invernaderos climatizados, sistemas de riego por goteo automatizados y cuartos fríos.
+                            </p>
+                        </div>
+
+                        <div class="bg-primary/5 p-8 rounded-2xl border border-primary/20 relative overflow-hidden group">
+                            <div class="absolute right-0 top-0 w-32 h-32 bg-primary/10 rounded-full blur-2xl -mr-10 -mt-10 transition-transform group-hover:scale-150"></div>
+                            <h4 class="font-bold text-primary mb-3 flex items-center gap-2 text-lg relative z-10">
+                                <span class="material-symbols-outlined">public</span> Impacto para la internacionalización
+                            </h4>
+                            <p class="text-on-surface-variant text-base leading-relaxed mb-6 relative z-10">
+                                Neutral. Financiar la infraestructura floricultora localmente con bancos comerciales será costoso. Sin embargo, si la empresa realiza Inversión Extranjera Directa (IED) utilizando fondos propios o busca alianzas estratégicas para acceder a los subsidios de fomento agrícola que otorga el gobierno indio a la agroindustria, el impacto de las altas tasas se mitiga significativamente.
+                            </p>
+                            <div class="inline-flex items-center gap-2 bg-primary text-white px-5 py-2 rounded-full text-sm font-bold shadow-lg shadow-primary/30 relative z-10">
+                                <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">account_balance_wallet</span>
+                                Calificación del impacto: 3 (Neutral)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2 flex flex-col justify-center bg-white/50 rounded-3xl p-6 border border-outline-variant/20 shadow-inner">
+                        <div class="relative w-full h-[400px]">
+                            <canvas id="chartTasas"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ============================== -->
+        <!--        CONTENIDO JAPÓN         -->
+        <!-- ============================== -->
+        <div id="country-japon" class="country-content hidden">
+            <div class="glass-panel rounded-[2.5rem] p-16 md:p-24 text-center border-dashed border-2 border-outline-variant/50 max-w-4xl mx-auto shadow-sm">
+                <div class="w-24 h-24 mx-auto bg-surface-container rounded-full flex items-center justify-center mb-8 relative">
+                    <span class="material-symbols-outlined text-5xl text-outline absolute animate-pulse">hourglass_empty</span>
+                </div>
+                <h2 class="font-headline-xl text-4xl text-on-surface mb-6">Datos en recolección</h2>
+                <p class="text-on-surface-variant text-xl max-w-2xl mx-auto leading-relaxed">
+                    El análisis macroeconómico para <strong class="text-on-surface">Japón</strong> está siendo procesado por el equipo de investigación. Próximamente se publicarán los indicadores de PIB, Inflación, Tasas de Interés y Desempleo para evaluar el mercado nipón.
+                </p>
+            </div>
+        </div>
+
+        <!-- ============================== -->
+        <!--      CONTENIDO ARABIA S.       -->
+        <!-- ============================== -->
+        <div id="country-arabia" class="country-content hidden">
+            <div class="glass-panel rounded-[2.5rem] p-16 md:p-24 text-center border-dashed border-2 border-outline-variant/50 max-w-4xl mx-auto shadow-sm">
+                <div class="w-24 h-24 mx-auto bg-surface-container rounded-full flex items-center justify-center mb-8 relative">
+                    <span class="material-symbols-outlined text-5xl text-outline absolute animate-pulse">hourglass_empty</span>
+                </div>
+                <h2 class="font-headline-xl text-4xl text-on-surface mb-6">Datos en recolección</h2>
+                <p class="text-on-surface-variant text-xl max-w-2xl mx-auto leading-relaxed">
+                    El análisis macroeconómico para <strong class="text-on-surface">Arabia Saudita</strong> está siendo procesado por el equipo de investigación. Próximamente se publicarán los indicadores de viabilidad para este mercado emergente.
+                </p>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Global Footer -->
+    <footer class="global-footer">
+        <div class="footer-info">
+            <div class="brand-icon">
+                <span class="material-symbols-outlined text-sm">local_florist</span>
+            </div>
+            <span class="footer-copy">© 2026 Aldea Global 2. Dreams Flower SAS.</span>
+        </div>
+        <div class="footer-links">
+            <a href="#" class="footer-link">Términos</a>
+            <a href="#" class="footer-link">Privacidad</a>
+        </div>
+    </footer>
+
+    <script>
+        // Tab switching logic
+        function selectCountry(countryId, btnElement) {
+            // Update tabs UI
+            document.querySelectorAll('.country-tab').forEach(tab => {
+                tab.classList.remove('active', 'bg-primary', 'text-white', 'border-primary');
+                tab.classList.add('bg-white', 'text-on-surface', 'border-outline-variant/30');
+            });
+            btnElement.classList.remove('bg-white', 'text-on-surface', 'border-outline-variant/30');
+            btnElement.classList.add('active', 'bg-primary', 'text-white', 'border-primary');
+
+            // Update content visibility
+            document.querySelectorAll('.country-content').forEach(content => {
+                content.classList.remove('block', 'animate-fade-in');
+                content.classList.add('hidden');
+            });
+            const targetContent = document.getElementById('country-' + countryId);
+            if (targetContent) {
+                targetContent.classList.remove('hidden');
+                // Trigger reflow for animation
+                void targetContent.offsetWidth; 
+                targetContent.classList.add('block', 'animate-fade-in');
+            }
+        }
+
+        // Animaciones scroll
+        document.addEventListener("DOMContentLoaded", () => {
+            const reveals = document.querySelectorAll('.reveal');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            reveals.forEach(reveal => observer.observe(reveal));
+            
+            // Base Chart Options for Premium look
+            const baseOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+                interaction: {
+                    mode: 'index',
+                    intersect: false,
+                },
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: {
+                            font: { family: "'Hanken Grotesk', sans-serif", weight: '600', size: 13 },
+                            usePointStyle: true,
+                            padding: 20
+                        }
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                        titleColor: '#1b1c1a',
+                        bodyColor: '#414943',
+                        borderColor: 'rgba(61, 103, 81, 0.1)',
+                        borderWidth: 1,
+                        padding: 12,
+                        boxPadding: 6,
+                        usePointStyle: true,
+                        titleFont: { family: "'Hanken Grotesk', sans-serif", size: 14, weight: 'bold' },
+                        bodyFont: { family: "'Hanken Grotesk', sans-serif", size: 13 }
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: { display: false },
+                        ticks: { font: { family: "'Hanken Grotesk', sans-serif", weight: '500' } }
+                    },
+                    y: {
+                        grid: { color: 'rgba(0,0,0,0.03)' },
+                        ticks: { font: { family: "'Hanken Grotesk', sans-serif" } },
+                        beginAtZero: false
+                    }
+                },
+                animation: {
+                    duration: 1500,
+                    easing: 'easeOutQuart'
+                }
+            };
+
+            const labels = ["2019", "2020", "2021", "2022", "2023", "2024"];
+
+            const createGradient = (ctx, colorStart, colorEnd) => {
+                const gradient = ctx.createLinearGradient(0, 0, 0, 400);
+                gradient.addColorStop(0, colorStart);
+                gradient.addColorStop(1, colorEnd);
+                return gradient;
+            };
+
+            // 1. Chart PIB
+            const ctxPib = document.getElementById('chartPib').getContext('2d');
+            new Chart(ctxPib, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: 'PIB Total (Billones USD)',
+                            data: [2.84, 2.67, 3.15, 3.42, 3.55, 3.93],
+                            backgroundColor: createGradient(ctxPib, 'rgba(61, 103, 81, 0.8)', 'rgba(61, 103, 81, 0.2)'),
+                            borderRadius: 6,
+                            borderWidth: 0,
+                            yAxisID: 'y'
+                        },
+                        {
+                            label: 'Crecimiento Anual (%)',
+                            data: [3.9, -5.8, 9.1, 7.2, 7.6, 6.8],
+                            type: 'line',
+                            borderColor: '#735664', // Contrast color
+                            backgroundColor: '#735664',
+                            borderWidth: 3,
+                            pointBackgroundColor: '#fff',
+                            pointBorderColor: '#735664',
+                            pointBorderWidth: 2,
+                            pointRadius: 4,
+                            pointHoverRadius: 6,
+                            tension: 0.4,
+                            yAxisID: 'y1'
+                        }
+                    ]
+                },
+                options: {
+                    ...baseOptions,
+                    scales: {
+                        ...baseOptions.scales,
+                        y1: {
+                            type: 'linear',
+                            position: 'right',
+                            grid: { drawOnChartArea: false },
+                            ticks: { font: { family: "'Hanken Grotesk', sans-serif" } }
+                        }
+                    }
+                }
+            });
+
+            // 2. Chart Tipo de Cambio
+            const ctxCambio = document.getElementById('chartCambio').getContext('2d');
+            new Chart(ctxCambio, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: 'INR/USD Promedio',
+                            data: [70.42, 74.10, 73.92, 78.60, 82.60, 83.50],
+                            borderColor: '#6c5777',
+                            backgroundColor: createGradient(ctxCambio, 'rgba(108, 87, 119, 0.3)', 'rgba(108, 87, 119, 0.0)'),
+                            borderWidth: 3,
+                            fill: true,
+                            pointBackgroundColor: '#fff',
+                            pointBorderColor: '#6c5777',
+                            pointBorderWidth: 2,
+                            pointRadius: 4,
+                            pointHoverRadius: 6,
+                            tension: 0.4
+                        }
+                    ]
+                },
+                options: baseOptions
+            });
+
+            // 3. Chart Inflación
+            const ctxInflacion = document.getElementById('chartInflacion').getContext('2d');
+            new Chart(ctxInflacion, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: 'Inflación Anual (%)',
+                            data: [3.7, 6.6, 5.1, 6.7, 5.5, 4.5],
+                            borderColor: '#ba1a1a',
+                            backgroundColor: createGradient(ctxInflacion, 'rgba(186, 26, 26, 0.2)', 'rgba(186, 26, 26, 0.0)'),
+                            borderWidth: 3,
+                            fill: true,
+                            pointBackgroundColor: '#fff',
+                            pointBorderColor: '#ba1a1a',
+                            pointBorderWidth: 2,
+                            pointRadius: 4,
+                            tension: 0.4,
+                            yAxisID: 'y'
+                        },
+                        {
+                            label: 'IPC (Base 100)',
+                            data: [155.4, 165.7, 174.2, 185.9, 196.1, 204.9],
+                            borderColor: '#735664',
+                            borderWidth: 2,
+                            borderDash: [5, 5],
+                            pointBackgroundColor: '#fff',
+                            pointBorderColor: '#735664',
+                            pointRadius: 3,
+                            tension: 0.4,
+                            yAxisID: 'y1'
+                        }
+                    ]
+                },
+                options: {
+                    ...baseOptions,
+                    scales: {
+                        ...baseOptions.scales,
+                        y1: {
+                            type: 'linear',
+                            position: 'right',
+                            grid: { drawOnChartArea: false },
+                            ticks: { font: { family: "'Hanken Grotesk', sans-serif" } }
+                        }
+                    }
+                }
+            });
+
+            // 4. Chart Empleo
+            const ctxEmpleo = document.getElementById('chartEmpleo').getContext('2d');
+            new Chart(ctxEmpleo, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: 'Empleo / Participación (%)',
+                            data: [46.8, 43.0, 46.3, 47.2, 48.5, 49.2],
+                            backgroundColor: createGradient(ctxEmpleo, 'rgba(115, 86, 100, 0.6)', 'rgba(115, 86, 100, 0.1)'),
+                            borderRadius: 6,
+                            yAxisID: 'y'
+                        },
+                        {
+                            label: 'Desempleo (%)',
+                            data: [5.3, 8.0, 6.0, 7.3, 7.1, 7.0],
+                            type: 'line',
+                            borderColor: '#3d6751',
+                            backgroundColor: '#3d6751',
+                            borderWidth: 3,
+                            pointBackgroundColor: '#fff',
+                            pointBorderColor: '#3d6751',
+                            pointBorderWidth: 2,
+                            pointRadius: 4,
+                            tension: 0.4,
+                            yAxisID: 'y1'
+                        }
+                    ]
+                },
+                options: {
+                    ...baseOptions,
+                    scales: {
+                        ...baseOptions.scales,
+                        y1: {
+                            type: 'linear',
+                            position: 'right',
+                            grid: { drawOnChartArea: false },
+                            ticks: { font: { family: "'Hanken Grotesk', sans-serif" } }
+                        }
+                    }
+                }
+            });
+
+            // 5. Chart Tasas
+            const ctxTasas = document.getElementById('chartTasas').getContext('2d');
+            new Chart(ctxTasas, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: 'Tasa de Interés (%)',
+                            data: [5.15, 4.00, 4.00, 6.25, 6.50, 6.50],
+                            borderColor: '#3d6751',
+                            backgroundColor: createGradient(ctxTasas, 'rgba(61, 103, 81, 0.3)', 'rgba(61, 103, 81, 0.0)'),
+                            borderWidth: 3,
+                            fill: true,
+                            stepped: true,
+                            pointBackgroundColor: '#fff',
+                            pointBorderColor: '#3d6751',
+                            pointBorderWidth: 2,
+                            pointRadius: 4,
+                            pointHoverRadius: 6
+                        }
+                    ]
+                },
+                options: baseOptions
+            });
+
+        });
+    </script>
 </body>
+
 </html>
