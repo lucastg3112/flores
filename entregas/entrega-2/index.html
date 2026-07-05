@@ -247,12 +247,10 @@
             <button class="country-tab px-6 md:px-8 py-3 md:py-4 rounded-full font-bold text-base md:text-lg flex items-center gap-3 transition-all duration-300 border bg-white text-on-surface border-outline-variant/30 hover:bg-surface-container-low" onclick="selectCountry('japon', this)">
                 <img src="https://flagcdn.com/w40/jp.png" alt="Japón" class="w-6 h-4 md:w-8 md:h-5 rounded-sm object-cover shadow-sm opacity-90">
                 Japón 
-                <span class="hidden md:inline-block text-xs font-normal bg-surface-container-highest px-2 py-1 rounded text-on-surface-variant ml-2">Próximamente</span>
             </button>
             <button class="country-tab px-6 md:px-8 py-3 md:py-4 rounded-full font-bold text-base md:text-lg flex items-center gap-3 transition-all duration-300 border bg-white text-on-surface border-outline-variant/30 hover:bg-surface-container-low" onclick="selectCountry('arabia', this)">
-                <img src="https://flagcdn.com/w40/sa.png" alt="Arabia Saudita" class="w-6 h-4 md:w-8 md:h-5 rounded-sm object-cover shadow-sm opacity-90">
-                Arabia Saudita 
-                <span class="hidden md:inline-block text-xs font-normal bg-surface-container-highest px-2 py-1 rounded text-on-surface-variant ml-2">Próximamente</span>
+                <img src="https://flagcdn.com/w40/ae.png" alt="Emiratos Árabes Unidos" class="w-6 h-4 md:w-8 md:h-5 rounded-sm object-cover shadow-sm opacity-90">
+                Emiratos Árabes 
             </button>
         </div>
 
@@ -261,7 +259,9 @@
         <!-- ============================== -->
         <div id="country-india" class="country-content animate-fade-in block">
             
-            <!-- Indicador 1: PIB -->
+            
+            
+
             <section class="indicator-card botanical-shadow reveal" style="border-top-color: #3d6751;">
                 <div class="flex flex-col lg:flex-row gap-16">
                     <div class="lg:w-1/2 flex flex-col">
@@ -277,9 +277,7 @@
                             <h4 class="font-bold text-on-surface mb-4 flex items-center gap-2 text-lg">
                                 <span class="material-symbols-outlined text-primary">analytics</span> Análisis
                             </h4>
-                            <p class="text-on-surface-variant text-base leading-relaxed">
-                                Aunque los servicios dominan el PIB general indio, el sector agrícola (donde se inscribe la floricultura) representa aproximadamente el 15-18% del PIB total. La floricultura comercial es una subdisciplina de rápido crecimiento, impulsada por el Ministerio de Comercio e Industria (APEDA, 2024), pasando de cultivos tradicionales a flores de corte premium (rosas, claveles, orquídeas) para satisfacer la creciente demanda de la clase media urbana en eventos, bodas y hotelería, además del mercado de exportación (Banco Mundial, 2024).
-                            </p>
+                            <p class="text-on-surface-variant text-base leading-relaxed">Aunque los servicios dominan el PIB general, el sector agrícola representa aproximadamente el 15-18% del PIB. Entre 2019 y 2024, el PIB total creció significativamente, pasando de 2.83 billones a un estimado de 3.93 billones de USD, lo que representa un aumento de más del 38%. Esta expansión constante indica un mayor poder de consumo y aumenta la capacidad exportadora del país.</p>
                         </div>
 
                         <div class="bg-primary/5 p-8 rounded-2xl border border-primary/20 relative overflow-hidden group">
@@ -292,19 +290,30 @@
                             </p>
                             <div class="inline-flex items-center gap-2 bg-primary text-white px-5 py-2 rounded-full text-sm font-bold shadow-lg shadow-primary/30 relative z-10">
                                 <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">thumb_up</span>
-                                Calificación del impacto: 5 (Muy Favorable)
+                                Calificación del impacto: 5 (Muy Favorable) - Se asigna esta calificación porque el crecimiento sostenido superior al 38% asegura un mercado dinámico, eleva el ingreso disponible e incrementa la demanda de flores en la clase media.
                             </div>
+                        </div>
+                        <div class="mt-6 p-5 rounded-xl border border-primary/20 bg-surface shadow-sm">
+                            <h5 class="font-bold text-primary flex items-center gap-2 mb-2 text-sm uppercase tracking-wide">
+                                <span class="material-symbols-outlined text-[18px]">balance</span> Comparación entre países
+                            </h5>
+                            <p class="text-on-surface-variant text-sm leading-relaxed">
+                                India presenta el mayor crecimiento del PIB (38%), evidenciando una rápida expansión. Japón mantiene una economía de gran tamaño pero crecimiento estable (2%), propio de un mercado maduro. Emiratos Árabes posee la economía más pequeña del grupo, pero orientada casi exclusivamente a la importación, ofreciendo excelentes condiciones para proveedores externos.
+                            </p>
                         </div>
                     </div>
                     <div class="lg:w-1/2 flex flex-col justify-center bg-white/50 rounded-3xl p-6 border border-outline-variant/20 shadow-inner">
                         <div class="relative w-full h-[400px]">
                             <canvas id="chartPib"></canvas>
                         </div>
+                            <p class="text-xs text-center text-outline-variant mt-3 font-medium">Fuente: Banco Mundial y FMI (2024)</p>
                     </div>
                 </div>
             </section>
 
-            <!-- Indicador 2: Tipo de Cambio -->
+            
+            
+
             <section class="indicator-card botanical-shadow reveal" style="border-top-color: #6c5777;">
                 <div class="flex flex-col lg:flex-row gap-16">
                     <div class="lg:w-1/2 flex flex-col">
@@ -320,9 +329,7 @@
                             <h4 class="font-bold text-on-surface mb-4 flex items-center gap-2 text-lg">
                                 <span class="material-symbols-outlined text-tertiary">analytics</span> Análisis
                             </h4>
-                            <p class="text-on-surface-variant text-base leading-relaxed">
-                                La rupia india (INR) se ha depreciado de manera estructural frente al dólar (de 70,42 a 83,50). El RBI intervino fuertemente en 2024 para reducir la volatilidad (Reserve Bank of India, 2024). En el comercio agrícola internacional, esta depreciación hace que los productos importados sean más caros en moneda local, pero vuelve sumamente competitivas las exportaciones originadas desde India hacia el resto del mundo.
-                            </p>
+                            <p class="text-on-surface-variant text-base leading-relaxed">El tipo de cambio de la Rupia india se depreció frente al dólar, pasando de aproximadamente 70.4 INR/USD en 2019 a 83.5 INR/USD en 2024, lo que supone una devaluación del 18.6%. Esta caída encarece la importación de flores premium hacia India, pero paralelamente abarata y hace más competitivas las exportaciones floricultoras que se originen dentro del territorio indio.</p>
                         </div>
 
                         <div class="bg-tertiary/5 p-8 rounded-2xl border border-tertiary/20 relative overflow-hidden group">
@@ -335,19 +342,30 @@
                             </p>
                             <div class="inline-flex items-center gap-2 bg-tertiary text-white px-5 py-2 rounded-full text-sm font-bold shadow-lg shadow-tertiary/30 relative z-10">
                                 <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">compare_arrows</span>
-                                Calificación del impacto: 3 (Neutral / Depende)
+                                Calificación del impacto: 3 (Neutral / Depende) - Se asigna esta calificación porque una devaluación del 18.6% beneficia la exportación al abaratar costos, pero dificulta la rentabilidad si el objetivo es importar hacia el país.
                             </div>
+                        </div>
+                        <div class="mt-6 p-5 rounded-xl border border-tertiary/20 bg-surface shadow-sm">
+                            <h5 class="font-bold text-tertiary flex items-center gap-2 mb-2 text-sm uppercase tracking-wide">
+                                <span class="material-symbols-outlined text-[18px]">balance</span> Comparación entre países
+                            </h5>
+                            <p class="text-on-surface-variant text-sm leading-relaxed">
+                                El entorno más estable lo ofrece EAU gracias a su anclaje inamovible (0% volatilidad) al USD. En contraste, tanto India como Japón han experimentado fuertes devaluaciones (18.6% y 37% respectivamente), lo que dificulta importar hacia ellos, aunque vuelve sus producciones internas más competitivas para la re-exportación.
+                            </p>
                         </div>
                     </div>
                     <div class="lg:w-1/2 flex flex-col justify-center bg-white/50 rounded-3xl p-6 border border-outline-variant/20 shadow-inner">
                         <div class="relative w-full h-[400px]">
                             <canvas id="chartCambio"></canvas>
                         </div>
+                            <p class="text-xs text-center text-outline-variant mt-3 font-medium">Fuente: Bancos Centrales (RBI, BoJ, CBUAE) (2024)</p>
                     </div>
                 </div>
             </section>
 
-            <!-- Indicador 3: Inflación -->
+            
+            
+
             <section class="indicator-card botanical-shadow reveal" style="border-top-color: #ba1a1a;">
                 <div class="flex flex-col lg:flex-row gap-16">
                     <div class="lg:w-1/2 flex flex-col">
@@ -363,9 +381,7 @@
                             <h4 class="font-bold text-on-surface mb-4 flex items-center gap-2 text-lg">
                                 <span class="material-symbols-outlined text-error">analytics</span> Análisis
                             </h4>
-                            <p class="text-on-surface-variant text-base leading-relaxed">
-                                Tras los picos inflacionarios de 2020 y 2022 causados por crisis energéticas y logísticas, la inflación se moderó al 4,5% en 2024 (Banco Mundial, 2024). Para el sector agrícola y floricultor, los componentes más sensibles de la inflación son los precios de los combustibles y los fertilizantes, los cuales afectan directamente la cadena de frío (cold chain) y el transporte logístico esencial para bienes perecederos (RBI, 2024).
-                            </p>
+                            <p class="text-on-surface-variant text-base leading-relaxed">La inflación en India osciló fuertemente, alcanzando un pico de 6.7% en 2022 antes de estabilizarse en torno al 4.5% a mediados de 2024. Este descenso del 2.2% en dos años mitiga los altos costos logísticos (fertilizantes y fletes aéreos) que enfrenta el sector agrario, permitiendo una leve recuperación de los márgenes de ganancia.</p>
                         </div>
 
                         <div class="bg-error/5 p-8 rounded-2xl border border-error/20 relative overflow-hidden group">
@@ -378,19 +394,30 @@
                             </p>
                             <div class="inline-flex items-center gap-2 bg-error text-white px-5 py-2 rounded-full text-sm font-bold shadow-lg shadow-error/30 relative z-10">
                                 <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">warning</span>
-                                Calificación del impacto: 3 (Moderado)
+                                Calificación del impacto: 3 (Moderado) - Se asigna esta calificación porque la estabilización de la inflación en un 4.5% permite prever costos y planificar inversiones agrarias, sin ser una tasa ideal para un mercado importador.
                             </div>
+                        </div>
+                        <div class="mt-6 p-5 rounded-xl border border-error/20 bg-surface shadow-sm">
+                            <h5 class="font-bold text-error flex items-center gap-2 mb-2 text-sm uppercase tracking-wide">
+                                <span class="material-symbols-outlined text-[18px]">balance</span> Comparación entre países
+                            </h5>
+                            <p class="text-on-surface-variant text-sm leading-relaxed">
+                                Emiratos Árabes presenta el mejor escenario inflacionario (1.7%), protegiendo al máximo los altos ingresos. Japón también posee un nivel muy bajo (2.8%), típico de su economía, mientras que India registra la inflación más alta del grupo (4.5%), lo que expone los costos operativos a mayor volatilidad.
+                            </p>
                         </div>
                     </div>
                     <div class="lg:w-1/2 flex flex-col justify-center bg-white/50 rounded-3xl p-6 border border-outline-variant/20 shadow-inner">
                         <div class="relative w-full h-[400px]">
                             <canvas id="chartInflacion"></canvas>
                         </div>
+                            <p class="text-xs text-center text-outline-variant mt-3 font-medium">Fuente: MOSPI, e-Stat, FCSC (2024)</p>
                     </div>
                 </div>
             </section>
 
-            <!-- Indicador 4: Empleo y desempleo -->
+            
+            
+
             <section class="indicator-card botanical-shadow reveal" style="border-top-color: #735664;">
                 <div class="flex flex-col lg:flex-row gap-16">
                     <div class="lg:w-1/2 flex flex-col">
@@ -406,9 +433,7 @@
                             <h4 class="font-bold text-on-surface mb-4 flex items-center gap-2 text-lg">
                                 <span class="material-symbols-outlined text-secondary">analytics</span> Análisis
                             </h4>
-                            <p class="text-on-surface-variant text-base leading-relaxed">
-                                India tiene una vasta población rural, y la agricultura emplea aproximadamente a más del 40% de la fuerza laboral nacional (Banco Mundial, 2024). Aunque el desempleo general ronda el 7,0%, en las zonas rurales existe una enorme disponibilidad de mano de obra (MOSPI, 2024). Sin embargo, gran parte de este empleo agrícola es no calificado e informal, acostumbrado a cultivos de subsistencia.
-                            </p>
+                            <p class="text-on-surface-variant text-base leading-relaxed">La tasa de desempleo en India bajó progresivamente del 5.3% en 2019 al 3.2% en 2024. Más de la mitad de su enorme fuerza laboral activa trabaja directa o indirectamente en el campo y la agricultura, proveyendo un volumen masivo de trabajadores disponibles para granjas floricultoras que buscan expandir su producción.</p>
                         </div>
 
                         <div class="bg-secondary/5 p-8 rounded-2xl border border-secondary/20 relative overflow-hidden group">
@@ -421,19 +446,30 @@
                             </p>
                             <div class="inline-flex items-center gap-2 bg-secondary text-white px-5 py-2 rounded-full text-sm font-bold shadow-lg shadow-secondary/30 relative z-10">
                                 <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">engineering</span>
-                                Calificación del impacto: 4 (Favorable)
+                                Calificación del impacto: 4 (Favorable) - Se asigna esta calificación porque la caída del desempleo (3.2%) refleja una economía activa, garantizando disponibilidad masiva de talento rural para proyectos a gran escala.
                             </div>
+                        </div>
+                        <div class="mt-6 p-5 rounded-xl border border-secondary/20 bg-surface shadow-sm">
+                            <h5 class="font-bold text-secondary flex items-center gap-2 mb-2 text-sm uppercase tracking-wide">
+                                <span class="material-symbols-outlined text-[18px]">balance</span> Comparación entre países
+                            </h5>
+                            <p class="text-on-surface-variant text-sm leading-relaxed">
+                                Tanto EAU (1.8%) como Japón (2.5%) ostentan tasas de desempleo sumamente bajas, lo que garantiza consumo Premium estable pero limita la mano de obra barata local. India, por su parte (3.2%), es el único que proporciona una reserva demográfica inmensa para cubrir roles intensivos en la agricultura.
+                            </p>
                         </div>
                     </div>
                     <div class="lg:w-1/2 flex flex-col justify-center bg-white/50 rounded-3xl p-6 border border-outline-variant/20 shadow-inner">
                         <div class="relative w-full h-[400px]">
                             <canvas id="chartEmpleo"></canvas>
                         </div>
+                            <p class="text-xs text-center text-outline-variant mt-3 font-medium">Fuente: OIT / ILOSTAT (2024)</p>
                     </div>
                 </div>
             </section>
 
-            <!-- Indicador 5: Tasas de interés -->
+            
+            
+
             <section class="indicator-card botanical-shadow reveal" style="border-top-color: #3d6751;">
                 <div class="flex flex-col lg:flex-row gap-16">
                     <div class="lg:w-1/2 flex flex-col">
@@ -449,9 +485,7 @@
                             <h4 class="font-bold text-on-surface mb-4 flex items-center gap-2 text-lg">
                                 <span class="material-symbols-outlined text-primary">analytics</span> Análisis
                             </h4>
-                            <p class="text-on-surface-variant text-base leading-relaxed">
-                                El Reserve Bank of India ha mantenido la tasa Repo en 6,50% durante 2024 para contener la inflación (RBI, 2024). Desarrollar proyectos floricultores requiere una alta inversión de capital (CAPEX) para la construcción de invernaderos climatizados, sistemas de riego por goteo automatizados y cuartos fríos.
-                            </p>
+                            <p class="text-on-surface-variant text-base leading-relaxed">El Banco de la Reserva de la India (RBI) subió su tasa repo desde mínimos históricos hasta sostenerla en un 6.50% durante todo 2024. Este elevado costo del dinero (6.5%) encarece significativamente el apalancamiento local y la Inversión en Bienes de Capital (CAPEX) necesarios para invernaderos y tecnología de frío.</p>
                         </div>
 
                         <div class="bg-primary/5 p-8 rounded-2xl border border-primary/20 relative overflow-hidden group">
@@ -464,14 +498,23 @@
                             </p>
                             <div class="inline-flex items-center gap-2 bg-primary text-white px-5 py-2 rounded-full text-sm font-bold shadow-lg shadow-primary/30 relative z-10">
                                 <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">account_balance_wallet</span>
-                                Calificación del impacto: 3 (Neutral)
+                                Calificación del impacto: 3 (Neutral) - Se asigna esta calificación baja debido a que una tasa del 6.50% penaliza fuertemente a las empresas que requieren créditos locales para construir grandes infraestructuras agrícolas.
                             </div>
+                        </div>
+                        <div class="mt-6 p-5 rounded-xl border border-primary/20 bg-surface shadow-sm">
+                            <h5 class="font-bold text-primary flex items-center gap-2 mb-2 text-sm uppercase tracking-wide">
+                                <span class="material-symbols-outlined text-[18px]">balance</span> Comparación entre países
+                            </h5>
+                            <p class="text-on-surface-variant text-sm leading-relaxed">
+                                Japón es el claro ganador indiscutible en costo de financiamiento gracias a su tasa ultrabaja (0.1%), ideal para apalancamiento. EAU presenta niveles intermedios (3.65%), mientras que India exhibe el entorno más restrictivo y costoso (6.50%) para empresas que busquen crédito local.
+                            </p>
                         </div>
                     </div>
                     <div class="lg:w-1/2 flex flex-col justify-center bg-white/50 rounded-3xl p-6 border border-outline-variant/20 shadow-inner">
                         <div class="relative w-full h-[400px]">
                             <canvas id="chartTasas"></canvas>
                         </div>
+                            <p class="text-xs text-center text-outline-variant mt-3 font-medium">Fuente: Bancos Centrales (RBI, BoJ, CBUAE) (2024)</p>
                     </div>
                 </div>
             </section>
@@ -480,32 +523,608 @@
         <!-- ============================== -->
         <!--        CONTENIDO JAPÓN         -->
         <!-- ============================== -->
-        <div id="country-japon" class="country-content hidden">
-            <div class="glass-panel rounded-[2.5rem] p-16 md:p-24 text-center border-dashed border-2 border-outline-variant/50 max-w-4xl mx-auto shadow-sm">
-                <div class="w-24 h-24 mx-auto bg-surface-container rounded-full flex items-center justify-center mb-8 relative">
-                    <span class="material-symbols-outlined text-5xl text-outline absolute animate-pulse">hourglass_empty</span>
+        
+        
+            
+undefined
+            
+undefined
+            
+undefined
+            
+undefined
+            
+undefined
+            
+undefined
+            
+undefined
+            
+undefined
+            
+undefined
+            
+undefined<div id="country-japon" class="country-content hidden">
+            
+            
+
+            <section class="indicator-card botanical-shadow reveal" style="border-top-color: #3d6751;">
+                <div class="flex flex-col lg:flex-row gap-16">
+                    <div class="lg:w-1/2 flex flex-col">
+                        <h2 class="font-headline-md text-3xl text-primary mb-3 flex items-center gap-4">
+                            <div class="icon-circle w-14 h-14 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                                <span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">trending_up</span>
+                            </div>
+                            Indicador 1. PIB y Floricultura
+                        </h2>
+                        <p class="text-sm text-outline font-medium tracking-wide mb-8 ml-18 pl-18">Crecimiento Económico (2019-2024).</p>
+                        <div class="glass-panel p-8 rounded-2xl mb-8 flex-grow">
+                            <h4 class="font-bold text-on-surface mb-4 flex items-center gap-2 text-lg">
+                                <span class="material-symbols-outlined text-primary">analytics</span> Análisis
+                            </h4>
+                            <p class="text-on-surface-variant text-base leading-relaxed">El sector agrícola representa entre el 1,2% y 1,5% del PIB. El PIB de Japón pasó de 5.12 billones de USD en 2019 a 4.32 billones en 2024; aunque nominalmente menor en USD por efecto del tipo de cambio, su economía mantiene un crecimiento real anual cercano al 2%. Esta cifra evidencia una demanda interna estable y resiliente, vital para productos premium.</p>
+                        </div>
+                        <div class="bg-primary/5 p-8 rounded-2xl border border-primary/20 relative overflow-hidden group">
+                            <div class="absolute right-0 top-0 w-32 h-32 bg-primary/10 rounded-full blur-2xl -mr-10 -mt-10 transition-transform group-hover:scale-150"></div>
+                            <h4 class="font-bold text-primary mb-3 flex items-center gap-2 text-lg relative z-10">
+                                <span class="material-symbols-outlined">public</span> Impacto para la internacionalización
+                            </h4>
+                            <p class="text-on-surface-variant text-base leading-relaxed mb-6 relative z-10">
+                                Muy positivo. Japón cuenta con un mercado interno maduro para el consumo de flores en ceremonias. Existe una clara oportunidad para exportadores Premium.
+                            </p>
+                            <div class="inline-flex items-center gap-2 bg-primary text-white px-5 py-2 rounded-full text-sm font-bold shadow-lg shadow-primary/30 relative z-10">
+                                <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">thumb_up</span>
+                                Calificación: 5 (Muy Favorable) - Se asigna esta calificación porque, pese al descenso nominal en dólares, la economía japonesa mantiene un crecimiento estable (2% anual) y una alta propensión al gasto en bienes ceremoniales.
+                            </div>
+                        </div>
+                        <div class="mt-6 p-5 rounded-xl border border-primary/20 bg-surface shadow-sm">
+                            <h5 class="font-bold text-primary flex items-center gap-2 mb-2 text-sm uppercase tracking-wide">
+                                <span class="material-symbols-outlined text-[18px]">balance</span> Comparación entre países
+                            </h5>
+                            <p class="text-on-surface-variant text-sm leading-relaxed">
+                                India presenta el mayor crecimiento del PIB (38%), evidenciando una rápida expansión. Japón mantiene una economía de gran tamaño pero crecimiento estable (2%), propio de un mercado maduro. Emiratos Árabes posee la economía más pequeña del grupo, pero orientada casi exclusivamente a la importación, ofreciendo excelentes condiciones para proveedores externos.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2 flex flex-col justify-center bg-white/50 rounded-3xl p-6 border border-outline-variant/20 shadow-inner">
+                        <div class="relative w-full h-[400px]">
+                            <canvas id="chartPibJp"></canvas>
+                        </div>
+                            <p class="text-xs text-center text-outline-variant mt-3 font-medium">Fuente: Banco Mundial y FMI (2024)</p>
+                    </div>
                 </div>
-                <h2 class="font-headline-xl text-4xl text-on-surface mb-6">Datos en recolección</h2>
-                <p class="text-on-surface-variant text-xl max-w-2xl mx-auto leading-relaxed">
-                    El análisis macroeconómico para <strong class="text-on-surface">Japón</strong> está siendo procesado por el equipo de investigación. Próximamente se publicarán los indicadores de PIB, Inflación, Tasas de Interés y Desempleo para evaluar el mercado nipón.
-                </p>
-            </div>
+            </section>
+
+            
+            
+
+            <section class="indicator-card botanical-shadow reveal" style="border-top-color: #6c5777;">
+                <div class="flex flex-col lg:flex-row gap-16">
+                    <div class="lg:w-1/2 flex flex-col">
+                        <h2 class="font-headline-md text-3xl text-tertiary mb-3 flex items-center gap-4">
+                            <div class="icon-circle w-14 h-14 rounded-full bg-tertiary/10 text-tertiary flex items-center justify-center shrink-0">
+                                <span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">currency_exchange</span>
+                            </div>
+                            Indicador 2. Tipo y tasa de cambio
+                        </h2>
+                        <p class="text-sm text-outline font-medium tracking-wide mb-8 ml-18 pl-18">Evolución JPY/USD.</p>
+                        <div class="glass-panel p-8 rounded-2xl mb-8 flex-grow">
+                            <h4 class="font-bold text-on-surface mb-4 flex items-center gap-2 text-lg">
+                                <span class="material-symbols-outlined text-tertiary">analytics</span> Análisis
+                            </h4>
+                            <p class="text-on-surface-variant text-base leading-relaxed">El Yen sufrió una depreciación sostenida, pasando de cotizarse en cerca de 109 yenes por dólar en 2019 a más de 150 yenes en 2024, representando una fuerte caída del 37%. Este elevado costo encarece las flores importadas; sin embargo, la baja elasticidad y preferencia por la calidad han permitido que las importaciones no se desplomen.</p>
+                        </div>
+                        <div class="bg-tertiary/5 p-8 rounded-2xl border border-tertiary/20 relative overflow-hidden group">
+                            <div class="absolute right-0 top-0 w-32 h-32 bg-tertiary/10 rounded-full blur-2xl -mr-10 -mt-10 transition-transform group-hover:scale-150"></div>
+                            <h4 class="font-bold text-tertiary mb-3 flex items-center gap-2 text-lg relative z-10">
+                                <span class="material-symbols-outlined">public</span> Impacto para la internacionalización
+                            </h4>
+                            <p class="text-on-surface-variant text-base leading-relaxed mb-6 relative z-10">
+                                Riesgo medio-alto. Un yen débil encarece las importaciones en términos locales, exigiendo estrategias de cobertura para exportadores.
+                            </p>
+                            <div class="inline-flex items-center gap-2 bg-tertiary text-white px-5 py-2 rounded-full text-sm font-bold shadow-lg shadow-tertiary/30 relative z-10">
+                                <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">compare_arrows</span>
+                                Calificación: 3 (Riesgo Medio-Alto) - Se asigna esta calificación de riesgo porque la devaluación del 37% del yen estrecha significativamente los márgenes, obligando a implementar estrategias de cobertura financiera.
+                            </div>
+                        </div>
+                        <div class="mt-6 p-5 rounded-xl border border-tertiary/20 bg-surface shadow-sm">
+                            <h5 class="font-bold text-tertiary flex items-center gap-2 mb-2 text-sm uppercase tracking-wide">
+                                <span class="material-symbols-outlined text-[18px]">balance</span> Comparación entre países
+                            </h5>
+                            <p class="text-on-surface-variant text-sm leading-relaxed">
+                                El entorno más estable lo ofrece EAU gracias a su anclaje inamovible (0% volatilidad) al USD. En contraste, tanto India como Japón han experimentado fuertes devaluaciones (18.6% y 37% respectivamente), lo que dificulta importar hacia ellos, aunque vuelve sus producciones internas más competitivas para la re-exportación.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2 flex flex-col justify-center bg-white/50 rounded-3xl p-6 border border-outline-variant/20 shadow-inner">
+                        <div class="relative w-full h-[400px]">
+                            <canvas id="chartCambioJp"></canvas>
+                        </div>
+                            <p class="text-xs text-center text-outline-variant mt-3 font-medium">Fuente: Bancos Centrales (RBI, BoJ, CBUAE) (2024)</p>
+                    </div>
+                </div>
+            </section>
+
+            
+            
+
+            <section class="indicator-card botanical-shadow reveal" style="border-top-color: #ba1a1a;">
+                <div class="flex flex-col lg:flex-row gap-16">
+                    <div class="lg:w-1/2 flex flex-col">
+                        <h2 class="font-headline-md text-3xl text-error mb-3 flex items-center gap-4">
+                            <div class="icon-circle w-14 h-14 rounded-full bg-error/10 text-error flex items-center justify-center shrink-0">
+                                <span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">price_change</span>
+                            </div>
+                            Indicador 3. Inflación y Consumo
+                        </h2>
+                        <p class="text-sm text-outline font-medium tracking-wide mb-8 ml-18 pl-18">Tasa Anual (2019-2024).</p>
+                        <div class="glass-panel p-8 rounded-2xl mb-8 flex-grow">
+                            <h4 class="font-bold text-on-surface mb-4 flex items-center gap-2 text-lg">
+                                <span class="material-symbols-outlined text-error">analytics</span> Análisis
+                            </h4>
+                            <p class="text-on-surface-variant text-base leading-relaxed">Tras décadas de deflación histórica, Japón alcanzó un atípico pico de inflación del 3.3% en 2023 debido al aumento de fletes y materias primas, con expectativas de cerrar el 2024 en un 2.8%. Pese al leve encarecimiento, el consumo per cápita de flores se ha sostenido sobre los USD 27.3, mostrando alta resistencia.</p>
+                        </div>
+                        <div class="bg-error/5 p-8 rounded-2xl border border-error/20 relative overflow-hidden group">
+                            <div class="absolute right-0 top-0 w-32 h-32 bg-error/10 rounded-full blur-2xl -mr-10 -mt-10 transition-transform group-hover:scale-150"></div>
+                            <h4 class="font-bold text-error mb-3 flex items-center gap-2 text-lg relative z-10">
+                                <span class="material-symbols-outlined">public</span> Impacto para la internacionalización
+                            </h4>
+                            <p class="text-on-surface-variant text-base leading-relaxed mb-6 relative z-10">
+                                Los japoneses priorizan frescura y calidad, amortiguando la inflación. El gasto se ha sostenido sobre USD 27.3.
+                            </p>
+                            <div class="inline-flex items-center gap-2 bg-error text-white px-5 py-2 rounded-full text-sm font-bold shadow-lg shadow-error/30 relative z-10">
+                                <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">thumb_up</span>
+                                Calificación: 4 (Favorable) - Se asigna esta calificación porque, a pesar del inusual aumento de inflación hasta un 3.3%, la rigidez de la demanda mantiene intactos los niveles de importación de bienes de calidad.
+                            </div>
+                        </div>
+                        <div class="mt-6 p-5 rounded-xl border border-error/20 bg-surface shadow-sm">
+                            <h5 class="font-bold text-error flex items-center gap-2 mb-2 text-sm uppercase tracking-wide">
+                                <span class="material-symbols-outlined text-[18px]">balance</span> Comparación entre países
+                            </h5>
+                            <p class="text-on-surface-variant text-sm leading-relaxed">
+                                Emiratos Árabes presenta el mejor escenario inflacionario (1.7%), protegiendo al máximo los altos ingresos. Japón también posee un nivel muy bajo (2.8%), típico de su economía, mientras que India registra la inflación más alta del grupo (4.5%), lo que expone los costos operativos a mayor volatilidad.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2 flex flex-col justify-center bg-white/50 rounded-3xl p-6 border border-outline-variant/20 shadow-inner">
+                        <div class="relative w-full h-[400px]">
+                            <canvas id="chartInflacionJp"></canvas>
+                        </div>
+                            <p class="text-xs text-center text-outline-variant mt-3 font-medium">Fuente: MOSPI, e-Stat, FCSC (2024)</p>
+                    </div>
+                </div>
+            </section>
+
+            
+            
+
+            <section class="indicator-card botanical-shadow reveal" style="border-top-color: #735664;">
+                <div class="flex flex-col lg:flex-row gap-16">
+                    <div class="lg:w-1/2 flex flex-col">
+                        <h2 class="font-headline-md text-3xl text-secondary mb-3 flex items-center gap-4">
+                            <div class="icon-circle w-14 h-14 rounded-full bg-secondary/10 text-secondary flex items-center justify-center shrink-0">
+                                <span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">group</span>
+                            </div>
+                            Indicador 4. Empleo y Demografía
+                        </h2>
+                        <p class="text-sm text-outline font-medium tracking-wide mb-8 ml-18 pl-18">Tasa de Desempleo (2021-2025).</p>
+                        <div class="glass-panel p-8 rounded-2xl mb-8 flex-grow">
+                            <h4 class="font-bold text-on-surface mb-4 flex items-center gap-2 text-lg">
+                                <span class="material-symbols-outlined text-secondary">analytics</span> Análisis
+                            </h4>
+                            <p class="text-on-surface-variant text-base leading-relaxed">Japón mantiene una tasa de desempleo extremadamente baja, rondando el 2.5% a lo largo del periodo. Aunque esto refleja un mercado estable y altos niveles de ingreso garantizados para las familias, la escasez de trabajadores jóvenes (por envejecimiento demográfico) encarece severamente los costos de recolección agrícola.</p>
+                        </div>
+                        <div class="bg-secondary/5 p-8 rounded-2xl border border-secondary/20 relative overflow-hidden group">
+                            <div class="absolute right-0 top-0 w-32 h-32 bg-secondary/10 rounded-full blur-2xl -mr-10 -mt-10 transition-transform group-hover:scale-150"></div>
+                            <h4 class="font-bold text-secondary mb-3 flex items-center gap-2 text-lg relative z-10">
+                                <span class="material-symbols-outlined">public</span> Impacto para la internacionalización
+                            </h4>
+                            <p class="text-on-surface-variant text-base leading-relaxed mb-6 relative z-10">
+                                Extremadamente favorable. La plena ocupación garantiza confianza e ingresos constantes de los hogares japoneses, fortaleciendo mercados Premium.
+                            </p>
+                            <div class="inline-flex items-center gap-2 bg-secondary text-white px-5 py-2 rounded-full text-sm font-bold shadow-lg shadow-secondary/30 relative z-10">
+                                <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">thumb_up</span>
+                                Calificación: 5 (Muy favorable) - Se asigna esta calificación favorable debido a la fuerte solidez de los ingresos (2.5% de desempleo), aunque existe un leve riesgo estructural por la escasez de mano de obra local.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2 flex flex-col gap-6">
+                        <div class="bg-white/50 rounded-3xl p-6 border border-outline-variant/20 shadow-inner flex-grow">
+                            <h4 class="text-center font-bold mb-4 text-secondary/80 text-sm uppercase tracking-wider">Evolución Desempleo</h4>
+                            <div class="relative w-full h-[250px]">
+                                <canvas id="chartEmpleoJp"></canvas>
+                            </div>
+                            <p class="text-xs text-center text-outline-variant mt-3 font-medium">Fuente: OIT / ILOSTAT (2024)</p>
+                        </div>
+                        <div class="bg-white/50 rounded-3xl p-6 border border-outline-variant/20 shadow-inner flex-grow">
+                            <h4 class="text-center font-bold mb-4 text-secondary/80 text-sm uppercase tracking-wider">Distribución Poblacional (2024)</h4>
+                            <div class="relative w-full h-[250px]">
+                                <canvas id="chartEmpleoDonaJp"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            
+            
+
+            <section class="indicator-card botanical-shadow reveal" style="border-top-color: #3d6751;">
+                <div class="flex flex-col lg:flex-row gap-16">
+                    <div class="lg:w-1/2 flex flex-col">
+                        <h2 class="font-headline-md text-3xl text-primary mb-3 flex items-center gap-4">
+                            <div class="icon-circle w-14 h-14 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                                <span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">account_balance</span>
+                            </div>
+                            Indicador 5. Política Monetaria
+                        </h2>
+                        <p class="text-sm text-outline font-medium tracking-wide mb-8 ml-18 pl-18">Tasas de interés del BoJ.</p>
+                        <div class="glass-panel p-8 rounded-2xl mb-8 flex-grow">
+                            <h4 class="font-bold text-on-surface mb-4 flex items-center gap-2 text-lg">
+                                <span class="material-symbols-outlined text-primary">analytics</span> Análisis
+                            </h4>
+                            <p class="text-on-surface-variant text-base leading-relaxed">El Banco de Japón mantuvo tasas nulas o negativas por más de diez años, incrementándolas de forma conservadora a tan solo 0.1% a inicios de 2024. El costo de financiamiento (0.1%) sigue siendo de los más baratos del mundo, fomentando inversiones en tecnología e innovación floral.</p>
+                        </div>
+                        <div class="bg-primary/5 p-8 rounded-2xl border border-primary/20 relative overflow-hidden group">
+                            <div class="absolute right-0 top-0 w-32 h-32 bg-primary/10 rounded-full blur-2xl -mr-10 -mt-10 transition-transform group-hover:scale-150"></div>
+                            <h4 class="font-bold text-primary mb-3 flex items-center gap-2 text-lg relative z-10">
+                                <span class="material-symbols-outlined">public</span> Impacto para la internacionalización
+                            </h4>
+                            <p class="text-on-surface-variant text-base leading-relaxed mb-6 relative z-10">
+                                Favorable. El crédito interno sigue siendo accesible. Ideal para empresas internacionales interesadas en expandirse u operar infraestructura en Japón.
+                            </p>
+                            <div class="inline-flex items-center gap-2 bg-primary text-white px-5 py-2 rounded-full text-sm font-bold shadow-lg shadow-primary/30 relative z-10">
+                                <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">thumb_up</span>
+                                Calificación: 4 (Favorable) - Se asigna esta calificación porque una tasa del 0.1% vuelve extraordinariamente accesible el endeudamiento comercial, facilitando la expansión operativa local de empresas foráneas.
+                            </div>
+                        </div>
+                        <div class="mt-6 p-5 rounded-xl border border-primary/20 bg-surface shadow-sm">
+                            <h5 class="font-bold text-primary flex items-center gap-2 mb-2 text-sm uppercase tracking-wide">
+                                <span class="material-symbols-outlined text-[18px]">balance</span> Comparación entre países
+                            </h5>
+                            <p class="text-on-surface-variant text-sm leading-relaxed">
+                                Japón es el claro ganador indiscutible en costo de financiamiento gracias a su tasa ultrabaja (0.1%), ideal para apalancamiento. EAU presenta niveles intermedios (3.65%), mientras que India exhibe el entorno más restrictivo y costoso (6.50%) para empresas que busquen crédito local.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2 flex flex-col justify-center bg-white/50 rounded-3xl p-6 border border-outline-variant/20 shadow-inner">
+                        <div class="relative w-full h-[400px]">
+                            <canvas id="chartTasasJp"></canvas>
+                        </div>
+                            <p class="text-xs text-center text-outline-variant mt-3 font-medium">Fuente: Bancos Centrales (RBI, BoJ, CBUAE) (2024)</p>
+                    </div>
+                </div>
+            </section>
         </div>
 
-        <!-- ============================== -->
-        <!--      CONTENIDO ARABIA S.       -->
-        <!-- ============================== -->
-        <div id="country-arabia" class="country-content hidden">
-            <div class="glass-panel rounded-[2.5rem] p-16 md:p-24 text-center border-dashed border-2 border-outline-variant/50 max-w-4xl mx-auto shadow-sm">
-                <div class="w-24 h-24 mx-auto bg-surface-container rounded-full flex items-center justify-center mb-8 relative">
-                    <span class="material-symbols-outlined text-5xl text-outline absolute animate-pulse">hourglass_empty</span>
+        
+            
+undefined
+            
+undefined
+            
+undefined
+            
+undefined
+            
+undefined<div id="country-arabia" class="country-content hidden">
+            
+            
+
+            <section class="indicator-card botanical-shadow reveal" style="border-top-color: #3d6751;">
+                <div class="flex flex-col lg:flex-row gap-16">
+                    <div class="lg:w-1/2 flex flex-col">
+                        <h2 class="font-headline-md text-3xl text-primary mb-3 flex items-center gap-4">
+                            <div class="icon-circle w-14 h-14 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                                <span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">trending_up</span>
+                            </div>
+                            Indicador 1. PIB EAU y Floricultura
+                        </h2>
+                        <p class="text-sm text-outline font-medium tracking-wide mb-8 ml-18 pl-18">Crecimiento Económico (2019-2024).</p>
+                        <div class="glass-panel p-8 rounded-2xl mb-8 flex-grow">
+                            <h4 class="font-bold text-on-surface mb-4 flex items-center gap-2 text-lg">
+                                <span class="material-symbols-outlined text-primary">analytics</span> Análisis
+                            </h4>
+                            <p class="text-on-surface-variant text-base leading-relaxed">El PIB nominal de EAU se consolida en 552.32 mil millones de USD, pero la producción agrícola local es casi nula debido a las extremas barreras climáticas. Esto obliga a que más del 95% de la floricultura dependa de importaciones. El crecimiento continuo del PIB financia el desarrollo inmobiliario de lujo y eventos, requiriendo abastecimiento logístico externo impecable.</p>
+                        </div>
+                        <div class="bg-primary/5 p-8 rounded-2xl border border-primary/20 relative overflow-hidden group">
+                            <div class="absolute right-0 top-0 w-32 h-32 bg-primary/10 rounded-full blur-2xl -mr-10 -mt-10 transition-transform group-hover:scale-150"></div>
+                            <h4 class="font-bold text-primary mb-3 flex items-center gap-2 text-lg relative z-10">
+                                <span class="material-symbols-outlined">public</span> Impacto para la internacionalización
+                            </h4>
+                            <p class="text-on-surface-variant text-base leading-relaxed mb-6 relative z-10">
+                                Total dependencia externa y alto flujo de caja. Gran potencial para exportadores latinoamericanos de bienes de lujo.
+                            </p>
+                            <div class="inline-flex items-center gap-2 bg-primary text-white px-5 py-2 rounded-full text-sm font-bold shadow-lg shadow-primary/30 relative z-10">
+                                <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">thumb_up</span>
+                                Calificación: 5 (Altamente Favorable) - Se asigna esta calificación porque un PIB superior a 552 mil millones de USD y una nula producción local crean dependencia total de importaciones de lujo altamente rentables.
+                            </div>
+                        </div>
+                        <div class="mt-6 p-5 rounded-xl border border-primary/20 bg-surface shadow-sm">
+                            <h5 class="font-bold text-primary flex items-center gap-2 mb-2 text-sm uppercase tracking-wide">
+                                <span class="material-symbols-outlined text-[18px]">balance</span> Comparación entre países
+                            </h5>
+                            <p class="text-on-surface-variant text-sm leading-relaxed">
+                                India presenta el mayor crecimiento del PIB (38%), evidenciando una rápida expansión. Japón mantiene una economía de gran tamaño pero crecimiento estable (2%), propio de un mercado maduro. Emiratos Árabes posee la economía más pequeña del grupo, pero orientada casi exclusivamente a la importación, ofreciendo excelentes condiciones para proveedores externos.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2 flex flex-col justify-center bg-white/50 rounded-3xl p-6 border border-outline-variant/20 shadow-inner">
+                        <div class="relative w-full h-[400px]">
+                            <canvas id="chartPibEau"></canvas>
+                        </div>
+                            <p class="text-xs text-center text-outline-variant mt-3 font-medium">Fuente: Banco Mundial y FMI (2024)</p>
+                    </div>
                 </div>
-                <h2 class="font-headline-xl text-4xl text-on-surface mb-6">Datos en recolección</h2>
-                <p class="text-on-surface-variant text-xl max-w-2xl mx-auto leading-relaxed">
-                    El análisis macroeconómico para <strong class="text-on-surface">Arabia Saudita</strong> está siendo procesado por el equipo de investigación. Próximamente se publicarán los indicadores de viabilidad para este mercado emergente.
-                </p>
-            </div>
+            </section>
+
+            
+            
+
+            <section class="indicator-card botanical-shadow reveal" style="border-top-color: #6c5777;">
+                <div class="flex flex-col lg:flex-row gap-16">
+                    <div class="lg:w-1/2 flex flex-col">
+                        <h2 class="font-headline-md text-3xl text-tertiary mb-3 flex items-center gap-4">
+                            <div class="icon-circle w-14 h-14 rounded-full bg-tertiary/10 text-tertiary flex items-center justify-center shrink-0">
+                                <span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">currency_exchange</span>
+                            </div>
+                            Indicador 2. Tasa de Cambio (AED)
+                        </h2>
+                        <p class="text-sm text-outline font-medium tracking-wide mb-8 ml-18 pl-18">Anclaje Dírham - Dólar.</p>
+                        <div class="glass-panel p-8 rounded-2xl mb-8 flex-grow">
+                            <h4 class="font-bold text-on-surface mb-4 flex items-center gap-2 text-lg">
+                                <span class="material-symbols-outlined text-tertiary">analytics</span> Análisis
+                            </h4>
+                            <p class="text-on-surface-variant text-base leading-relaxed">Desde 1997, el Dírham está anclado fijamente al Dólar a 3.6725 AED por USD, teniendo una volatilidad cambiaria histórica del 0%. Esta eliminación total de fluctuaciones permite que los márgenes de utilidad en los contratos de importación de flores de lujo permanezcan absolutamente blindados y predecibles frente al dólar a lo largo de los años.</p>
+                        </div>
+                        <div class="bg-tertiary/5 p-8 rounded-2xl border border-tertiary/20 relative overflow-hidden group">
+                            <div class="absolute right-0 top-0 w-32 h-32 bg-tertiary/10 rounded-full blur-2xl -mr-10 -mt-10 transition-transform group-hover:scale-150"></div>
+                            <h4 class="font-bold text-tertiary mb-3 flex items-center gap-2 text-lg relative z-10">
+                                <span class="material-symbols-outlined">public</span> Impacto para la internacionalización
+                            </h4>
+                            <p class="text-on-surface-variant text-base leading-relaxed mb-6 relative z-10">
+                                Excelente ventaja competitiva. La volatilidad cero suprime el riesgo cambiario para operaciones en dólares.
+                            </p>
+                            <div class="inline-flex items-center gap-2 bg-tertiary text-white px-5 py-2 rounded-full text-sm font-bold shadow-lg shadow-tertiary/30 relative z-10">
+                                <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">thumb_up</span>
+                                Calificación: 5 (Altamente Favorable) - Se asigna esta calificación porque una volatilidad del 0% garantiza certidumbre financiera absoluta para cualquier exportador, eliminando el riesgo cambiario.
+                            </div>
+                        </div>
+                        <div class="mt-6 p-5 rounded-xl border border-tertiary/20 bg-surface shadow-sm">
+                            <h5 class="font-bold text-tertiary flex items-center gap-2 mb-2 text-sm uppercase tracking-wide">
+                                <span class="material-symbols-outlined text-[18px]">balance</span> Comparación entre países
+                            </h5>
+                            <p class="text-on-surface-variant text-sm leading-relaxed">
+                                El entorno más estable lo ofrece EAU gracias a su anclaje inamovible (0% volatilidad) al USD. En contraste, tanto India como Japón han experimentado fuertes devaluaciones (18.6% y 37% respectivamente), lo que dificulta importar hacia ellos, aunque vuelve sus producciones internas más competitivas para la re-exportación.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2 flex flex-col justify-center bg-white/50 rounded-3xl p-6 border border-outline-variant/20 shadow-inner">
+                        <div class="relative w-full h-[400px]">
+                            <canvas id="chartCambioEau"></canvas>
+                        </div>
+                            <p class="text-xs text-center text-outline-variant mt-3 font-medium">Fuente: Bancos Centrales (RBI, BoJ, CBUAE) (2024)</p>
+                    </div>
+                </div>
+            </section>
+
+            
+            
+
+            <section class="indicator-card botanical-shadow reveal" style="border-top-color: #ba1a1a;">
+                <div class="flex flex-col lg:flex-row gap-16">
+                    <div class="lg:w-1/2 flex flex-col">
+                        <h2 class="font-headline-md text-3xl text-error mb-3 flex items-center gap-4">
+                            <div class="icon-circle w-14 h-14 rounded-full bg-error/10 text-error flex items-center justify-center shrink-0">
+                                <span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">price_change</span>
+                            </div>
+                            Indicador 3. Inflación Controlada
+                        </h2>
+                        <p class="text-sm text-outline font-medium tracking-wide mb-8 ml-18 pl-18">Preservación del poder adquisitivo.</p>
+                        <div class="glass-panel p-8 rounded-2xl mb-8 flex-grow">
+                            <h4 class="font-bold text-on-surface mb-4 flex items-center gap-2 text-lg">
+                                <span class="material-symbols-outlined text-error">analytics</span> Análisis
+                            </h4>
+                            <p class="text-on-surface-variant text-base leading-relaxed">EAU ha controlado su inflación de forma sobresaliente. Luego de un incremento del 4.8% en 2022, el índice inflacionario bajó agresivamente para estabilizarse en un 1.7% durante 2024. Combinado con un PIB per cápita superior a $92,000 USD, esta baja inflación blinda el poder adquisitivo de los consumidores premium y sector hotelero.</p>
+                        </div>
+                        <div class="bg-error/5 p-8 rounded-2xl border border-error/20 relative overflow-hidden group">
+                            <div class="absolute right-0 top-0 w-32 h-32 bg-error/10 rounded-full blur-2xl -mr-10 -mt-10 transition-transform group-hover:scale-150"></div>
+                            <h4 class="font-bold text-error mb-3 flex items-center gap-2 text-lg relative z-10">
+                                <span class="material-symbols-outlined">public</span> Impacto para la internacionalización
+                            </h4>
+                            <p class="text-on-surface-variant text-base leading-relaxed mb-6 relative z-10">
+                                Garantiza márgenes rentables elevados frente a los costos de logística y flete aéreo de las flores.
+                            </p>
+                            <div class="inline-flex items-center gap-2 bg-error text-white px-5 py-2 rounded-full text-sm font-bold shadow-lg shadow-error/30 relative z-10">
+                                <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">thumb_up</span>
+                                Calificación: 5 (Altamente Favorable) - Se asigna esta calificación porque la excelente combinación de baja inflación (1.7%) y altos ingresos ($92,000 USD) asegura márgenes de rentabilidad superiores para el sector premium.
+                            </div>
+                        </div>
+                        <div class="mt-6 p-5 rounded-xl border border-error/20 bg-surface shadow-sm">
+                            <h5 class="font-bold text-error flex items-center gap-2 mb-2 text-sm uppercase tracking-wide">
+                                <span class="material-symbols-outlined text-[18px]">balance</span> Comparación entre países
+                            </h5>
+                            <p class="text-on-surface-variant text-sm leading-relaxed">
+                                Emiratos Árabes presenta el mejor escenario inflacionario (1.7%), protegiendo al máximo los altos ingresos. Japón también posee un nivel muy bajo (2.8%), típico de su economía, mientras que India registra la inflación más alta del grupo (4.5%), lo que expone los costos operativos a mayor volatilidad.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2 flex flex-col justify-center bg-white/50 rounded-3xl p-6 border border-outline-variant/20 shadow-inner">
+                        <div class="relative w-full h-[400px]">
+                            <canvas id="chartInflacionEau"></canvas>
+                        </div>
+                            <p class="text-xs text-center text-outline-variant mt-3 font-medium">Fuente: MOSPI, e-Stat, FCSC (2024)</p>
+                    </div>
+                </div>
+            </section>
+
+            
+            
+
+            <section class="indicator-card botanical-shadow reveal" style="border-top-color: #735664;">
+                <div class="flex flex-col lg:flex-row gap-16">
+                    <div class="lg:w-1/2 flex flex-col">
+                        <h2 class="font-headline-md text-3xl text-secondary mb-3 flex items-center gap-4">
+                            <div class="icon-circle w-14 h-14 rounded-full bg-secondary/10 text-secondary flex items-center justify-center shrink-0">
+                                <span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">group</span>
+                            </div>
+                            Indicador 4. Empleo Extranjero
+                        </h2>
+                        <p class="text-sm text-outline font-medium tracking-wide mb-8 ml-18 pl-18">Desempleo mínimo (2024).</p>
+                        <div class="glass-panel p-8 rounded-2xl mb-8 flex-grow">
+                            <h4 class="font-bold text-on-surface mb-4 flex items-center gap-2 text-lg">
+                                <span class="material-symbols-outlined text-secondary">analytics</span> Análisis
+                            </h4>
+                            <p class="text-on-surface-variant text-base leading-relaxed">El mercado laboral es altamente particular, con una tasa de empleo que supera el 97% y un desempleo de tan solo 1.8% en 2024. Esto obedece a que el 90% de su fuerza laboral está compuesta por expatriados condicionados a un patrocinio laboral, asegurando un consumo de lujo masivo e ininterrumpido.</p>
+                        </div>
+                        <div class="bg-secondary/5 p-8 rounded-2xl border border-secondary/20 relative overflow-hidden group">
+                            <div class="absolute right-0 top-0 w-32 h-32 bg-secondary/10 rounded-full blur-2xl -mr-10 -mt-10 transition-transform group-hover:scale-150"></div>
+                            <h4 class="font-bold text-secondary mb-3 flex items-center gap-2 text-lg relative z-10">
+                                <span class="material-symbols-outlined">public</span> Impacto para la internacionalización
+                            </h4>
+                            <p class="text-on-surface-variant text-base leading-relaxed mb-6 relative z-10">
+                                Un mercado sumamente estable de expatriados que sostienen los niveles de consumo de flores.
+                            </p>
+                            <div class="inline-flex items-center gap-2 bg-secondary text-white px-5 py-2 rounded-full text-sm font-bold shadow-lg shadow-secondary/30 relative z-10">
+                                <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">thumb_up</span>
+                                Calificación: 4 (Favorable) - Se asigna esta calificación porque un desempleo marginal del 1.8% y una base trabajadora importada aseguran ingresos constantes, blindando el consumo de artículos decorativos.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2 flex flex-col gap-6">
+                        <div class="bg-white/50 rounded-3xl p-6 border border-outline-variant/20 shadow-inner flex-grow">
+                            <h4 class="text-center font-bold mb-4 text-secondary/80 text-sm uppercase tracking-wider">Tasa de Desempleo</h4>
+                            <div class="relative w-full h-[250px]">
+                                <canvas id="chartEmpleoEau"></canvas>
+                            </div>
+                            <p class="text-xs text-center text-outline-variant mt-3 font-medium">Fuente: OIT / ILOSTAT (2024)</p>
+                        </div>
+                        <div class="bg-white/50 rounded-3xl p-6 border border-outline-variant/20 shadow-inner flex-grow">
+                            <h4 class="text-center font-bold mb-4 text-secondary/80 text-sm uppercase tracking-wider">Origen Laboral</h4>
+                            <div class="relative w-full h-[250px]">
+                                <canvas id="chartEmpleoDonaEau"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            
+            
+
+            <section class="indicator-card botanical-shadow reveal" style="border-top-color: #3d6751;">
+                <div class="flex flex-col lg:flex-row gap-16">
+                    <div class="lg:w-1/2 flex flex-col">
+                        <h2 class="font-headline-md text-3xl text-primary mb-3 flex items-center gap-4">
+                            <div class="icon-circle w-14 h-14 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                                <span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">account_balance</span>
+                            </div>
+                            Indicador 5. Tasas de interés
+                        </h2>
+                        <p class="text-sm text-outline font-medium tracking-wide mb-8 ml-18 pl-18">Alineadas a la FED.</p>
+                        <div class="glass-panel p-8 rounded-2xl mb-8 flex-grow">
+                            <h4 class="font-bold text-on-surface mb-4 flex items-center gap-2 text-lg">
+                                <span class="material-symbols-outlined text-primary">analytics</span> Análisis
+                            </h4>
+                            <p class="text-on-surface-variant text-base leading-relaxed">Al estar anclado al dólar, el Banco Central de EAU sigue las decisiones de la FED, elevando las tasas hasta un pico del 5.40% en 2024 para luego reducirlas al 3.65%. Aunque esto incrementa los costos crediticios, los enormes ingresos petroleros y fondos soberanos aseguran liquidez masiva corporativa que compensa el 3.65%.</p>
+                        </div>
+                        <div class="bg-primary/5 p-8 rounded-2xl border border-primary/20 relative overflow-hidden group">
+                            <div class="absolute right-0 top-0 w-32 h-32 bg-primary/10 rounded-full blur-2xl -mr-10 -mt-10 transition-transform group-hover:scale-150"></div>
+                            <h4 class="font-bold text-primary mb-3 flex items-center gap-2 text-lg relative z-10">
+                                <span class="material-symbols-outlined">public</span> Impacto para la internacionalización
+                            </h4>
+                            <p class="text-on-surface-variant text-base leading-relaxed mb-6 relative z-10">
+                                Impacto moderado. El financiamiento se encarece pero la altísima liquidez interna del país compensa el riesgo.
+                            </p>
+                            <div class="inline-flex items-center gap-2 bg-primary text-white px-5 py-2 rounded-full text-sm font-bold shadow-lg shadow-primary/30 relative z-10">
+                                <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">thumb_up</span>
+                                Calificación: 3 (Neutral/Moderado) - Se asigna esta calificación neutral porque, si bien la tasa es moderadamente alta (3.65%), el flujo masivo de liquidez local diluye el impacto real sobre la financiación.
+                            </div>
+                        </div>
+                        <div class="mt-6 p-5 rounded-xl border border-primary/20 bg-surface shadow-sm">
+                            <h5 class="font-bold text-primary flex items-center gap-2 mb-2 text-sm uppercase tracking-wide">
+                                <span class="material-symbols-outlined text-[18px]">balance</span> Comparación entre países
+                            </h5>
+                            <p class="text-on-surface-variant text-sm leading-relaxed">
+                                Japón es el claro ganador indiscutible en costo de financiamiento gracias a su tasa ultrabaja (0.1%), ideal para apalancamiento. EAU presenta niveles intermedios (3.65%), mientras que India exhibe el entorno más restrictivo y costoso (6.50%) para empresas que busquen crédito local.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2 flex flex-col justify-center bg-white/50 rounded-3xl p-6 border border-outline-variant/20 shadow-inner">
+                        <div class="relative w-full h-[400px]">
+                            <canvas id="chartTasasEau"></canvas>
+                        </div>
+                            <p class="text-xs text-center text-outline-variant mt-3 font-medium">Fuente: Bancos Centrales (RBI, BoJ, CBUAE) (2024)</p>
+                    </div>
+                </div>
+            </section>
         </div>
+
+
+        <!-- Conclusión General y Tabla Comparativa -->
+        <section id="conclusion-final" class="country-content block mt-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20 animate-fade-in" style="display:block !important;">
+            <div class="botanical-shadow rounded-3xl bg-surface border border-outline-variant/20 overflow-hidden">
+                <div class="bg-primary/10 p-10 border-b border-primary/10">
+                    <h2 class="font-headline-md text-4xl text-primary mb-4 flex items-center gap-4">
+                        <span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">emoji_events</span>
+                        Conclusión General
+                    </h2>
+                    <p class="text-on-surface-variant text-lg leading-relaxed max-w-4xl">
+                        Tras analizar comparativamente los entornos macroeconómicos, se concluye que <strong>Emiratos Árabes Unidos</strong> ofrece el <strong>mejor entorno y mayor estabilidad financiera</strong> para empresas que buscan exportar bienes de lujo, garantizando volatilidad cero y altísimo poder adquisitivo, aunque con nula capacidad productiva local. Por otro lado, <strong>India</strong> presenta el <strong>mayor potencial para internacionalizar la producción</strong> del sector gracias a su inmenso bono demográfico, bajos costos laborales (desempleo 3.2%) y rápida expansión del PIB (38%), pero conlleva los <strong>mayores riesgos</strong> asociados a la volatilidad inflacionaria y altas tasas de interés (6.50%). <strong>Japón</strong> se sitúa en un punto intermedio, ofreciendo un mercado estable, tasas de interés inigualables (0.1%) y demanda garantizada, pero enfrentando retos demográficos (escasez de mano de obra) y depreciación fuerte de su moneda (37%).
+                    </p>
+                </div>
+                
+                <div class="p-10 bg-white">
+                    <h3 class="font-bold text-on-surface mb-6 flex items-center gap-2 text-xl">
+                        <span class="material-symbols-outlined text-secondary">table_chart</span> Tabla Comparativa Final
+                    </h3>
+                    <div class="overflow-x-auto rounded-xl border border-outline-variant/30">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-secondary/5 text-secondary border-b border-outline-variant/30">
+                                    <th class="p-4 font-bold">Indicador</th>
+                                    <th class="p-4 font-bold border-l border-outline-variant/20">India</th>
+                                    <th class="p-4 font-bold border-l border-outline-variant/20">Japón</th>
+                                    <th class="p-4 font-bold border-l border-outline-variant/20">Emiratos Árabes</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-on-surface-variant text-sm">
+                                <tr class="border-b border-outline-variant/20 hover:bg-surface-variant/30 transition-colors">
+                                    <td class="p-4 font-semibold text-on-surface">PIB</td>
+                                    <td class="p-4 border-l border-outline-variant/20">Alto crecimiento (38%)</td>
+                                    <td class="p-4 border-l border-outline-variant/20">Estable (2% anual)</td>
+                                    <td class="p-4 border-l border-outline-variant/20">Sólido, alta dependencia</td>
+                                </tr>
+                                <tr class="border-b border-outline-variant/20 hover:bg-surface-variant/30 transition-colors">
+                                    <td class="p-4 font-semibold text-on-surface">Inflación</td>
+                                    <td class="p-4 border-l border-outline-variant/20">Moderada (4.5%)</td>
+                                    <td class="p-4 border-l border-outline-variant/20">Baja (2.8%)</td>
+                                    <td class="p-4 border-l border-outline-variant/20">Muy Baja (1.7%)</td>
+                                </tr>
+                                <tr class="border-b border-outline-variant/20 hover:bg-surface-variant/30 transition-colors">
+                                    <td class="p-4 font-semibold text-on-surface">Empleo</td>
+                                    <td class="p-4 border-l border-outline-variant/20">Alto potencial demográfico</td>
+                                    <td class="p-4 border-l border-outline-variant/20">Muy alto, riesgo escasez</td>
+                                    <td class="p-4 border-l border-outline-variant/20">Muy alto (expatriados)</td>
+                                </tr>
+                                <tr class="border-b border-outline-variant/20 hover:bg-surface-variant/30 transition-colors">
+                                    <td class="p-4 font-semibold text-on-surface">Tipo de cambio</td>
+                                    <td class="p-4 border-l border-outline-variant/20">Variable (Devaluación 18.6%)</td>
+                                    <td class="p-4 border-l border-outline-variant/20">Volátil (Devaluación 37%)</td>
+                                    <td class="p-4 border-l border-outline-variant/20">Muy estable (Anclado al USD)</td>
+                                </tr>
+                                <tr class="hover:bg-surface-variant/30 transition-colors">
+                                    <td class="p-4 font-semibold text-on-surface">Tasas de interés</td>
+                                    <td class="p-4 border-l border-outline-variant/20">Altas (6.50%)</td>
+                                    <td class="p-4 border-l border-outline-variant/20">Muy bajas (0.1%)</td>
+                                    <td class="p-4 border-l border-outline-variant/20">Moderadas (3.65%)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
 
     </main>
 
@@ -808,8 +1427,248 @@
                 options: baseOptions
             });
 
-        });
+        
+            // ================== JAPON CHARTS ==================
+            // 1. PIB Japon
+            const ctxPibJp = document.getElementById('chartPibJp').getContext('2d');
+            new Chart(ctxPibJp, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: 'PIB (Billones USD)',
+                            data: [5.12, 4.94, 5.01, 4.24, 4.21, 4.32],
+                            backgroundColor: createGradient(ctxPibJp, 'rgba(61, 103, 81, 0.8)', 'rgba(61, 103, 81, 0.2)'),
+                            borderRadius: 6,
+                            yAxisID: 'y'
+                        },
+                        {
+                            label: 'Crecimiento Anual (%)',
+                            data: [0.3, 4.5, 1.4, 1.7, 1.9, 2.1],
+                            type: 'line',
+                            borderColor: '#735664',
+                            borderWidth: 3,
+                            yAxisID: 'y1'
+                        }
+                    ]
+                },
+                options: { ...baseOptions, scales: { ...baseOptions.scales, y1: { type: 'linear', position: 'right', grid: { drawOnChartArea: false } } } }
+            });
+
+            // 2. Cambio Japon
+            const ctxCambioJp = document.getElementById('chartCambioJp').getContext('2d');
+            new Chart(ctxCambioJp, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'JPY/USD',
+                        data: [109, 106, 109, 131, 140, 150],
+                        borderColor: '#6c5777',
+                        borderWidth: 3,
+                        fill: false,
+                        tension: 0.1
+                    }]
+                },
+                options: baseOptions
+            });
+
+            // 3. Inflacion Japon
+            const ctxInflacionJp = document.getElementById('chartInflacionJp').getContext('2d');
+            new Chart(ctxInflacionJp, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Inflación Anual (%)',
+                        data: [0.5, -0.2, -0.2, 2.5, 3.3, 2.8],
+                        borderColor: '#ba1a1a',
+                        backgroundColor: createGradient(ctxInflacionJp, 'rgba(186, 26, 26, 0.2)', 'rgba(186, 26, 26, 0.0)'),
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: baseOptions
+            });
+
+            // 4. Empleo Japon
+            const ctxEmpleoJp = document.getElementById('chartEmpleoJp').getContext('2d');
+            new Chart(ctxEmpleoJp, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Desempleo (%)',
+                        data: [2.4, 2.8, 2.8, 2.6, 2.5, 2.5],
+                        borderColor: '#735664',
+                        borderWidth: 3,
+                        fill: false,
+                        tension: 0.2
+                    }]
+                },
+                options: baseOptions
+            });
+            const ctxEmpleoDonaJp = document.getElementById('chartEmpleoDonaJp').getContext('2d');
+            new Chart(ctxEmpleoDonaJp, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Empleados / Activos', 'Desempleados'],
+                    datasets: [{
+                        data: [97.5, 2.5],
+                        backgroundColor: ['rgba(115, 86, 100, 0.8)', 'rgba(0,0,0,0.1)'],
+                        borderWidth: 2, borderColor: '#ffffff', hoverOffset: 6
+                    }]
+                },
+                options: { responsive: true, maintainAspectRatio: false, cutout: '65%', plugins: { legend: { position: 'bottom' } } }
+            });
+
+            // 5. Tasas Japon
+            const ctxTasasJp = document.getElementById('chartTasasJp').getContext('2d');
+            new Chart(ctxTasasJp, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'BoJ Interest Rate (%)',
+                        data: [-0.1, -0.1, -0.1, -0.1, 0.0, 0.1],
+                        borderColor: '#3d6751',
+                        backgroundColor: createGradient(ctxTasasJp, 'rgba(61, 103, 81, 0.3)', 'rgba(61, 103, 81, 0.0)'),
+                        borderWidth: 3,
+                        fill: true,
+                        stepped: true
+                    }]
+                },
+                options: baseOptions
+            });
+
+            // ================== UAE CHARTS ==================
+            // 1. PIB UAE
+            const ctxPibEau = document.getElementById('chartPibEau').getContext('2d');
+            new Chart(ctxPibEau, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'PIB (Miles de Millones USD)',
+                        data: [411, 358, 415, 507, 504, 552],
+                        backgroundColor: createGradient(ctxPibEau, 'rgba(61, 103, 81, 0.8)', 'rgba(61, 103, 81, 0.2)'),
+                        borderRadius: 6
+                    }]
+                },
+                options: baseOptions
+            });
+
+            // 2. Cambio UAE
+            const ctxCambioEau = document.getElementById('chartCambioEau').getContext('2d');
+            new Chart(ctxCambioEau, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'AED/USD',
+                        data: [3.67, 3.67, 3.67, 3.67, 3.67, 3.67],
+                        borderColor: '#6c5777',
+                        borderWidth: 3,
+                        fill: false,
+                        tension: 0
+                    }]
+                },
+                options: baseOptions
+            });
+
+            // 3. Inflacion UAE
+            const ctxInflacionEau = document.getElementById('chartInflacionEau').getContext('2d');
+            new Chart(ctxInflacionEau, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Inflación (%)',
+                        data: [-1.9, -2.1, 0.2, 4.8, 3.1, 1.7],
+                        borderColor: '#ba1a1a',
+                        backgroundColor: createGradient(ctxInflacionEau, 'rgba(186, 26, 26, 0.2)', 'rgba(186, 26, 26, 0.0)'),
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: baseOptions
+            });
+
+            // 4. Empleo UAE
+            const ctxEmpleoEau = document.getElementById('chartEmpleoEau').getContext('2d');
+            new Chart(ctxEmpleoEau, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Desempleo (%)',
+                        data: [2.5, 3.1, 2.7, 2.2, 1.9, 1.8],
+                        borderColor: '#735664',
+                        borderWidth: 3,
+                        fill: false,
+                        tension: 0.2
+                    }]
+                },
+                options: baseOptions
+            });
+            const ctxEmpleoDonaEau = document.getElementById('chartEmpleoDonaEau').getContext('2d');
+            new Chart(ctxEmpleoDonaEau, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Expatriados', 'Locales (Nativos)'],
+                    datasets: [{
+                        data: [88, 12],
+                        backgroundColor: ['rgba(61, 103, 81, 0.8)', 'rgba(115, 86, 100, 0.8)'],
+                        borderWidth: 2, borderColor: '#ffffff', hoverOffset: 6
+                    }]
+                },
+                options: { responsive: true, maintainAspectRatio: false, cutout: '65%', plugins: { legend: { position: 'bottom' } } }
+            });
+
+            // 5. Tasas UAE
+            const ctxTasasEau = document.getElementById('chartTasasEau').getContext('2d');
+            new Chart(ctxTasasEau, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'CBUAE Rate (%)',
+                        data: [2.0, 0.5, 0.5, 3.0, 5.4, 3.65],
+                        borderColor: '#3d6751',
+                        backgroundColor: createGradient(ctxTasasEau, 'rgba(61, 103, 81, 0.3)', 'rgba(61, 103, 81, 0.0)'),
+                        borderWidth: 3,
+                        fill: true,
+                        stepped: true
+                    }]
+                },
+                options: baseOptions
+            });
+
+});
     </script>
 </body>
 
 </html>
+            
+undefined
+            
+undefined
+            
+undefined
+            
+undefined
+            
+undefined
+            
+undefined
+            
+undefined
+            
+undefined
+            
+undefined
+            
+undefined
