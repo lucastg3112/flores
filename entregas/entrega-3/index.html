@@ -1,41 +1,734 @@
 <!DOCTYPE html>
-<html lang="es">
+<html class="light" lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Entrega 3 - Aldea Global 2</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&family=Hanken+Grotesk:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../../assets/css/botanical.css">
-  <style>
-    .page-header {
-      padding: 100px 48px;
-      text-align: center;
-    }
-  </style>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Análisis de 15 Indicadores - Entrega 3</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/css/botanical.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { background-color: #fbf9f5; color: #1b1c1a; overflow-x: hidden; background-image: radial-gradient(circle at 100% 0%, rgba(168, 213, 186, 0.1) 0%, transparent 40%), radial-gradient(circle at 0% 100%, rgba(254, 216, 233, 0.1) 0%, transparent 40%); background-attachment: fixed; }
+        .botanical-shadow { box-shadow: 0 20px 40px rgba(61, 103, 81, 0.08), 0 1px 3px rgba(0,0,0,0.05); }
+        .organic-blob { position: absolute; z-index: -1; filter: blur(60px); opacity: 0.5; border-radius: 50%; animation: float 20s infinite alternate ease-in-out; }
+        @keyframes float { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(30px, 50px) scale(1.1); } }
+        .material-symbols-outlined { font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24; vertical-align: middle; transition: all 0.3s ease; }
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.9s cubic-bezier(0.2, 0.8, 0.2, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .indicator-card { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-radius: 1.5rem; padding: 3rem; margin-bottom: 4rem; border-top: 4px solid #3d6751; transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.4s ease; }
+        .indicator-card:hover { transform: translateY(-4px); box-shadow: 0 25px 50px rgba(61, 103, 81, 0.12), 0 5px 15px rgba(0,0,0,0.05); }
+        .icon-circle { transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.3s ease; }
+        .indicator-card:hover .icon-circle { transform: scale(1.1) rotate(5deg); }
+        .glass-panel { background: rgba(245, 243, 239, 0.7); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.4); }
+        .country-tab.active { background-color: #3d6751 !important; color: white !important; border-color: #3d6751 !important; box-shadow: 0 10px 20px rgba(61, 103, 81, 0.2); }
+        .country-tab:not(.active):hover { border-color: #a8d5ba; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fade-in { animation: fadeIn 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
+    </style>
+    <script>
+        tailwind.config = { theme: { extend: { colors: { primary: "#3d6751", secondary: "#735664", tertiary: "#6c5777", error: "#ba1a1a" }, fontFamily: { "body-md": ["Hanken Grotesk"], "headline-xl": ["Playfair Display"], "headline-md": ["Playfair Display"] } } } }
+    </script>
 </head>
-<body>
-
-  <!-- Navbar -->
-  <nav class="global-nav">
-    <div class="nav-brand">
-
-      Aldea Global 2
+<body class="font-body-md text-gray-800">
+    <!-- Navbar -->
+    <nav class="global-nav">
+        <div class="nav-brand">
+            Aldea Global 2
+        </div>
+        <div class="nav-links">
+            <a href="../../" class="nav-link">Inicio</a>
+            <a href="../../acuerdo/" class="nav-link">Acuerdo</a>
+            <a href="../../referencias/" class="nav-link">Referencias</a>
+        </div>
+    </nav>
+    <div class="fixed inset-0 overflow-hidden pointer-events-none -z-10">
+        <div class="organic-blob bg-green-200 w-[500px] h-[500px] -top-20 -left-20 opacity-30"></div>
+        <div class="organic-blob bg-pink-200 w-[400px] h-[400px] top-1/2 -right-20 opacity-30" style="animation-delay: -5s;"></div>
     </div>
-    <div class="nav-links">
-      <a href="../../" class="nav-link">Dashboard</a>
-      <a href="../../acuerdo/" class="nav-link">Acuerdo</a>
-      <a href="../../realidad/" class="nav-link">Realidad</a>
-      <a href="../../fase2/" class="nav-link">Fase 2</a>
-    </div>
-  </nav>
-
-  <main class="page-header">
-    <span class="eyebrow">Documento Interno</span>
-    <h1>Entrega 3: Fase 2 Estratégica</h1>
-    <p>Próximamente: Contenido de la Entrega 3.</p>
-  </main>
-
+    <main class="pt-32 pb-24 px-6 md:px-12 max-w-[1280px] mx-auto relative">
+        <header class="mb-20 text-center reveal active">
+            <div class="inline-block px-5 py-1.5 rounded-full bg-primary/10 text-primary font-bold text-xs tracking-widest uppercase mb-8">ENTREGABLE 3</div>
+            <h1 class="font-headline-xl text-5xl md:text-7xl mb-8 leading-tight">Análisis de 15 Indicadores<br><span class="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent italic pr-2 pb-2">Estratégicos Internacionales</span></h1>
+            <p class="text-lg max-w-3xl mx-auto leading-relaxed mb-10 text-gray-600">15 criterios evaluados para fundamentar la estrategia de internacionalización de Dreams Flower S.A.S.</p>
+        </header>
+        <div class="flex flex-wrap justify-center gap-4 mb-16 reveal active z-20 relative">
+            <button class="country-tab active px-6 py-3 rounded-full font-bold text-lg flex items-center gap-3 transition-all border" onclick="selectCountry('india', this)"><img src="https://flagcdn.com/w40/in.png" alt="India" class="w-8 h-5 rounded-sm object-cover shadow-sm"> India</button>
+            <button class="country-tab px-6 py-3 rounded-full font-bold text-lg flex items-center gap-3 transition-all border bg-white text-gray-700 hover:bg-gray-100" onclick="selectCountry('japon', this)"><img src="https://flagcdn.com/w40/jp.png" alt="Japón" class="w-8 h-5 rounded-sm object-cover shadow-sm opacity-90"> Japón</button>
+            <button class="country-tab px-6 py-3 rounded-full font-bold text-lg flex items-center gap-3 transition-all border bg-white text-gray-700 hover:bg-gray-100" onclick="selectCountry('arabia', this)"><img src="https://flagcdn.com/w40/ae.png" alt="EAU" class="w-8 h-5 rounded-sm object-cover shadow-sm opacity-90"> Emiratos Árabes</button>
+        </div>
+        <div id="country-india" class="country-content animate-fade-in block">
+            <section class="indicator-card botanical-shadow reveal active" style="border-top-color: #3d6751;">
+                <div class="flex flex-col lg:flex-row gap-16">
+                    <div class="lg:w-1/2 flex flex-col">
+                        <h2 class="font-headline-md text-3xl mb-3 flex items-center gap-4" style="color: #3d6751;">
+                            <div class="icon-circle w-14 h-14 rounded-full flex items-center justify-center shrink-0" style="background-color: #3d675120; color: #3d6751;">
+                                <span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">calendar_month</span>
+                            </div>
+                            Indicador 1
+                        </h2>
+                        <h3 class="text-xl font-bold mb-2 ml-18 pl-18">Volumen y frecuencia de consumo de flores por festividades</h3>
+                        <p class="text-sm text-gray-500 font-medium tracking-wide mb-8 ml-18 pl-18">Cuantificación exhaustiva de la demanda sectorial y su correlación directa con la estacionalidad del calendario cultural y religioso indio, midiendo fluctuaciones tanto en volumen de importación como en valoración comercial.</p>
+                        <div class="glass-panel p-8 rounded-2xl mb-8 flex-grow">
+                            <h4 class="font-bold mb-4 flex items-center gap-2 text-lg">
+                                <span class="material-symbols-outlined" style="color: #3d6751;">analytics</span> Dato / Hallazgo Actual
+                            </h4>
+                            <p class="text-base leading-relaxed text-gray-700">De acuerdo con informes oficiales de APEDA (Agricultural and Processed Food Products Export Development Authority) de 2024, el mercado interno de la floricultura en India supera los USD 2.900 millones anuales. La demanda de flores frescas premium experimenta picos masivos (alzas superiores al 300% en volumen transado) entre octubre y febrero, impulsado categóricamente por la temporada de bodas tradicionales y festividades como el Diwali y Navratri.</p>
+                            <br>
+                            <h4 class="font-bold mb-2 flex items-center gap-2 text-md">
+                                <span class="material-symbols-outlined text-gray-400">help</span> ¿Por qué se investiga?
+                            </h4>
+                            <p class="text-sm leading-relaxed text-gray-600">La estacionalidad aguda de la demanda determina la viabilidad técnica y comercial de sincronizar la curva de producción agronómica en Colombia con los picos de consumo en el subcontinente.</p>
+                        </div>
+                        <div class="p-8 rounded-2xl border relative overflow-hidden group" style="background-color: #3d67510d; border-color: #3d675133;">
+                            <div class="absolute right-0 top-0 w-32 h-32 rounded-full blur-2xl -mr-10 -mt-10 transition-transform group-hover:scale-150" style="background-color: #3d67511a;"></div>
+                            <h4 class="font-bold mb-3 flex items-center gap-2 text-lg relative z-10" style="color: #3d6751;">
+                                <span class="material-symbols-outlined">public</span> Relevancia para Dreams Flower S.A.S.
+                            </h4>
+                            <p class="text-base leading-relaxed mb-6 relative z-10 text-gray-700">Es una ventaja estratégica incalculable. India exige capacidad máxima de suministro hacia el último trimestre del año, lo que permite a Dreams Flower S.A.S. apalancar sus casi 15 años de trayectoria para posicionar masivamente sus hortensias de alta gama en decoraciones de lujo para bodas y el Diwali, optimizando flujos de caja en meses históricamente bajos para el mercado occidental.</p>
+                            <div class="inline-flex items-center gap-2 text-white px-5 py-2 rounded-full text-sm font-bold shadow-lg relative z-10" style="background-color: #3d6751;">
+                                <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
+                                Oportunidad. Desincronización favorable con occidente.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2 flex flex-col justify-center bg-white/50 rounded-3xl p-6 border border-gray-200 shadow-inner">
+                        <div class="relative w-full h-[400px]">
+                            <canvas id="chart_india_1"></canvas>
+                        </div>
+                        <p class="text-xs text-center text-gray-400 mt-3 font-medium">Demanda EE.UU. vs India</p>
+                    </div>
+                </div>
+            </section>
+            <section class="indicator-card botanical-shadow reveal active" style="border-top-color: #ba1a1a;">
+                <div class="flex flex-col lg:flex-row gap-16">
+                    <div class="lg:w-1/2 flex flex-col">
+                        <h2 class="font-headline-md text-3xl mb-3 flex items-center gap-4" style="color: #ba1a1a;">
+                            <div class="icon-circle w-14 h-14 rounded-full flex items-center justify-center shrink-0" style="background-color: #ba1a1a20; color: #ba1a1a;">
+                                <span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">social_distance</span>
+                            </div>
+                            Indicador 2
+                        </h2>
+                        <h3 class="text-xl font-bold mb-2 ml-18 pl-18">Puntuación en la dimensión de "Distancia al Poder"</h3>
+                        <p class="text-sm text-gray-500 font-medium tracking-wide mb-8 ml-18 pl-18">Métrica psicosocial corporativa que cuantifica el grado en que los miembros menos poderosos de una sociedad aceptan e incluso esperan que el poder esté distribuido de forma completamente desigual (medido en escala 0-100).</p>
+                        <div class="glass-panel p-8 rounded-2xl mb-8 flex-grow">
+                            <h4 class="font-bold mb-4 flex items-center gap-2 text-lg">
+                                <span class="material-symbols-outlined" style="color: #ba1a1a;">analytics</span> Dato / Hallazgo Actual
+                            </h4>
+                            <p class="text-base leading-relaxed text-gray-700">Según las bases de datos certificadas de The Culture Factor (anteriormente Hofstede Insights, 2024), India registra un puntaje excepcionalmente alto de 77/100 en Distancia al Poder (PDI). Esto tipifica una estructura socio-empresarial altamente jerárquica y verticalizada.</p>
+                            <br>
+                            <h4 class="font-bold mb-2 flex items-center gap-2 text-md">
+                                <span class="material-symbols-outlined text-gray-400">help</span> ¿Por qué se investiga?
+                            </h4>
+                            <p class="text-sm leading-relaxed text-gray-600">Las discrepancias en las dimensiones culturales afectan estructuralmente la efectividad de las negociaciones B2B, la retención de clientes y el relacionamiento corporativo a largo plazo.</p>
+                        </div>
+                        <div class="p-8 rounded-2xl border relative overflow-hidden group" style="background-color: #ba1a1a0d; border-color: #ba1a1a33;">
+                            <div class="absolute right-0 top-0 w-32 h-32 rounded-full blur-2xl -mr-10 -mt-10 transition-transform group-hover:scale-150" style="background-color: #ba1a1a1a;"></div>
+                            <h4 class="font-bold mb-3 flex items-center gap-2 text-lg relative z-10" style="color: #ba1a1a;">
+                                <span class="material-symbols-outlined">public</span> Relevancia para Dreams Flower S.A.S.
+                            </h4>
+                            <p class="text-base leading-relaxed mb-6 relative z-10 text-gray-700">Dreams Flower debe recalibrar su protocolo de relacionamiento. Delegar la apertura de mercado a mandos medios u operativos será ineficaz; los directivos y dueños de empresas indias esperan interactuar exclusivamente con sus pares (alta gerencia o fundadores).</p>
+                            <div class="inline-flex items-center gap-2 text-white px-5 py-2 rounded-full text-sm font-bold shadow-lg relative z-10" style="background-color: #ba1a1a;">
+                                <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
+                                Riesgo. Incompatibilidad en estilos de negociación.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2 flex flex-col justify-center bg-white/50 rounded-3xl p-6 border border-gray-200 shadow-inner">
+                        <div class="relative w-full h-[400px]">
+                            <canvas id="chart_india_2"></canvas>
+                        </div>
+                        <p class="text-xs text-center text-gray-400 mt-3 font-medium">Distancia al Poder: Col vs Ind</p>
+                    </div>
+                </div>
+            </section>
+            <section class="indicator-card botanical-shadow reveal active" style="border-top-color: #3d6751;">
+                <div class="flex flex-col lg:flex-row gap-16">
+                    <div class="lg:w-1/2 flex flex-col">
+                        <h2 class="font-headline-md text-3xl mb-3 flex items-center gap-4" style="color: #3d6751;">
+                            <div class="icon-circle w-14 h-14 rounded-full flex items-center justify-center shrink-0" style="background-color: #3d675120; color: #3d6751;">
+                                <span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">trending_up</span>
+                            </div>
+                            Indicador 3
+                        </h2>
+                        <h3 class="text-xl font-bold mb-2 ml-18 pl-18">Crecimiento de ingresos de la clase media urbana</h3>
+                        <p class="text-sm text-gray-500 font-medium tracking-wide mb-8 ml-18 pl-18">Proyección y expansión sostenida del ingreso per cápita y el poder adquisitivo (PPA) focalizado exclusivamente en los principales megacentros demográficos y urbanos.</p>
+                        <div class="glass-panel p-8 rounded-2xl mb-8 flex-grow">
+                            <h4 class="font-bold mb-4 flex items-center gap-2 text-lg">
+                                <span class="material-symbols-outlined" style="color: #3d6751;">analytics</span> Dato / Hallazgo Actual
+                            </h4>
+                            <p class="text-base leading-relaxed text-gray-700">La OCDE (2024) proyecta un crecimiento del PIB real sostenido por encima del 6%. Esto se traduce en una expansión acelerada del consumo privado, impulsado por una clase media urbana emergente cuyo ingreso disponible crece a una tasa agresiva del 7% interanual.</p>
+                            <br>
+                            <h4 class="font-bold mb-2 flex items-center gap-2 text-md">
+                                <span class="material-symbols-outlined text-gray-400">help</span> ¿Por qué se investiga?
+                            </h4>
+                            <p class="text-sm leading-relaxed text-gray-600">Las flores ornamentales de importación son bienes suntuarios y, por ende, presentan una alta elasticidad ingreso de la demanda.</p>
+                        </div>
+                        <div class="p-8 rounded-2xl border relative overflow-hidden group" style="background-color: #3d67510d; border-color: #3d675133;">
+                            <div class="absolute right-0 top-0 w-32 h-32 rounded-full blur-2xl -mr-10 -mt-10 transition-transform group-hover:scale-150" style="background-color: #3d67511a;"></div>
+                            <h4 class="font-bold mb-3 flex items-center gap-2 text-lg relative z-10" style="color: #3d6751;">
+                                <span class="material-symbols-outlined">public</span> Relevancia para Dreams Flower S.A.S.
+                            </h4>
+                            <p class="text-base leading-relaxed mb-6 relative z-10 text-gray-700">Esta concentración de riqueza justifica estratégicamente que Dreams Flower enfoque su logística de penetración en ciudades nodo hiper-desarrolladas (como Mumbai y Delhi), descartando costosos esfuerzos de masificación en el interior rural del país.</p>
+                            <div class="inline-flex items-center gap-2 text-white px-5 py-2 rounded-full text-sm font-bold shadow-lg relative z-10" style="background-color: #3d6751;">
+                                <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
+                                Oportunidad. Crecimiento económico valida el caso de negocio.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2 flex flex-col justify-center bg-white/50 rounded-3xl p-6 border border-gray-200 shadow-inner">
+                        <div class="relative w-full h-[400px]">
+                            <canvas id="chart_india_3"></canvas>
+                        </div>
+                        <p class="text-xs text-center text-gray-400 mt-3 font-medium">Crecimiento de ingresos urbanos</p>
+                    </div>
+                </div>
+            </section>
+            <section class="indicator-card botanical-shadow reveal active" style="border-top-color: #ba1a1a;">
+                <div class="flex flex-col lg:flex-row gap-16">
+                    <div class="lg:w-1/2 flex flex-col">
+                        <h2 class="font-headline-md text-3xl mb-3 flex items-center gap-4" style="color: #ba1a1a;">
+                            <div class="icon-circle w-14 h-14 rounded-full flex items-center justify-center shrink-0" style="background-color: #ba1a1a20; color: #ba1a1a;">
+                                <span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">pest_control</span>
+                            </div>
+                            Indicador 4
+                        </h2>
+                        <h3 class="text-xl font-bold mb-2 ml-18 pl-18">Requisitos y protocolos fitosanitarios (DPPQS)</h3>
+                        <p class="text-sm text-gray-500 font-medium tracking-wide mb-8 ml-18 pl-18">Barreras Técnicas al Comercio (TBT) establecidas legalmente para la importación sistemática de material vegetal propagativo y flores de corte, mitigando riesgos biológicos.</p>
+                        <div class="glass-panel p-8 rounded-2xl mb-8 flex-grow">
+                            <h4 class="font-bold mb-4 flex items-center gap-2 text-lg">
+                                <span class="material-symbols-outlined" style="color: #ba1a1a;">analytics</span> Dato / Hallazgo Actual
+                            </h4>
+                            <p class="text-base leading-relaxed text-gray-700">Bajo las directrices de la Plant Quarantine Order gubernamental, la Dirección de Protección Vegetal (DPPQS) exige un Análisis de Riesgo de Plagas exhaustivo para nuevos orígenes, Certificados Fitosanitarios de origen y, frecuentemente, protocolos de fumigación en puerto o destrucción de carga si se detectan nematodos.</p>
+                            <br>
+                            <h4 class="font-bold mb-2 flex items-center gap-2 text-md">
+                                <span class="material-symbols-outlined text-gray-400">help</span> ¿Por qué se investiga?
+                            </h4>
+                            <p class="text-sm leading-relaxed text-gray-600">El incumplimiento, incluso por omisiones documentales mínimas, genera la retención, cuarentena o destrucción inmediata de la carga en las aduanas indias.</p>
+                        </div>
+                        <div class="p-8 rounded-2xl border relative overflow-hidden group" style="background-color: #ba1a1a0d; border-color: #ba1a1a33;">
+                            <div class="absolute right-0 top-0 w-32 h-32 rounded-full blur-2xl -mr-10 -mt-10 transition-transform group-hover:scale-150" style="background-color: #ba1a1a1a;"></div>
+                            <h4 class="font-bold mb-3 flex items-center gap-2 text-lg relative z-10" style="color: #ba1a1a;">
+                                <span class="material-symbols-outlined">public</span> Relevancia para Dreams Flower S.A.S.
+                            </h4>
+                            <p class="text-base leading-relaxed mb-6 relative z-10 text-gray-700">Obliga a un rigor operativo absoluto desde la poscosecha. Gracias a sus 15 años de trayectoria exportadora, Dreams Flower S.A.S. cuenta con el expertise para protocolizar auditorías rigurosas junto al ICA, asegurando que sus hortensias cumplan con la tolerancia cero a plagas exigida por la cuarentena india.</p>
+                            <div class="inline-flex items-center gap-2 text-white px-5 py-2 rounded-full text-sm font-bold shadow-lg relative z-10" style="background-color: #ba1a1a;">
+                                <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
+                                Riesgo Crítico. Barrera técnica altamente restrictiva.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2 flex flex-col justify-center bg-white/50 rounded-3xl p-6 border border-gray-200 shadow-inner">
+                        <div class="relative w-full h-[400px]">
+                            <canvas id="chart_india_4"></canvas>
+                        </div>
+                        <p class="text-xs text-center text-gray-400 mt-3 font-medium">Flujo de aprobación fitosanitaria</p>
+                    </div>
+                </div>
+            </section>
+            <section class="indicator-card botanical-shadow reveal active" style="border-top-color: #ba1a1a;">
+                <div class="flex flex-col lg:flex-row gap-16">
+                    <div class="lg:w-1/2 flex flex-col">
+                        <h2 class="font-headline-md text-3xl mb-3 flex items-center gap-4" style="color: #ba1a1a;">
+                            <div class="icon-circle w-14 h-14 rounded-full flex items-center justify-center shrink-0" style="background-color: #ba1a1a20; color: #ba1a1a;">
+                                <span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">gavel</span>
+                            </div>
+                            Indicador 5
+                        </h2>
+                        <h3 class="text-xl font-bold mb-2 ml-18 pl-18">Cumplimiento de Contratos</h3>
+                        <p class="text-sm text-gray-500 font-medium tracking-wide mb-8 ml-18 pl-18">Eficiencia integral del sistema judicial y legal indio para resolver disputas comerciales transfronterizas, medido en tiempo total de litigio (días) y costos asociados como porcentaje de la reclamación.</p>
+                        <div class="glass-panel p-8 rounded-2xl mb-8 flex-grow">
+                            <h4 class="font-bold mb-4 flex items-center gap-2 text-lg">
+                                <span class="material-symbols-outlined" style="color: #ba1a1a;">analytics</span> Dato / Hallazgo Actual
+                            </h4>
+                            <p class="text-base leading-relaxed text-gray-700">Informes del Banco Mundial y la OCDE alertan sobre una congestión endémica en los tribunales indios. Resolver disputas comerciales ordinarias toma, en promedio, más de 1.400 días (cerca de 4 años), acompañado de honorarios legales que diluyen el valor del litigio.</p>
+                            <br>
+                            <h4 class="font-bold mb-2 flex items-center gap-2 text-md">
+                                <span class="material-symbols-outlined text-gray-400">help</span> ¿Por qué se investiga?
+                            </h4>
+                            <p class="text-sm leading-relaxed text-gray-600">Determina directamente el riesgo sistémico de exposición a cartera morosa, impagos o renegociaciones hostiles en transacciones de comercio exterior.</p>
+                        </div>
+                        <div class="p-8 rounded-2xl border relative overflow-hidden group" style="background-color: #ba1a1a0d; border-color: #ba1a1a33;">
+                            <div class="absolute right-0 top-0 w-32 h-32 rounded-full blur-2xl -mr-10 -mt-10 transition-transform group-hover:scale-150" style="background-color: #ba1a1a1a;"></div>
+                            <h4 class="font-bold mb-3 flex items-center gap-2 text-lg relative z-10" style="color: #ba1a1a;">
+                                <span class="material-symbols-outlined">public</span> Relevancia para Dreams Flower S.A.S.
+                            </h4>
+                            <p class="text-base leading-relaxed mb-6 relative z-10 text-gray-700">Es un riesgo inminente. Dreams Flower S.A.S. debe vetar absolutamente las condiciones de crédito abierto a nuevos clientes indios. Las modalidades exclusivas deben ser pago anticipado (T/T), depósitos sustanciales o Cartas de Crédito Irrevocables.</p>
+                            <div class="inline-flex items-center gap-2 text-white px-5 py-2 rounded-full text-sm font-bold shadow-lg relative z-10" style="background-color: #ba1a1a;">
+                                <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
+                                Riesgo. La ineficacia del sistema transfiere el riesgo comercial.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2 flex flex-col justify-center bg-white/50 rounded-3xl p-6 border border-gray-200 shadow-inner">
+                        <div class="relative w-full h-[400px]">
+                            <canvas id="chart_india_5"></canvas>
+                        </div>
+                        <p class="text-xs text-center text-gray-400 mt-3 font-medium">Tiempo y costo de disputas</p>
+                    </div>
+                </div>
+            </section>
+            <section class="indicator-card botanical-shadow reveal active" style="border-top-color: #ba1a1a;">
+                <div class="flex flex-col lg:flex-row gap-16">
+                    <div class="lg:w-1/2 flex flex-col">
+                        <h2 class="font-headline-md text-3xl mb-3 flex items-center gap-4" style="color: #ba1a1a;">
+                            <div class="icon-circle w-14 h-14 rounded-full flex items-center justify-center shrink-0" style="background-color: #ba1a1a20; color: #ba1a1a;">
+                                <span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">account_balance</span>
+                            </div>
+                            Indicador 6
+                        </h2>
+                        <h3 class="text-xl font-bold mb-2 ml-18 pl-18">Volatilidad y estabilidad arancelaria</h3>
+                        <p class="text-sm text-gray-500 font-medium tracking-wide mb-8 ml-18 pl-18">Análisis de la frecuencia, imprevisibilidad y alteraciones repentinas de las barreras arancelarias motivadas por medidas proteccionistas gubernamentales temporales.</p>
+                        <div class="glass-panel p-8 rounded-2xl mb-8 flex-grow">
+                            <h4 class="font-bold mb-4 flex items-center gap-2 text-lg">
+                                <span class="material-symbols-outlined" style="color: #ba1a1a;">analytics</span> Dato / Hallazgo Actual
+                            </h4>
+                            <p class="text-base leading-relaxed text-gray-700">Las revisiones de la OMC y la OCDE en 2024 indican que el gobierno indio emplea activamente barreras arancelarias dinámicas para salvaguardar sectores agrícolas locales, amparado fuertemente en su política nacional 'Make in India'.</p>
+                            <br>
+                            <h4 class="font-bold mb-2 flex items-center gap-2 text-md">
+                                <span class="material-symbols-outlined text-gray-400">help</span> ¿Por qué se investiga?
+                            </h4>
+                            <p class="text-sm leading-relaxed text-gray-600">La alta volatilidad arancelaria puede desestructurar drásticamente el costo final en destino (Landed Cost), afectando los márgenes de rentabilidad calculados.</p>
+                        </div>
+                        <div class="p-8 rounded-2xl border relative overflow-hidden group" style="background-color: #ba1a1a0d; border-color: #ba1a1a33;">
+                            <div class="absolute right-0 top-0 w-32 h-32 rounded-full blur-2xl -mr-10 -mt-10 transition-transform group-hover:scale-150" style="background-color: #ba1a1a1a;"></div>
+                            <h4 class="font-bold mb-3 flex items-center gap-2 text-lg relative z-10" style="color: #ba1a1a;">
+                                <span class="material-symbols-outlined">public</span> Relevancia para Dreams Flower S.A.S.
+                            </h4>
+                            <p class="text-base leading-relaxed mb-6 relative z-10 text-gray-700">Obliga a definir Incoterms defensivos. Dreams Flower no debe comprometerse a cotizar bajo esquemas DDP (Delivered Duty Paid). Toda operación debe transarse en FCA, CPT o CIP para trasladar el riesgo tributario e importador al comprador en la India.</p>
+                            <div class="inline-flex items-center gap-2 text-white px-5 py-2 rounded-full text-sm font-bold shadow-lg relative z-10" style="background-color: #ba1a1a;">
+                                <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
+                                Riesgo. Genera incertidumbre en márgenes a largo plazo.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2 flex flex-col justify-center bg-white/50 rounded-3xl p-6 border border-gray-200 shadow-inner">
+                        <div class="relative w-full h-[400px]">
+                            <canvas id="chart_india_6"></canvas>
+                        </div>
+                        <p class="text-xs text-center text-gray-400 mt-3 font-medium">Volatilidad Arancelaria Histórica</p>
+                    </div>
+                </div>
+            </section>
+            <section class="indicator-card botanical-shadow reveal active" style="border-top-color: #6c5777;">
+                <div class="flex flex-col lg:flex-row gap-16">
+                    <div class="lg:w-1/2 flex flex-col">
+                        <h2 class="font-headline-md text-3xl mb-3 flex items-center gap-4" style="color: #6c5777;">
+                            <div class="icon-circle w-14 h-14 rounded-full flex items-center justify-center shrink-0" style="background-color: #6c577720; color: #6c5777;">
+                                <span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">ac_unit</span>
+                            </div>
+                            Indicador 7
+                        </h2>
+                        <h3 class="text-xl font-bold mb-2 ml-18 pl-18">Infraestructura de cadena de frío</h3>
+                        <p class="text-sm text-gray-500 font-medium tracking-wide mb-8 ml-18 pl-18">Capacidad instalada, robustez y eficiencia logística nacional para preservar la cadena térmica ininterrumpida desde la aduana aeroportuaria hasta el consumidor final.</p>
+                        <div class="glass-panel p-8 rounded-2xl mb-8 flex-grow">
+                            <h4 class="font-bold mb-4 flex items-center gap-2 text-lg">
+                                <span class="material-symbols-outlined" style="color: #6c5777;">analytics</span> Dato / Hallazgo Actual
+                            </h4>
+                            <p class="text-base leading-relaxed text-gray-700">El National Centre for Cold-chain Development (NCCD, 2024) advierte severos cuellos de botella y brechas en la conectividad del asfalto hacia el interior. Esto, combinado con temperaturas extremas de verano que superan los 40°C, amenaza gravemente a los perecederos.</p>
+                            <br>
+                            <h4 class="font-bold mb-2 flex items-center gap-2 text-md">
+                                <span class="material-symbols-outlined text-gray-400">help</span> ¿Por qué se investiga?
+                            </h4>
+                            <p class="text-sm leading-relaxed text-gray-600">Para las flores, cualquier ruptura térmica superior a 20 minutos induce un choque fisiológico, deshidratación rápida y proliferación patógena masiva (como la Botrytis).</p>
+                        </div>
+                        <div class="p-8 rounded-2xl border relative overflow-hidden group" style="background-color: #6c57770d; border-color: #6c577733;">
+                            <div class="absolute right-0 top-0 w-32 h-32 rounded-full blur-2xl -mr-10 -mt-10 transition-transform group-hover:scale-150" style="background-color: #6c57771a;"></div>
+                            <h4 class="font-bold mb-3 flex items-center gap-2 text-lg relative z-10" style="color: #6c5777;">
+                                <span class="material-symbols-outlined">public</span> Relevancia para Dreams Flower S.A.S.
+                            </h4>
+                            <p class="text-base leading-relaxed mb-6 relative z-10 text-gray-700">Al ser las hortensias flores con un altísimo requerimiento hídrico y muy sensibles a la temperatura, esta brecha logística obliga a rediseñar totalmente la arquitectura de los empaques. Dreams Flower deberá implementar aislamiento térmico premium, capuchones hidratantes, geles refrigerantes de alta duración y Data Loggers USB para asegurar la cadena de frío.</p>
+                            <div class="inline-flex items-center gap-2 text-white px-5 py-2 rounded-full text-sm font-bold shadow-lg relative z-10" style="background-color: #6c5777;">
+                                <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
+                                Riesgo Operativo. Amenaza la integridad biológica del producto.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2 flex flex-col justify-center bg-white/50 rounded-3xl p-6 border border-gray-200 shadow-inner">
+                        <div class="relative w-full h-[400px]">
+                            <canvas id="chart_india_7"></canvas>
+                        </div>
+                        <p class="text-xs text-center text-gray-400 mt-3 font-medium">Temperatura vs Capacidad Frío</p>
+                    </div>
+                </div>
+            </section>
+            <section class="indicator-card botanical-shadow reveal active" style="border-top-color: #3d6751;">
+                <div class="flex flex-col lg:flex-row gap-16">
+                    <div class="lg:w-1/2 flex flex-col">
+                        <h2 class="font-headline-md text-3xl mb-3 flex items-center gap-4" style="color: #3d6751;">
+                            <div class="icon-circle w-14 h-14 rounded-full flex items-center justify-center shrink-0" style="background-color: #3d675120; color: #3d6751;">
+                                <span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">timer</span>
+                            </div>
+                            Indicador 8
+                        </h2>
+                        <h3 class="text-xl font-bold mb-2 ml-18 pl-18">Tiempo promedio de despacho (ICEGATE)</h3>
+                        <p class="text-sm text-gray-500 font-medium tracking-wide mb-8 ml-18 pl-18">Lead Time operativo y logístico transcurrido desde el manifiesto de carga hasta la liberación final por las autoridades aduaneras, impulsado por infraestructuras digitales.</p>
+                        <div class="glass-panel p-8 rounded-2xl mb-8 flex-grow">
+                            <h4 class="font-bold mb-4 flex items-center gap-2 text-lg">
+                                <span class="material-symbols-outlined" style="color: #3d6751;">analytics</span> Dato / Hallazgo Actual
+                            </h4>
+                            <p class="text-base leading-relaxed text-gray-700">Según el National Time Release Study (NTRS) de la CBIC (2024), la adopción del sistema ICEGATE ha logrado reducir los tiempos de despacho aeroportuario a 12-24 horas, siempre y cuando la documentación transmitida electrónicamente esté impecable y exenta de errores.</p>
+                            <br>
+                            <h4 class="font-bold mb-2 flex items-center gap-2 text-md">
+                                <span class="material-symbols-outlined text-gray-400">help</span> ¿Por qué se investiga?
+                            </h4>
+                            <p class="text-sm leading-relaxed text-gray-600">La velocidad del desaduanaje es una variable de vida o muerte para productos agrícolas altamente perecederos, afectando la vida de florero garantizada al cliente.</p>
+                        </div>
+                        <div class="p-8 rounded-2xl border relative overflow-hidden group" style="background-color: #3d67510d; border-color: #3d675133;">
+                            <div class="absolute right-0 top-0 w-32 h-32 rounded-full blur-2xl -mr-10 -mt-10 transition-transform group-hover:scale-150" style="background-color: #3d67511a;"></div>
+                            <h4 class="font-bold mb-3 flex items-center gap-2 text-lg relative z-10" style="color: #3d6751;">
+                                <span class="material-symbols-outlined">public</span> Relevancia para Dreams Flower S.A.S.
+                            </h4>
+                            <p class="text-base leading-relaxed mb-6 relative z-10 text-gray-700">Exige máxima disciplina en operaciones internacionales (EDI). Dreams Flower debe transmitir el PDF y la data aduanera con 48 horas de anticipación al aterrizaje, manteniendo una tolerancia cero a errores tipográficos documentales en Colombia.</p>
+                            <div class="inline-flex items-center gap-2 text-white px-5 py-2 rounded-full text-sm font-bold shadow-lg relative z-10" style="background-color: #3d6751;">
+                                <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
+                                Oportunidad. Digitalización beneficia a exportadores organizados.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2 flex flex-col justify-center bg-white/50 rounded-3xl p-6 border border-gray-200 shadow-inner">
+                        <div class="relative w-full h-[400px]">
+                            <canvas id="chart_india_8"></canvas>
+                        </div>
+                        <p class="text-xs text-center text-gray-400 mt-3 font-medium">Tiempos de despacho aduanero</p>
+                    </div>
+                </div>
+            </section>
+            <section class="indicator-card botanical-shadow reveal active" style="border-top-color: #3d6751;">
+                <div class="flex flex-col lg:flex-row gap-16">
+                    <div class="lg:w-1/2 flex flex-col">
+                        <h2 class="font-headline-md text-3xl mb-3 flex items-center gap-4" style="color: #3d6751;">
+                            <div class="icon-circle w-14 h-14 rounded-full flex items-center justify-center shrink-0" style="background-color: #3d675120; color: #3d6751;">
+                                <span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">shopping_cart</span>
+                            </div>
+                            Indicador 9
+                        </h2>
+                        <h3 class="text-xl font-bold mb-2 ml-18 pl-18">Penetración de E-commerce (B2B/B2C)</h3>
+                        <p class="text-sm text-gray-500 font-medium tracking-wide mb-8 ml-18 pl-18">Tasa de penetración, consolidación y volumen de transacciones de bienes importados premium a través de plataformas digitales B2B y aplicaciones E-tailers B2C especializadas.</p>
+                        <div class="glass-panel p-8 rounded-2xl mb-8 flex-grow">
+                            <h4 class="font-bold mb-4 flex items-center gap-2 text-lg">
+                                <span class="material-symbols-outlined" style="color: #3d6751;">analytics</span> Dato / Hallazgo Actual
+                            </h4>
+                            <p class="text-base leading-relaxed text-gray-700">El India Brand Equity Foundation (IBEF, 2024) reporta que la infraestructura digital para bienes de lujo y obsequios premium crece a una Tasa de Crecimiento Anual Compuesto (CAGR) por encima del 20%, liderada por plataformas logísticas tecnológicas.</p>
+                            <br>
+                            <h4 class="font-bold mb-2 flex items-center gap-2 text-md">
+                                <span class="material-symbols-outlined text-gray-400">help</span> ¿Por qué se investiga?
+                            </h4>
+                            <p class="text-sm leading-relaxed text-gray-600">Confirma la viabilidad comercial de omitir la distribución física tradicional a través de mercados mayoristas locales de flores, los cuales suelen ser fragmentados, informales y hostiles.</p>
+                        </div>
+                        <div class="p-8 rounded-2xl border relative overflow-hidden group" style="background-color: #3d67510d; border-color: #3d675133;">
+                            <div class="absolute right-0 top-0 w-32 h-32 rounded-full blur-2xl -mr-10 -mt-10 transition-transform group-hover:scale-150" style="background-color: #3d67511a;"></div>
+                            <h4 class="font-bold mb-3 flex items-center gap-2 text-lg relative z-10" style="color: #3d6751;">
+                                <span class="material-symbols-outlined">public</span> Relevancia para Dreams Flower S.A.S.
+                            </h4>
+                            <p class="text-base leading-relaxed mb-6 relative z-10 text-gray-700">Dreams Flower tiene una oportunidad invaluable de integrarse tecnológicamente (B2B) con fuertes E-tailers indios (ej. Ferns N Petals), requiriendo adaptar su estrategia a catálogos digitales optimizados y APIs de disponibilidad.</p>
+                            <div class="inline-flex items-center gap-2 text-white px-5 py-2 rounded-full text-sm font-bold shadow-lg relative z-10" style="background-color: #3d6751;">
+                                <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
+                                Oportunidad. Canal seguro y de alto margen.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2 flex flex-col justify-center bg-white/50 rounded-3xl p-6 border border-gray-200 shadow-inner">
+                        <div class="relative w-full h-[400px]">
+                            <canvas id="chart_india_9"></canvas>
+                        </div>
+                        <p class="text-xs text-center text-gray-400 mt-3 font-medium">Crecimiento E-commerce Floral</p>
+                    </div>
+                </div>
+            </section>
+            <section class="indicator-card botanical-shadow reveal active" style="border-top-color: #ba1a1a;">
+                <div class="flex flex-col lg:flex-row gap-16">
+                    <div class="lg:w-1/2 flex flex-col">
+                        <h2 class="font-headline-md text-3xl mb-3 flex items-center gap-4" style="color: #ba1a1a;">
+                            <div class="icon-circle w-14 h-14 rounded-full flex items-center justify-center shrink-0" style="background-color: #ba1a1a20; color: #ba1a1a;">
+                                <span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">money_off</span>
+                            </div>
+                            Indicador 10
+                        </h2>
+                        <h3 class="text-xl font-bold mb-2 ml-18 pl-18">Arancel Aduanero Básico (BCD) y GST</h3>
+                        <p class="text-sm text-gray-500 font-medium tracking-wide mb-8 ml-18 pl-18">Estructura consolidada de barreras arancelarias e impuestos parafiscales locales que se aplican ad-valorem sobre el CIF para el cálculo del landed cost final.</p>
+                        <div class="glass-panel p-8 rounded-2xl mb-8 flex-grow">
+                            <h4 class="font-bold mb-4 flex items-center gap-2 text-lg">
+                                <span class="material-symbols-outlined" style="color: #ba1a1a;">analytics</span> Dato / Hallazgo Actual
+                            </h4>
+                            <p class="text-base leading-relaxed text-gray-700">El Central Board of Indirect Taxes and Customs (CBIC) estipula que, en ausencia de un TLC bilateral, las flores colombianas se enfrentan a un Basic Customs Duty (BCD) punitivo del 60%, a lo que se suma el Social Welfare Surcharge y el recargo impositivo del IGST.</p>
+                            <br>
+                            <h4 class="font-bold mb-2 flex items-center gap-2 text-md">
+                                <span class="material-symbols-outlined text-gray-400">help</span> ¿Por qué se investiga?
+                            </h4>
+                            <p class="text-sm leading-relaxed text-gray-600">Es el vector financiero más crítico; una carga impositiva superior al 60% reconfigura diametralmente la elasticidad de los precios de venta al consumidor indio.</p>
+                        </div>
+                        <div class="p-8 rounded-2xl border relative overflow-hidden group" style="background-color: #ba1a1a0d; border-color: #ba1a1a33;">
+                            <div class="absolute right-0 top-0 w-32 h-32 rounded-full blur-2xl -mr-10 -mt-10 transition-transform group-hover:scale-150" style="background-color: #ba1a1a1a;"></div>
+                            <h4 class="font-bold mb-3 flex items-center gap-2 text-lg relative z-10" style="color: #ba1a1a;">
+                                <span class="material-symbols-outlined">public</span> Relevancia para Dreams Flower S.A.S.
+                            </h4>
+                            <p class="text-base leading-relaxed mb-6 relative z-10 text-gray-700">Dreams Flower queda restringida al segmento de élite. Para sortear esto, la empresa debe concentrar sus casi 15 años de know-how exclusivamente en la exportación de hortensias frescas de calibres Super-Premium y colores exclusivos para bodas de lujo multimillonarias indias, siendo el único nicho capaz de absorber estos sobrecostos.</p>
+                            <div class="inline-flex items-center gap-2 text-white px-5 py-2 rounded-full text-sm font-bold shadow-lg relative z-10" style="background-color: #ba1a1a;">
+                                <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
+                                Riesgo Crítico. Barrera de entrada muy onerosa.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2 flex flex-col justify-center bg-white/50 rounded-3xl p-6 border border-gray-200 shadow-inner">
+                        <div class="relative w-full h-[400px]">
+                            <canvas id="chart_india_10"></canvas>
+                        </div>
+                        <p class="text-xs text-center text-gray-400 mt-3 font-medium">Cascada de Costos (Landed Cost)</p>
+                    </div>
+                </div>
+            </section>
+            <section class="indicator-card botanical-shadow reveal active" style="border-top-color: #6c5777;">
+                <div class="flex flex-col lg:flex-row gap-16">
+                    <div class="lg:w-1/2 flex flex-col">
+                        <h2 class="font-headline-md text-3xl mb-3 flex items-center gap-4" style="color: #6c5777;">
+                            <div class="icon-circle w-14 h-14 rounded-full flex items-center justify-center shrink-0" style="background-color: #6c577720; color: #6c5777;">
+                                <span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">flight_takeoff</span>
+                            </div>
+                            Indicador 11
+                        </h2>
+                        <h3 class="text-xl font-bold mb-2 ml-18 pl-18">Eficiencia en conectividad aérea (LPI)</h3>
+                        <p class="text-sm text-gray-500 font-medium tracking-wide mb-8 ml-18 pl-18">Evaluación del Logistics Performance Index y la viabilidad técnica para estructurar conexiones aéreas internacionales rápidas, seguras y económicamente viables para carga.</p>
+                        <div class="glass-panel p-8 rounded-2xl mb-8 flex-grow">
+                            <h4 class="font-bold mb-4 flex items-center gap-2 text-lg">
+                                <span class="material-symbols-outlined" style="color: #6c5777;">analytics</span> Dato / Hallazgo Actual
+                            </h4>
+                            <p class="text-base leading-relaxed text-gray-700">El Banco Mundial (2024) sitúa a India en el rango 38 del LPI. Sin embargo, la geografía dicta que las rutas comerciales desde LATAM carecen de vuelos directos, requiriendo complejas triangulaciones y transbordos en hubs de Norteamérica, Europa o el Medio Oriente.</p>
+                            <br>
+                            <h4 class="font-bold mb-2 flex items-center gap-2 text-md">
+                                <span class="material-symbols-outlined text-gray-400">help</span> ¿Por qué se investiga?
+                            </h4>
+                            <p class="text-sm leading-relaxed text-gray-600">El Lead Time del flete aéreo determina de forma absoluta el índice de supervivencia de las flores durante su tránsito intercontinental.</p>
+                        </div>
+                        <div class="p-8 rounded-2xl border relative overflow-hidden group" style="background-color: #6c57770d; border-color: #6c577733;">
+                            <div class="absolute right-0 top-0 w-32 h-32 rounded-full blur-2xl -mr-10 -mt-10 transition-transform group-hover:scale-150" style="background-color: #6c57771a;"></div>
+                            <h4 class="font-bold mb-3 flex items-center gap-2 text-lg relative z-10" style="color: #6c5777;">
+                                <span class="material-symbols-outlined">public</span> Relevancia para Dreams Flower S.A.S.
+                            </h4>
+                            <p class="text-base leading-relaxed mb-6 relative z-10 text-gray-700">Al enfrentar tiempos de tránsito extendidos (>60-72 horas por conexiones múltiples), Dreams Flower está obligada a formalizar Block Space Agreements (BSA) con aerolíneas élite y priorizar variedades florales genéticamente más longevas y resistentes al estrés.</p>
+                            <div class="inline-flex items-center gap-2 text-white px-5 py-2 rounded-full text-sm font-bold shadow-lg relative z-10" style="background-color: #6c5777;">
+                                <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
+                                Riesgo. Incremento de costo logístico y estrés de flor.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2 flex flex-col justify-center bg-white/50 rounded-3xl p-6 border border-gray-200 shadow-inner">
+                        <div class="relative w-full h-[400px]">
+                            <canvas id="chart_india_11"></canvas>
+                        </div>
+                        <p class="text-xs text-center text-gray-400 mt-3 font-medium">Lead Time por Conectividad</p>
+                    </div>
+                </div>
+            </section>
+            <section class="indicator-card botanical-shadow reveal active" style="border-top-color: #ba1a1a;">
+                <div class="flex flex-col lg:flex-row gap-16">
+                    <div class="lg:w-1/2 flex flex-col">
+                        <h2 class="font-headline-md text-3xl mb-3 flex items-center gap-4" style="color: #ba1a1a;">
+                            <div class="icon-circle w-14 h-14 rounded-full flex items-center justify-center shrink-0" style="background-color: #ba1a1a20; color: #ba1a1a;">
+                                <span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">pie_chart</span>
+                            </div>
+                            Indicador 12
+                        </h2>
+                        <h3 class="text-xl font-bold mb-2 ml-18 pl-18">Balanza comercial sectorial</h3>
+                        <p class="text-sm text-gray-500 font-medium tracking-wide mb-8 ml-18 pl-18">Análisis de la cuota de mercado internacional en India, penetración de orígenes competidores y evaluación de las ventajas comparativas relativas dentro del sector.</p>
+                        <div class="glass-panel p-8 rounded-2xl mb-8 flex-grow">
+                            <h4 class="font-bold mb-4 flex items-center gap-2 text-lg">
+                                <span class="material-symbols-outlined" style="color: #ba1a1a;">analytics</span> Dato / Hallazgo Actual
+                            </h4>
+                            <p class="text-base leading-relaxed text-gray-700">Las bases de datos de UN Comtrade (2024) evidencian un dominio abrumador de Kenia en el abastecimiento de rosas frescas, apoyado en sus insuperables costos de flete por cercanía. Mientras tanto, Países Bajos controla un monopolio virtual sobre material genético y flores de clima temperado.</p>
+                            <br>
+                            <h4 class="font-bold mb-2 flex items-center gap-2 text-md">
+                                <span class="material-symbols-outlined text-gray-400">help</span> ¿Por qué se investiga?
+                            </h4>
+                            <p class="text-sm leading-relaxed text-gray-600">Define el paisaje competitivo crudo y establece si el producto colombiano tiene un océano azul o un océano rojo por delante.</p>
+                        </div>
+                        <div class="p-8 rounded-2xl border relative overflow-hidden group" style="background-color: #ba1a1a0d; border-color: #ba1a1a33;">
+                            <div class="absolute right-0 top-0 w-32 h-32 rounded-full blur-2xl -mr-10 -mt-10 transition-transform group-hover:scale-150" style="background-color: #ba1a1a1a;"></div>
+                            <h4 class="font-bold mb-3 flex items-center gap-2 text-lg relative z-10" style="color: #ba1a1a;">
+                                <span class="material-symbols-outlined">public</span> Relevancia para Dreams Flower S.A.S.
+                            </h4>
+                            <p class="text-base leading-relaxed mb-6 relative z-10 text-gray-700">Define la matriz de producto. Dreams Flower no puede competir en volumen de rosas contra Kenia en este mercado. Su estrategia debe capitalizar su especialidad principal (Hortensias frescas de alta gama), posicionando su portafolio como un producto exótico, exclusivo y altamente diferenciado frente a la oferta tradicional.</p>
+                            <div class="inline-flex items-center gap-2 text-white px-5 py-2 rounded-full text-sm font-bold shadow-lg relative z-10" style="background-color: #ba1a1a;">
+                                <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
+                                Riesgo Crítico. Competidores con ventajas insuperables.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2 flex flex-col justify-center bg-white/50 rounded-3xl p-6 border border-gray-200 shadow-inner">
+                        <div class="relative w-full h-[400px]">
+                            <canvas id="chart_india_12"></canvas>
+                        </div>
+                        <p class="text-xs text-center text-gray-400 mt-3 font-medium">Cuota de mercado de importaciones</p>
+                    </div>
+                </div>
+            </section>
+            <section class="indicator-card botanical-shadow reveal active" style="border-top-color: #735664;">
+                <div class="flex flex-col lg:flex-row gap-16">
+                    <div class="lg:w-1/2 flex flex-col">
+                        <h2 class="font-headline-md text-3xl mb-3 flex items-center gap-4" style="color: #735664;">
+                            <div class="icon-circle w-14 h-14 rounded-full flex items-center justify-center shrink-0" style="background-color: #73566420; color: #735664;">
+                                <span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">domain</span>
+                            </div>
+                            Indicador 13
+                        </h2>
+                        <h3 class="text-xl font-bold mb-2 ml-18 pl-18">IED en modernización logística</h3>
+                        <p class="text-sm text-gray-500 font-medium tracking-wide mb-8 ml-18 pl-18">Cuantificación y dinamismo del flujo de capitales foráneos direccionados exclusivamente hacia la modernización de infraestructura portuaria y cadena de frío interna.</p>
+                        <div class="glass-panel p-8 rounded-2xl mb-8 flex-grow">
+                            <h4 class="font-bold mb-4 flex items-center gap-2 text-lg">
+                                <span class="material-symbols-outlined" style="color: #735664;">analytics</span> Dato / Hallazgo Actual
+                            </h4>
+                            <p class="text-base leading-relaxed text-gray-700">Reportes del DPIIT (Departamento para la Promoción de la Industria, 2024) ratifican que India permite el 100% de Inversión Extranjera Directa bajo ruta automática en infraestructura de frío. Esto ha desencadenado una expansión masiva de modernos corredores logísticos multimodales.</p>
+                            <br>
+                            <h4 class="font-bold mb-2 flex items-center gap-2 text-md">
+                                <span class="material-symbols-outlined text-gray-400">help</span> ¿Por qué se investiga?
+                            </h4>
+                            <p class="text-sm leading-relaxed text-gray-600">Corrobora analíticamente la viabilidad estructural futura de movilizar productos perecederos de alto valor hacia el interior profundo del subcontinente.</p>
+                        </div>
+                        <div class="p-8 rounded-2xl border relative overflow-hidden group" style="background-color: #7356640d; border-color: #73566433;">
+                            <div class="absolute right-0 top-0 w-32 h-32 rounded-full blur-2xl -mr-10 -mt-10 transition-transform group-hover:scale-150" style="background-color: #7356641a;"></div>
+                            <h4 class="font-bold mb-3 flex items-center gap-2 text-lg relative z-10" style="color: #735664;">
+                                <span class="material-symbols-outlined">public</span> Relevancia para Dreams Flower S.A.S.
+                            </h4>
+                            <p class="text-base leading-relaxed mb-6 relative z-10 text-gray-700">Genera una oportunidad expansiva invaluable. Aunque la comercialización actual debe anclarse en ciudades Tier 1 (Costeras y Principales), a mediano plazo Dreams Flower podrá prospectar de manera realista alianzas con centros de distribución en pujantes ciudades Tier 2.</p>
+                            <div class="inline-flex items-center gap-2 text-white px-5 py-2 rounded-full text-sm font-bold shadow-lg relative z-10" style="background-color: #735664;">
+                                <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
+                                Oportunidad. Asegura desarrollo descentralizado.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2 flex flex-col justify-center bg-white/50 rounded-3xl p-6 border border-gray-200 shadow-inner">
+                        <div class="relative w-full h-[400px]">
+                            <canvas id="chart_india_13"></canvas>
+                        </div>
+                        <p class="text-xs text-center text-gray-400 mt-3 font-medium">Crecimiento de inversión en frío</p>
+                    </div>
+                </div>
+            </section>
+            <section class="indicator-card botanical-shadow reveal active" style="border-top-color: #3d6751;">
+                <div class="flex flex-col lg:flex-row gap-16">
+                    <div class="lg:w-1/2 flex flex-col">
+                        <h2 class="font-headline-md text-3xl mb-3 flex items-center gap-4" style="color: #3d6751;">
+                            <div class="icon-circle w-14 h-14 rounded-full flex items-center justify-center shrink-0" style="background-color: #3d675120; color: #3d6751;">
+                                <span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">handshake</span>
+                            </div>
+                            Indicador 14
+                        </h2>
+                        <h3 class="text-xl font-bold mb-2 ml-18 pl-18">Incentivos para Joint Ventures</h3>
+                        <p class="text-sm text-gray-500 font-medium tracking-wide mb-8 ml-18 pl-18">Evaluación del marco regulatorio, dinamismo comercial y beneficios fiscales para la creación de filiales locales o entidades corporativas conjuntas.</p>
+                        <div class="glass-panel p-8 rounded-2xl mb-8 flex-grow">
+                            <h4 class="font-bold mb-4 flex items-center gap-2 text-lg">
+                                <span class="material-symbols-outlined" style="color: #3d6751;">analytics</span> Dato / Hallazgo Actual
+                            </h4>
+                            <p class="text-base leading-relaxed text-gray-700">Agencias gubernamentales como Invest India (2024) han desplegado plataformas de 'Single Window Clearance', las cuales agilizan extraordinariamente los trámites de constitución empresarial y dinamizan la creación de Joint Ventures B2B internacionales.</p>
+                            <br>
+                            <h4 class="font-bold mb-2 flex items-center gap-2 text-md">
+                                <span class="material-symbols-outlined text-gray-400">help</span> ¿Por qué se investiga?
+                            </h4>
+                            <p class="text-sm leading-relaxed text-gray-600">Frente a un panorama de aranceles punitivos (60%), una Inversión Extranjera Directa permite al exportador capturar eslabones de la cadena de valor que amortiguan ese impacto.</p>
+                        </div>
+                        <div class="p-8 rounded-2xl border relative overflow-hidden group" style="background-color: #3d67510d; border-color: #3d675133;">
+                            <div class="absolute right-0 top-0 w-32 h-32 rounded-full blur-2xl -mr-10 -mt-10 transition-transform group-hover:scale-150" style="background-color: #3d67511a;"></div>
+                            <h4 class="font-bold mb-3 flex items-center gap-2 text-lg relative z-10" style="color: #3d6751;">
+                                <span class="material-symbols-outlined">public</span> Relevancia para Dreams Flower S.A.S.
+                            </h4>
+                            <p class="text-base leading-relaxed mb-6 relative z-10 text-gray-700">Proyección corporativa avanzada. Dreams Flower podría asociarse a futuro con operadores logísticos u organizadores de bodas indios para importar, nacionalizar y vender directamente sus propios cargamentos, marginando mayores beneficios y repatriando grandes dividendos a Colombia.</p>
+                            <div class="inline-flex items-center gap-2 text-white px-5 py-2 rounded-full text-sm font-bold shadow-lg relative z-10" style="background-color: #3d6751;">
+                                <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
+                                Oportunidad. Facilita negocios avanzados.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2 flex flex-col justify-center bg-white/50 rounded-3xl p-6 border border-gray-200 shadow-inner">
+                        <div class="relative w-full h-[400px]">
+                            <canvas id="chart_india_14"></canvas>
+                        </div>
+                        <p class="text-xs text-center text-gray-400 mt-3 font-medium">Aprobaciones Joint Venture</p>
+                    </div>
+                </div>
+            </section>
+            <section class="indicator-card botanical-shadow reveal active" style="border-top-color: #735664;">
+                <div class="flex flex-col lg:flex-row gap-16">
+                    <div class="lg:w-1/2 flex flex-col">
+                        <h2 class="font-headline-md text-3xl mb-3 flex items-center gap-4" style="color: #735664;">
+                            <div class="icon-circle w-14 h-14 rounded-full flex items-center justify-center shrink-0" style="background-color: #73566420; color: #735664;">
+                                <span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">price_check</span>
+                            </div>
+                            Indicador 15
+                        </h2>
+                        <h3 class="text-xl font-bold mb-2 ml-18 pl-18">Controles cambiarios y repatriación</h3>
+                        <p class="text-sm text-gray-500 font-medium tracking-wide mb-8 ml-18 pl-18">Análisis del rigor regulatorio, leyes sobre libre convertibilidad de la Rupia India (INR) a dólares (USD) y normativas de egreso de capitales supervisadas por entidades centrales.</p>
+                        <div class="glass-panel p-8 rounded-2xl mb-8 flex-grow">
+                            <h4 class="font-bold mb-4 flex items-center gap-2 text-lg">
+                                <span class="material-symbols-outlined" style="color: #735664;">analytics</span> Dato / Hallazgo Actual
+                            </h4>
+                            <p class="text-base leading-relaxed text-gray-700">La Ley FEMA bajo el Banco de la Reserva de la India (RBI, 2024) determina que la repatriación de dividendos y ganancias está permitida al 100%, pero condicionada a un estricto escrutinio previo: retención impositiva corporativa y la certificación ineludible de un Chartered Accountant (Contador Colegiado) local.</p>
+                            <br>
+                            <h4 class="font-bold mb-2 flex items-center gap-2 text-md">
+                                <span class="material-symbols-outlined text-gray-400">help</span> ¿Por qué se investiga?
+                            </h4>
+                            <p class="text-sm leading-relaxed text-gray-600">Mide el nivel de riesgo financiero de que la compañía matriz en Colombia no pueda monetizar ágilmente los rendimientos de sus esfuerzos internacionales.</p>
+                        </div>
+                        <div class="p-8 rounded-2xl border relative overflow-hidden group" style="background-color: #7356640d; border-color: #73566433;">
+                            <div class="absolute right-0 top-0 w-32 h-32 rounded-full blur-2xl -mr-10 -mt-10 transition-transform group-hover:scale-150" style="background-color: #7356641a;"></div>
+                            <h4 class="font-bold mb-3 flex items-center gap-2 text-lg relative z-10" style="color: #735664;">
+                                <span class="material-symbols-outlined">public</span> Relevancia para Dreams Flower S.A.S.
+                            </h4>
+                            <p class="text-base leading-relaxed mb-6 relative z-10 text-gray-700">Impone un nivel de disciplina contable internacional extremo. Dreams Flower no solo deberá contemplar sofisticadas coberturas de riesgo cambiario (Forwards), sino que estará en la obligación corporativa de contratar firmas auditoras indias altamente capacitadas y rigurosas.</p>
+                            <div class="inline-flex items-center gap-2 text-white px-5 py-2 rounded-full text-sm font-bold shadow-lg relative z-10" style="background-color: #735664;">
+                                <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
+                                Neutral. Regulación predecible pero exigente.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2 flex flex-col justify-center bg-white/50 rounded-3xl p-6 border border-gray-200 shadow-inner">
+                        <div class="relative w-full h-[400px]">
+                            <canvas id="chart_india_15"></canvas>
+                        </div>
+                        <p class="text-xs text-center text-gray-400 mt-3 font-medium">Flujos de Repatriación INR/USD</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div id="country-japon" class="country-content hidden">
+            <div class="indicator-card botanical-shadow text-center p-12">
+                <span class="material-symbols-outlined text-6xl text-gray-400 mb-4">hourglass_empty</span>
+                <h3 class="font-headline-md text-3xl mb-2">Información en desarrollo</h3>
+                <p class="text-gray-500">Los 15 indicadores para Japón se agregarán próximamente.</p>
+            </div>
+        </div>
+        <div id="country-arabia" class="country-content hidden">
+            <div class="indicator-card botanical-shadow text-center p-12">
+                <span class="material-symbols-outlined text-6xl text-gray-400 mb-4">hourglass_empty</span>
+                <h3 class="font-headline-md text-3xl mb-2">Información en desarrollo</h3>
+                <p class="text-gray-500">Los 15 indicadores para Emiratos Árabes Unidos se agregarán próximamente.</p>
+            </div>
+        </div>
+    </main>
+    <script src="../../assets/js/charts-entrega3.js"></script>
+    <script>
+        function selectCountry(countryId, btnElement) {
+            document.querySelectorAll(".country-tab").forEach(btn => {
+                btn.classList.remove("active", "bg-primary", "text-white", "border-primary");
+                btn.classList.add("bg-white", "text-gray-700");
+                btn.style.backgroundColor = ""; btn.style.color = ""; btn.style.borderColor = "";
+            });
+            btnElement.classList.add("active");
+            btnElement.classList.remove("bg-white", "text-gray-700");
+            btnElement.style.backgroundColor = "#3d6751"; btnElement.style.color = "white"; btnElement.style.borderColor = "#3d6751";
+            
+            document.querySelectorAll(".country-content").forEach(content => {
+                content.classList.add("hidden");
+                content.classList.remove("animate-fade-in", "block");
+            });
+            const selected = document.getElementById("country-" + countryId);
+            selected.classList.remove("hidden");
+            selected.classList.add("animate-fade-in", "block");
+            
+            if(window.renderChartsForCountry) {
+                window.renderChartsForCountry(countryId);
+            }
+        }
+    </script>
 </body>
 </html>
